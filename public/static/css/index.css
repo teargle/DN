@@ -1,0 +1,394 @@
+.header-banner {
+	position: relative;
+	height: 500px;
+	width: 100%;
+	margin-top:76px;
+
+}
+
+.header-banner .banner {
+	height: 100%;
+	width: 100%;
+	background: url(../img/header_banner.jpg) fixed no-repeat;
+	background-size: 100%s auto;
+}
+
+.header-banner .banner-inner {
+	position: absolute;
+	left: 10%;
+	top: 10%;
+	right: 10%;
+	bottom: 10%;
+	width: 80%;
+	height: 80%;
+	/*background-color: purple;*/
+	text-align: center;
+	color: #fff;
+}
+
+.header-banner .banner-inner .banner-top {
+	color: #fff;
+	font-size: 60px;
+    letter-spacing: 3px;
+    width: 100%;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.header-banner .banner-inner .banner-top h2  {
+	display: inline-block;
+	letter-spacing: 2px;
+	color: #fff;
+	/*line-height: 1.3;*/
+	/*text-align:center;*/
+}
+
+.header-banner .banner-inner .banner-top h2 span {
+	display: inline-block;
+	/*letter-spacing: 3px;*/
+	/*text-transform: uppercase;*/
+	/*visibility: visible;*/
+}
+
+.header-banner .banner-inner .banner-midder {
+	font-size: 14px;
+    font-style: italic;
+    letter-spacing: .4px;
+    text-shadow: 0 2px 8px rgba(0,0,0,.15);
+    color: #fff;
+    text-align: center;
+    font-weight: 100;
+    padding-bottom: 10px;
+    /*background-color: blue;*/
+    text-align: center;
+}
+
+.header-banner .banner-inner .banner-bottom {
+	margin-top: 30px;
+}
+
+.header-banner .banner-inner .banner-bottom div {
+	display: inline-block;
+	margin: center;
+	border-radius: 2px;
+}
+
+.header-banner .banner-inner .banner-bottom div a {
+	display: inline-block;
+	text-decoration: none;
+    color: #fff;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    margin: .625rem .625rem 1.25rem 0;
+    padding: .75rem 1.5rem;
+    border: 1px solid transparent;
+    font-weight: 600;
+    
+}
+
+.header-banner .banner-inner .banner-bottom div:last-child a {
+	border-color: rgba(255,255,255,.9);
+}
+
+.header-banner .banner-inner .banner-bottom .active {
+	background: #03c4eb;
+}
+
+/*FEATURES*/
+.features {
+	padding: 60px; 
+}
+
+.features .features-container {
+	margin:0 47px;
+	padding: 0 15px;
+}
+
+.features .features-container .features-header {
+	height: 65px;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 60px;
+}
+
+.features .features-container .features-header .features-tip {
+	color: #aaa;
+    font-size: 12px;
+    display: block;
+    margin-bottom: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.features .features-container .features-header .features-title {
+	display: block;
+	font-size: 30px;
+    letter-spacing: 2px;
+    font-weight: 800;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.features .features-container .introduction {
+
+}
+
+.features .features-container .introduction ul li {
+	list-style: none;
+	float:left;
+	width: 222px;
+	padding: 0 15px;
+}
+
+.features .features-container .introduction ul li .image  {
+	width: auto;
+	height:100px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.features .features-container .introduction ul li .tip  {
+	text-align: center;
+	margin-bottom: 12px;
+}
+
+.features .features-container .introduction ul li .description  {
+	text-align: center;
+	margin-bottom: 15px;
+	line-height: 1.7;
+	font-size: 14px;
+	color: #777;
+	font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+}
+
+/*about us*/
+.about {
+	padding: 0 70px;
+}
+
+.about .about-container {
+	margin: 0 50px;
+	padding: 0 15px;
+}
+.about .about-container .about-top {
+	height: 36px;
+	margin-bottom: 30px;
+	text-align: center;
+	font-size: 30px;
+    letter-spacing: 2px;
+    font-weight: 800;
+    position: relative;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.about .about-container .us-info {
+	margin-top: 30px;
+}
+
+.about .about-container .us-info ul li {
+	list-style: none;
+	float: left;
+	height: 390px;
+	width: 330px;
+	padding: 0 15px;
+	margin-top: 30px;
+}
+
+.about .about-container .us-info ul li .image {
+	width: 330px;
+	height: 180px;
+	margin-bottom: 30px;
+}
+
+.about .about-container .us-info ul li .image img {
+	width: auto;
+	height: 100%;
+}
+
+.about .about-container .us-info ul li .about-title {
+	margin-bottom: 15px;
+}
+
+.about .about-container .us-info ul li a {
+	text-decoration: none;
+	color: #333;
+	font-size: 30px;
+	margin-bottom: 15px;
+}
+
+.about .about-container .us-info ul li .about-tip {
+	margin-bottom: 15px;
+	
+    font-size: 14px;
+    line-height: 1.7;
+    color: #777;
+}
+
+/*power tools */
+.power {
+	background-color: #f8f9f9;
+	padding: 70px 0;
+}
+
+.power .power-container {
+	padding: 0 15px;
+	max-width: 100%;
+	margin:0 47px;
+}
+
+.power .power-container .power-header {
+	margin-bottom: 60px;
+    text-align: center;
+}
+
+.power .power-container .power-header .power-tip {
+    font-size: 12px;
+    display: inline-block;
+    margin-bottom: 13px;
+}
+
+.power .power-container .power-header .power-tip h5 {
+	color: #aaa;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.power .power-container .power-header .power-title {
+    font-weight: 800;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    font-size: 40px;
+    letter-spacing: 3.5px;
+    color: #333;
+}
+
+.power .power-container .power-info {
+	margin: 0 15px;
+	text-align: center;
+}
+
+.power .power-container .power-info .row {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    
+}
+
+.power .power-container .power-info .row a {
+	text-decoration: none;
+	background: #fff;
+    padding: 30px;
+    width: 40%;
+    height: auto;
+    margin-bottom: 30px;
+    color: #03c4eb;
+    outline: 0;
+    float: left ;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content:flex-start;
+    align-items:flex-start;
+    background-color: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,.08);
+
+}
+
+.power .power-container .power-info .row a:first-child {
+	margin-right: 10px;
+}
+
+.power .power-container .power-info .row a .tool-left {
+/*	float: left;*/
+	width: 120px;
+	height: 120px;
+	margin-right: 30px;
+	/*background-color: blue;*/
+	/*padding: 0 15px;*/
+}
+
+.power .power-container .power-info a .tool-left img {
+	max-width: 120px;
+	height: auto;
+}
+
+.power .power-container .power-info a .tool-right {
+	/*float: left;*/
+	width: auto;
+	height: 120px;
+	overflow: hidden;
+	/*background-color: yellow;*/
+}
+
+.power .power-container .power-info a .tool-right .tool-title  {
+	margin-bottom: 10px;
+    font-size: 17px;
+    text-align: left;
+}
+
+.power .power-container .power-info a .tool-right .tool-tip  {
+    margin: 0;
+    font-size: 14px;
+    color: #777;
+    text-align: left;
+}
+
+/*photos*/
+.photos {
+	padding: 70px 0;
+	background-color: #f8f9f9;
+}
+
+.photos .photos-container {
+	width: 100%;
+	/*background-color: pink;*/
+}
+
+.photos .photos-container .photos-top {
+	width: 100%;
+	margin-bottom: 60px;
+	text-align: center;
+	/*background-color: yellow;*/
+}
+
+.photos .photos-container .photos-top h2 {
+	font-size: 40px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.photos .photos-container .photos-imgs {
+	
+}
+
+.photos .photos-container .photos-imgs ul {
+	padding: 0;
+}
+
+.photos .photos-container .photos-imgs ul li {
+	list-style: none;
+	float: left;
+	width: auto;
+	/*background-color: blue;*/
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+.photos .photos-container .photos-imgs ul li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.photos .photos-container .photos-imgs ul li a img {
+	display: block;
+	width: 200px;
+	height: 132px;
+}
