@@ -1,0 +1,15 @@
+.site-info {
+	position: relative;
+	text-align: center;
+	padding: 35px 0;
+	background: #222;
+	font-weight: 500;
+	color: #bbb;
+	font-size: 14px;
+	
+}
+
+.site-info .site-info-container {
+	margin-left: auto;
+	margin-right: auto;
+}
