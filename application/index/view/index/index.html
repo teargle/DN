@@ -1,5 +1,6 @@
 {include file="common/header" /}
-<link rel="stylesheet" type="text/css" href="__CSS__/index.css">
+<script type="text/javascript" href="__JS__"></script>
+<script type="text/javascript" src="__JS__/index.js"></script>
 <div class="header-banner">
 	<div class="banner"></div>
 	<div class="banner-inner">
@@ -104,46 +105,87 @@
 <!-- photos -->
 <div class="photos">
 	<div class="photos-container">
-		<div class="photos-top"><h2>photos</h2></div>
-		<div class="photos-imgs">
-			<ul class="clearfix">
-				<li>
-					<a href="#"><img src="__IMG__/product1.jpg"></a>
-				</li>
-				<li>
-					<a href="#"><img src="__IMG__/product2.jpg"></a>
-				</li>
-				<li>
-					<a href="#"><img src="__IMG__/product1.jpg"></a>
-				</li>
-				<li>
-					<a href="#"><img src="__IMG__/product2.jpg"></a>
-				</li>
-				<li>
-					<a href="#"><img src="__IMG__/product1.jpg"></a>
-				</li>
-				<li>
-					<a href="#"><img src="__IMG__/product2.jpg"></a>
-				</li>
-				<li>
-					<a href="#"><img src="__IMG__/product2.jpg"></a>
-				</li>
-				<li>
-					<a href="#"><img src="__IMG__/product2.jpg"></a>
-				</li>
-				<li>
-					<a href="#"><img src="__IMG__/product1.jpg"></a>
-				</li>
-				<li>
-					<a href="#"><img src="__IMG__/product2.jpg"></a>
-				</li>
-				<li>
-					<a href="#"><img src="__IMG__/product2.jpg"></a>
-				</li>
-			</ul>
+		<div class="photos-title"><h2>PHOTOS</h2></div>
+	</div>
+	<div class="photos-imgs">
+		<div class="photos-col">
+			<a href="#" class="22">
+				<span class="photos-inner">
+					<span class="photos-content">
+						<img src="__IMG__/product3.jpg">
+					</span>
+				</span>
+			</a>
+			<a href="#">
+				<span class="photos-inner">
+					<span class="photos-content">
+						<img src="__IMG__/product1.jpg">
+					</span>
+				</span>
+			</a>
+			<a href="#">
+				<span class="photos-inner">
+					<span class="photos-content">
+						<img src="__IMG__/product2.jpg">
+					</span>
+				</span>
+			</a>
+			<a href="#">
+				<span class="photos-inner">
+					<span class="photos-content">
+						<img src="__IMG__/product3.jpg">
+					</span>
+				</span>
+			</a>
+			<a href="#">
+				<span class="photos-inner">
+					<span class="photos-content">
+						<img src="__IMG__/product2.jpg">
+					</span>
+				</span>
+			</a>
+			<a href="#">
+				<span class="photos-inner">
+					<span class="photos-content">
+						<img src="__IMG__/product3.jpg">
+					</span>
+				</span>
+			</a>
+			<a href="#">
+				<span class="photos-inner">
+					<span class="photos-content">
+						<img src="__IMG__/product1.jpg">
+					</span>
+				</span>
+			</a>
+			<a href="#">
+				<span class="photos-inner">
+					<span class="photos-content">
+						<img src="__IMG__/product1.jpg">
+					</span>
+				</span>
+			</a>
+			<a href="#">
+				<span class="photos-inner">
+					<span class="photos-content">
+						<img src="__IMG__/product1.jpg">
+					</span>
+				</span>
+			</a>
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+$(document).ready( function(){
+	$(window).resize(function(){
+		justImg( );
+	}) ;
+	justImg();
+	
+}) ;
+
+</script>
+
 
 <div class="funder">
 	<div class="funder-container">
