@@ -28,11 +28,22 @@ class Index extends Controller
     }
 
     public function shop() {
+    	$this->assign('topTitle' , 'SHOP');
     	return $this->fetch('shop');
     }
 
     public function product () {
+    	$this->assign('topTitle' , 'SHOP');
     	return $this->fetch('product');
     }
 
+    public function history(){
+    	$this->assign('topTitle' , 'OUT HISTORY');
+    	return $this->fetch('history');
+    }
+
+    public function mission(){
+        $this->assign('topTitle' , 'OUR MISSION');
+        return $this->fetch('mission');
+    }
 }

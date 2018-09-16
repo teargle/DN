@@ -1,0 +1,41 @@
+img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.site-content {
+    border-top: 1px solid #e9e9e9;
+    margin-top: -1px;
+}
+
+.site-content:before, .site-content:after {
+	content: ' ';
+	display: table;
+	clear: both;
+}
+
+.content-area {
+	padding-bottom: 40px;
+	padding-top: 40px;
+	padding-right: 39px;
+	border-right: 1px solid #e9e9e9;
+	width: 70%;
+	float: left;
+}
+
+.entry-content {
+	margin-bottom: 30px;
+}
+
+.entry-content:before, .entry-content:after {
+	content: ' ';
+	display: table;
+	clear: both;
+}
+
+.entry-content p img {
+	display: inline;
+	float: left;
+	margin-right: 3.5em;
+}
