@@ -1,0 +1,95 @@
+
+
+body {
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #292b2c;
+    background-color: #fff;
+}
+
+
+body, button, input, select, textarea {
+    font-family: "Open Sans",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-size: .875rem;
+    line-height: 1.7;
+    color: #777;
+} 
+
+ul, ol, dl, p, details, address, .vcard, figure, pre, fieldset, table, dt, dd, hr  {
+	margin-bottom: 15px;
+    margin-bottom: .9375rem;
+    margin-top: 0;
+}
+
+.break, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, pre {
+	word-break: break-word;
+    word-wrap: break-word;
+}
+
+li {
+	display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.small, small {
+    font-size: 82%;
+    font-weight: 400;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    clear: both;
+    font-family: "Raleway",Helvetica,Arial,sans-serif;
+    font-weight: 600;
+    margin-bottom: 15px;
+    margin-top: 0;
+    color: #333;
+}
+
+h1 {
+    line-height: 1.3;
+    font-size: 33px;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #e9e9e9;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table>thead>tr>th, table>tbody>tr>th, table>tfoot>tr>th, table>thead>tr>td, table>tbody>tr>td, table>tfoot>tr>td {
+    border: 1px solid #e9e9e9;
+    line-height: 1.42857;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+b, strong {
+    font-weight: bold;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.container {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 15px;
+	padding-right: 15px;
+}

@@ -27,4 +27,12 @@ class Index extends Controller
         return $this->fetch('index');
     }
 
+    public function shop() {
+    	return $this->fetch('shop');
+    }
+
+    public function product () {
+    	return $this->fetch('product');
+    }
+
 }

@@ -1,5 +1,11 @@
 
 // 调整产品图片
+function init_justImg () {
+	$(window).resize(function(){
+		justImg( );
+	}) ;
+	justImg();
+}
 function justImg ( ) {
 	justImgWidth ();
 	$(".photos-col a").each(function(index){
@@ -39,4 +45,30 @@ function justImgAll ( ) {
 	all_height = number_row * $img.height() + number_row * 2 ;
 	$(".photos-imgs").height( number_row * $img.height() ) ;
 	$(".photos-col").height( number_row * $img.height() ) ;
+}
+
+// 调整新闻
+function init_justNews() {
+
+	var totalWidth = $('.new-container').width();
+	if ( totalWidth > 960 ) {
+		$(".new-left").removeClass("hidden");
+		$(".new-left").css("float" , "left");
+		$(".new-right").css("float" , "right");
+		$('.new-container').removeAttr('padding-left');
+		$('.new-container').removeAttr('padding-right');
+	} else if ( totalWidth > 960 || totalWidth > 560 ) {
+		$(".new-left").css("float" , "none");
+		$(".new-right").css("float" , "none");
+		$('.new-container').css('padding-left' , '15px');
+		$('.new-container').css('padding-right' , '15px');
+		$(".new-left").addClass("hidden");
+	} else if ( totalWidth < 560 ) {
+		$(".new-left").removeClass("hidden");
+		$(".new-left").css("float" , "left");
+		$(".new-right").css("float" , "right");
+		$('.new-container').removeAttr('padding-left');
+		$('.new-container').removeAttr('padding-right');
+	}
+
 }

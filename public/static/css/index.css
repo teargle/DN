@@ -18,8 +18,6 @@ img {
 	position: relative;
 	height: 500px;
 	width: 100%;
-	margin-top:76px;
-
 }
 
 .header-banner .banner {
@@ -371,7 +369,6 @@ img {
     bottom: 0;
     display: block;
     content: " ";
-    z-index: 1;
 }
 
 .photos .photos-container {
@@ -427,12 +424,24 @@ img {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
+	transition: all 0.5s linear;
+}
+
+.photos-content:hover {
+	transform: scale(1.4);
+	-webkit-transform: scale(1.4);
 }
 
 .photos-content img {
 	display: block;
 	overflow: hidden;
 	transition: all 0.5s linear;
+}
+
+.photos-content img:hover {
+	display: block;
+	transform: scale(1.4);
+	-webkit-transform: scale(1.4);
 }
 
 /*funder*/
@@ -569,8 +578,12 @@ img {
 }
 
 .new-col {
-	flex: 0 0 100%;
-	max-width: 100%;
+	/*flex: 0 0 100%;
+	max-width: 100%;*/
+
+	position: relative;
+    width: 100%;
+    min-height: 1px;
 }
 
 .new-blog {
@@ -583,7 +596,7 @@ img {
 	padding: 25px 0;
 }
 
-.new-article:last-child {
+.new-article:nth-last-of-type(2) {
 	border-bottom: 1px solid #e9e9e9;
 }
 

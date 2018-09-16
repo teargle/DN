@@ -27,6 +27,10 @@ body {
 	height: 36px;
 }
 
+.header-left h1 {
+	font-weight: normal;
+}
+
 .header img {
 	display: inline-block;
 	height: 36px;
@@ -59,3 +63,6 @@ body {
 	color:#03c4eb;
 }
 
+.perch {
+	height: 76px;
+}
