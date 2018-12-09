@@ -8,7 +8,7 @@
 		<div class="content-area">
 			<div class="site-main">
 				<h1 class="page-title">Shop</h1>
-				<p class="woocomerce-result-count">Showing 1-20 of 24 results</p>
+				<p class="woocomerce-result-count">Showing {$start} - {$start + SHOP_LIMIT -1 } of {$total_page} results</p>
 				<form class="woocommerce-ordering" method="get">
 					<select name="orderby" class="orderby">
 						<option value="menu_order">Default sorting</option>
@@ -18,73 +18,47 @@
 					<input type="hidden" name="paged" value="1">
 				</form>
 				<ul class="products">
-					<li class="product first">
-						<a href="/index/product/detail/45" class="product-top-link">
-							<img width="300" height="300" src="__IMG__/product-1-300x300.jpg" sizes="(max-width:300px) 100vm, 300px">
-							<h2>180 x 0.5 Needles Cut Off Wheel | Abrasives Cutter | Tricraft</h2>
+					{foreach name="products" item="product" key="idx" }
+					<li class="product {$idx % 4 == 0 ? 'first' : ''} {$idx % 4 == 3 ? 'last' : ''}">
+						<a href="/index/index/product/id/{$product['id']}" class="product-top-link">
+							<img width="300" height="300" src="{$product['img_url']}" 
+							sizes="(max-width:300px) 100vm, 300px">
+							<h2>{$product['short_title']}</h2>
 						</a>
-						<a href="" class="product-bottom-link">READ MORE</a>
+						<a href="" class="product-bottom-link">了解更多</a>
 					</li>
-					<li class="product">
-						<a href="/index/product/detail/45" class="product-top-link">
-							<img width="300" height="300" src="__IMG__/product-2-300x300.jpg" sizes="(max-width:300px) 100vm, 300px">
-							<h2>180 x 0.5 Needles Cut Off Wheel | Abrasives Cutter | Tricraft</h2>
-						</a>
-						<a href="" class="product-bottom-link">READ MORE</a>
-					</li>
-					<li class="product">
-						<a href="/index/product/detail/45" class="product-top-link">
-							<img width="300" height="300" src="__IMG__/product-1-300x300.jpg" sizes="(max-width:300px) 100vm, 300px">
-							<h2>180 x 0.5 Needles Cut Off Wheel | Abrasives Cutter | Tricraft</h2>
-						</a>
-						<a href="" class="product-bottom-link">READ MORE</a>
-					</li>
-					<li class="product last">
-						<a href="/index/product/detail/45" class="product-top-link">
-							<img width="300" height="300" src="__IMG__/product-2-300x300.jpg" sizes="(max-width:300px) 100vm, 300px">
-							<h2>180 x 0.5 Needles Cut Off Wheel | Abrasives Cutter | Tricraft</h2>
-						</a>
-						<a href="" class="product-bottom-link">READ MORE</a>
-					</li>
-					<li class="product first">
-						<a href="/index/product/detail/45" class="product-top-link">
-							<img width="300" height="300" src="__IMG__/product-1-300x300.jpg" sizes="(max-width:300px) 100vm, 300px">
-							<h2>180 x 0.5 Needles Cut Off Wheel | Abrasives Cutter | Tricraft</h2>
-						</a>
-						<a href="" class="product-bottom-link">READ MORE</a>
-					</li>
-					<li class="product">
-						<a href="/index/product/detail/45" class="product-top-link">
-							<img width="300" height="300" src="__IMG__/product-2-300x300.jpg" sizes="(max-width:300px) 100vm, 300px">
-							<h2>180 x 0.5 Needles Cut Off Wheel | Abrasives Cutter | Tricraft</h2>
-						</a>
-						<a href="" class="product-bottom-link">READ MORE</a>
-					</li>
-					<li class="product">
-						<a href="/index/product/detail/45" class="product-top-link">
-							<img width="300" height="300" src="__IMG__/product-1-300x300.jpg" sizes="(max-width:300px) 100vm, 300px">
-							<h2>180 x 0.5 Needles Cut Off Wheel | Abrasives Cutter | Tricraft</h2>
-						</a>
-						<a href="" class="product-bottom-link">READ MORE</a>
-					</li>
-					<li class="product last">
-						<a href="/index/product/detail/45" class="product-top-link">
-							<img width="300" height="300" src="__IMG__/product-2-300x300.jpg" sizes="(max-width:300px) 100vm, 300px">
-							<h2>180 x 0.5 Needles Cut Off Wheel | Abrasives Cutter | Tricraft</h2>
-						</a>
-						<a href="" class="product-bottom-link">READ MORE</a>
-					</li>
+					{/foreach}
 				</ul>
 				<div class="nav">
 					<ul>
 						<li>
-							<span class="page-number current">1</span>
+							<a href="javascript:goNextPage(1)">
+							<span class="page-number">首页</span>
+							</a>
 						</li>
 						<li>
-							<a class="page-numbers" href="#">2</a>
+							<a href="javascript:goNextPage({$pre_page})">
+							<span class="page-number">上一页</span>
+							</a>
+						</li>
+						{for start="$current_page - 2" end="$current_page + 3" }
+						{if condition="$i egt 1 and $i elt $total_page"}
+						<li>
+							<a href="javascript:goNextPage({$i})">
+							<span class="page-number {$current_page == $i ? 'current' : ''}">{$i}</span>
+							</a>
+						</li>
+						{/if}
+						{/for}
+						<li>
+							<a href="javascript:goNextPage({$next_page})">
+							<span class="page-number">下一页</span>
+							</a>
 						</li>
 						<li>
-							<a class="page-numbers next" href="">-></a>
+							<a href="javascript:goNextPage({$total_page})">
+							<span class="page-number">尾页</span>
+							</a>
 						</li>
 					</ul>
 				</div>
@@ -94,3 +68,16 @@
 	</div>
 </div>
 {include file="common/footer" /}
+
+<script type="text/javascript">
+var keyword = "{$keyword}";
+function goNextPage( current_page ) {
+	console.log( "123");
+	var params = {};
+	if( keyword ) {
+		params ['keyword'] = keyword ;
+	}
+	params ['current'] = current_page;
+	$.StandardPost( "/index/index/shop" , params) ;
+}
+</script>

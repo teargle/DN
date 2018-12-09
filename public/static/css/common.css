@@ -98,3 +98,24 @@ b, strong {
 	width: 1140px;
 	max-width: 100%;
 }
+
+a {
+	color: #03c4eb;
+	text-decoration: none;
+	outline: 0;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    color: #333;
+    text-decoration: none;
+}
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}

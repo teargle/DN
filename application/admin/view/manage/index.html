@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin</title>
+	<link rel="stylesheet" href="__CSS__/bootstrap.min.css">
+	<link rel="stylesheet" href="__CSS__/manage.index.css">
+	<link rel="stylesheet" href="__CSS__/bootstrap-table.min.css">
+	<script type="text/javascript" src="__JS__/jquery.min.js"></script>
+	<script type="text/javascript" src="__JS__/bootstrap.min.js"></script>
+	<script type="text/javascript" src="__JS__/bootstrap-table.min.js"></script>
+	<script type="text/javascript" src="__JS__/bootstrap-table-zh-CN.js"></script>
+	<script type="text/javascript" src="__JS__/trumbowyg.min.js"></script>
+	<script type="text/javascript" src="__JS__/manage.index.js"></script>
+
+</head>
+<body>
+<div class="full-container">
+	<!-- Header 说明 start -->
+	<div class="navbar navbar-static-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#" id="logo">头部标题</a>
+			</div>
+		</div>
+	</div>
+	<!-- Header 说明 end -->
+
+
+	<div class="row">
+        <div class="col-md-2">
+			<nav class="navbar bg-light">
+				<!-- Links -->
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="javascript:revertProduct()">Product</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="javascript:revertCategory()">分类</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="javascript:revertIntro()">Intro</a>
+					</li>
+				</ul>
+			</nav>
+        </div>
+    
+
+		<div class="col-md-10">
+			<div id="btn-new" class="hidden">
+				<a class="btn btn-primary">新增</a>
+				<hr />
+			</div>
+			<table id="manage_list"></table>
+		</div>
+	</div>
+
+
+</div>
+</body>
+
+</html>

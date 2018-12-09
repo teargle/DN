@@ -179,67 +179,70 @@ img {
 }
 
 /*about us*/
-.about {
-	padding: 0 70px;
+.section-about {
+	padding: 70px 0;
+	position: relative;
+	overflow: hidden;
 }
 
-.about .about-container {
-	margin: 0 50px;
-	padding: 0 15px;
+.section-about:before {
+	position: absolute;
+	top:0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: block;
+	content: ' ';
+	z-index: 1;
 }
-.about .about-container .about-top {
-	height: 36px;
+
+.section-about .container {
+	margin-left: auto;
+	margin-right: auto;
+	padding-right: 15px;
+	padding-left: 15px;
+	width: 1110px;
+	max-width: 100%;
+	position: relative;
+	z-index: 5;
+}
+
+.section-about .section-title-area {
 	margin-bottom: 30px;
 	text-align: center;
-	font-size: 30px;
-    letter-spacing: 2px;
-    font-weight: 800;
-    position: relative;
-    margin-bottom: 0;
-    text-transform: uppercase;
 }
 
-.about .about-container .us-info {
+.section-about .section-title-area h2 {
+	font-weight: 800;
+	position: relative;
+	margin-bottom: 0;
+	text-transform: uppercase;
+	font-size: 40px;
+	letter-spacing: 3.5px;
+}
+
+.section-about .row {
+	margin-right: -15px;
+	margin-left: -15px;
+}
+
+.section-about .row>div {
 	margin-top: 30px;
 }
 
-.about .about-container .us-info ul li {
-	list-style: none;
-	float: left;
-	height: 390px;
-	width: 330px;
-	padding: 0 15px;
-	margin-top: 30px;
+.section-about .row .col-lg-6 {
+	-webkit-box-flex: 0;
+	flex: 0 0 50%;
+	max-width: 50%;
+	visibility: visible;
 }
 
-.about .about-container .us-info ul li .image {
-	width: 330px;
-	height: 180px;
+.section-about .about-image {
+	text-align: center;
+}
+
+.section-about .about-image img {
 	margin-bottom: 30px;
-}
-
-.about .about-container .us-info ul li .image img {
-	width: auto;
-	height: 100%;
-}
-
-.about .about-container .us-info ul li .about-title {
-	margin-bottom: 15px;
-}
-
-.about .about-container .us-info ul li a {
-	text-decoration: none;
-	color: #333;
-	font-size: 30px;
-	margin-bottom: 15px;
-}
-
-.about .about-container .us-info ul li .about-tip {
-	margin-bottom: 15px;
-	
-    font-size: 14px;
-    line-height: 1.7;
-    color: #777;
 }
 
 /*power tools */

@@ -17,90 +17,59 @@
 						<figure class="product-gallery-wrapper">
 							<div class="product-gallery-image">
 								<a href="#">
-									<img width="300" height="300" src="__IMG__/cutting_1.jpg">
+									<img width="300" height="300" src="{$product['img_url']}">
 								</a>
 								<img src="__IMG__/product-1-300x300.jpg" class="zoomImg">
 							</div>
 						</figure> 
 					</div>
 					<div class="entry-summary">
-						<h1 class="entry-title-h1">4 inch Cut Off Wheel , 105 x 1.0mm | Angle Grinder – Tricraft</h1>
+						<h1 class="entry-title-h1">{$product['short_title']}</h1>
 						<p></p>
 						<div class="short-description">
-							<p>Size: Diameter : 4 inch Thickness:  3/64 inch Arbor : 5/8 inch</p>
-							<p>Tool Type : Angle Grinder</p>
-							<p>Application : Metal ,Steel , Stainless Steel & Inox</p>
+							{$product['short_desc']}
 						</div>
 						<div class="product-meta">
 							<span class="posted-in">
-								Category:
-								<a href="#">Angle Grinder Wheels</a>
+								分类:
+								<a href="#">{$product['category_title']}</a>
 							</span>
 						</div>
 					</div>
 					<div class="product-tabs-wrapper">
 						<ul class="products-tablist">
 							<li class="description_tab active">
-								Description
+								产品参数
 							</li>
 							<li class="reviews_tab">
-								Reviews (0)
+								评论 (0)
 							</li>
 						</ul>
 						<div class="tbs-panel-desc" id="description_tab">
-							<h2>Description</h2>
-							<h1><span><strong>6″ Cut Off Wheel</strong></span></h1>
-							<h2 class="spec-row"><span><strong>Specifications</strong></span></h2>
+							<h2>信息：</h2>
+							<h1><span><strong>{$product['short_desc']}</strong></span></h1>
+							<h2 class="spec-row"><span><strong>规格</strong></span></h2>
 							<div class="spec-row">
 								<table class="tbs-panel-desc-table">
 									<tbody>
+										{foreach name="product['property']" item="property" key="idx" }
 										<tr>
-											<td width=133><span><strong>ITEM&nbsp;Name :</strong></span></td>
+											<td width=133><span><strong>{$idx}:</strong></span></td>
 											<td width=956>
 												<span >
-													<strong>Tricraft 6 inch Cut Off Wheel And Disc</strong>
+													<strong>{$property}</strong>
 												</span>
 											</td>
 										</tr>
-										<tr>
-											<td><span ><strong>Size :</strong></span></td>
-											<td>
-												<span>
-												<strong>6 x 1/16(.045) x 5/8 Inch Or 150 x 1.6 x 22 mm</strong>
-											</span>
-											</td>
-										</tr>
-										<tr>
-											<td><span><strong>Type:</strong></span></td><td><span><strong>Flat Type 1 or Depressed Center Type 42 or 27</strong></span></td>
-										</tr>
-										<tr>
-											<td><span><strong>Power Tool :</strong></span></td>
-											<td><span><strong>Angle Grinder</strong></span></td>
-										</tr>
-										<tr>
-											<td><span ><strong>MAX RPM:</strong></span></td>
-											<td ><span><strong>10,200</strong></span></td>
-										</tr>
-										<tr>
-											<td><strong><span>Safety Standard:</span></strong></td>
-											<td><span><strong>MPA EN12413</strong></span></td>
-										</tr>
-										<tr>
-											<td><span><strong>Features:</strong></span></td>
-											<td ><span><b>Most Popular For Food , Welding ,&nbsp;nuclear industry , fast and clean cutting&nbsp;</b></span></td>
-										</tr>
-										<tr>
-											<td><span><strong>Application:</strong></span></td>
-											<td><span><strong>Metal ,Steel , Stainless Steel &amp; Inox&nbsp;</strong></span></td>
-										</tr>
+										{/foreach}
 									</tbody>
 								</table>
 							</div>
 							<h2>
-								<span><strong>HOW TO BUY?</strong></span>
+								<span><strong>如果购买</strong></span>
 							</h2>
 							<p>
-								<span>Chat With Us By WeChat ,24 Hours On Line !</span>
+								<span>快来联系我们，24小时内回复！</span>
 							</p>
 							<p>
 								<img src="__IMG__/wechart.jpg">
@@ -109,39 +78,40 @@
 						<div class="tbs-panel-reviews hidden" id="reviews_tab">
 							<div class="products-reviews">
 								<div class="comments">
-									<h2 class="review-title">Reviews</h2>
+									<h2 class="review-title">评论</h2>
 									<p class="review-no">还没有评价</p>
 								</div>
 								<div class="reviews-form-wrapper">
 									<div>
 										<div class="comment-respond">
 											<span class="comment-replay-title">
-												Be the first to review “6 inch Cut Off Wheel , 150 x 1.6mm | Angle Grinder – Tricraft” 
+												快来评论一下， “{$product['short_title']}” 
 												<small>
 													<a href="#"></a>
 												</small>
 											</span>
-											<form action="" method="post" class="comment-form">
+											<form method="post" action="/index/index/comment" class="comment-form">
+												<input type="hidden" name="product_id" value="{$product['id']}">
 												<div class="comment-form-rating">
-													<label for='rating'>Your rating</label>
+													<label for='rating'>好评：</label>
 												</div>
 												<p class="comment-form-comment">
 													<label for="comment">
-														Your review 
+														评语： 
 														<span class="required">*</span>
 													</label>
 													<textarea name="comment" cols="8" rows="0"></textarea>
 												</p>
 												<p class="comment-form-author">
 													<label for="author">
-														Name
+														昵称：
 														<span class="required">*</span>
 													</label>
 													<input type="text" name="author" size="30" required>
 												</p>
 												<p class="comment-form-email">
 													<label for="email">
-														Email
+														Email：
 														<span class="required">*</span>
 													</label>
 													<input type="email" name="email" size="30" required>
@@ -159,36 +129,17 @@
 						</div>
 					</div>
 					<div class="related-products">
-						<h2>Related products</h2>
+						<h2>相关产品</h2>
 						<ul class="products">
+							{foreach name="$product['related_products']" item="related" key="idx" }
 							<li class="product product-type">
-								<a class="related-product-a">
-									<img src="__IMG__/product-related-1.jpg" width=300 height=300 sizes="(max-width:300px) 100vw, 300px">
-									<h2 >4-1/2 x 1/8 Inch General Metal Cutting Wheel | Angle Grinder – Tricraft</h2>
+								<a class="related-product-a" href="/index/index/product/id/{$related['id']}">
+									<img src="{$related['img_url']}" width=300 height=300 sizes="(max-width:300px) 100vw, 300px">
+									<h2 >{$related['short_title']}</h2>
 								</a>
-								<a class="related-product-read" href="">Read More</a>
+								<a class="related-product-read" href="">了解更多</a>
 							</li>
-							<li class="product product-type">
-								<a class="related-product-a">
-									<img src="__IMG__/product-related-1.jpg" width=300 height=300 sizes="(max-width:300px) 100vw, 300px">
-									<h2 >4-1/2 x 1/8 Inch General Metal Cutting Wheel | Angle Grinder – Tricraft</h2>
-								</a>
-								<a class="related-product-read" href="">Read More</a>
-							</li>
-							<li class="product product-type">
-								<a class="related-product-a">
-									<img src="__IMG__/product-related-1.jpg" width=300 height=300 sizes="(max-width:300px) 100vw, 300px">
-									<h2 >4-1/2 x 1/8 Inch General Metal Cutting Wheel | Angle Grinder – Tricraft</h2>
-								</a>
-								<a class="related-product-read" href="">Read More</a>
-							</li>
-							<li class="product product-type">
-								<a class="related-product-a">
-									<img src="__IMG__/product-related-1.jpg" width=300 height=300 sizes="(max-width:300px) 100vw, 300px">
-									<h2 >4-1/2 x 1/8 Inch General Metal Cutting Wheel | Angle Grinder – Tricraft</h2>
-								</a>
-								<a class="related-product-read" href="">Read More</a>
-							</li>
+							{/foreach}
 						</ul>
 					</div>
 				</div>
