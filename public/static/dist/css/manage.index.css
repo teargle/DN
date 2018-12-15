@@ -1,3 +1,20 @@
+html, body {
+    height:100%;
+    margin:0px;
+    padding:0px;
+}
+#main {
+    height:100%;
+
+}
+#nav {
+	/*border: 1px solid red;*/
+    width:100%;
+}
+#content {
+    height:100%;
+}
+
 .hidden {
     display: none !important;
 }

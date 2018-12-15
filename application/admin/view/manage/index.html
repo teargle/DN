@@ -11,10 +11,8 @@
 	<script type="text/javascript" src="__JS__/bootstrap-table-zh-CN.js"></script>
 	<script type="text/javascript" src="__JS__/trumbowyg.min.js"></script>
 	<script type="text/javascript" src="__JS__/manage.index.js"></script>
-
 </head>
 <body>
-<div class="full-container">
 	<!-- Header 说明 start -->
 	<div class="navbar navbar-static-top" role="navigation">
 		<div class="container-fluid">
@@ -23,29 +21,24 @@
 			</div>
 		</div>
 	</div>
-	<!-- Header 说明 end -->
-
-
-	<div class="row">
-        <div class="col-md-2">
-			<nav class="navbar bg-light">
-				<!-- Links -->
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link" href="javascript:revertProduct()">Product</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="javascript:revertCategory()">分类</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="javascript:revertIntro()">Intro</a>
-					</li>
-				</ul>
-			</nav>
+	<div id="main" class="row">
+        <div id="nav" class="col-md-2">
+			<!-- Links -->
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="javascript:revertProduct()">Product</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="javascript:revertCategory()">分类</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="javascript:revertIntro()">Intro</a>
+				</li>
+			</ul>
         </div>
     
 
-		<div class="col-md-10">
+		<div id="content" class="col-md-10">
 			<div id="btn-new" class="hidden">
 				<a class="btn btn-primary">新增</a>
 				<hr />
@@ -55,7 +48,13 @@
 	</div>
 
 
-</div>
+	
+	
+	<div class="row footer">
+	</div>
+
+
+
 </body>
 
 </html>

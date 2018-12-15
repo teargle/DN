@@ -11,6 +11,7 @@ use app\index\model\Comment;
 use app\index\model\Intro;
 use app\index\model\Feature;
 use app\index\model\Category;
+use app\index\model\News;
 
 class Index extends Controller
 {
@@ -39,6 +40,9 @@ class Index extends Controller
 
         $intro = Intro::all();
         $data ['intro'] = $intro;
+
+        $news = News::all();
+        $data ['news'] = array_slice($news , 0 , 3);
 
         $this->assign('data' , $data ) ;
         return $this->fetch('index');
@@ -95,11 +99,23 @@ class Index extends Controller
         $intro = Intro::get([$id]);
         $this->assign('intro' , $intro);
     	$this->assign('topTitle' , $intro['title']);
+        $this->_get_category();
     	return $this->fetch('intro');
     }
 
-    public function news(){
-        $this->assign('topTitle' , 'NEWS');
+    public function newslist() {
+        $news = News::all();
+        $this->assign('news' , $news);
+        $this->assign('topTitle' , '新闻');
+        $this->_get_category();
+        return $this->fetch('newslist');
+    }
+
+    public function news($id = 0){
+        $news = News::get([$id]);
+        $this->assign('news' , $news);
+        $this->assign('topTitle' , $news ['title']);
+        $this->_get_category();
         return $this->fetch('news');
     }
 

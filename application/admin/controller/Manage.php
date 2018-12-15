@@ -7,6 +7,7 @@ use think\Request;
 
 use app\index\model\Product;
 use app\index\model\Category;
+use app\index\model\Intro;
 
 class Manage extends Common
 {
@@ -152,6 +153,48 @@ class Manage extends Common
     	}
     	$category = new Category;
 		$category->where('id='.$id)->delete();
+		echo $this->output_json ( true , "OK" , null) ;
+    }
+
+    public function test() {
+    	return view('admin@manage/test');
+    }
+
+    public function intro() {
+    	$request = Request::instance();
+		$orderby = $request->get('sort') ;
+		$limit = $request->get('pageSize');
+		$start = $request->get('offset') ; 
+		$intro = new Intro ;
+		$intros = $intro->limit($start,$limit)->order($orderby)->select() ;
+		$count = $intro->count();;
+		$data = [
+				'total' => $count , 
+				'rows' =>$intros
+		] ;
+        echo json_encode($data) ;
+        exit;
+    }
+
+    public function edit_intro($id = 0) {
+    	$intro = null;
+		if( $id ) {
+			$Intro = new Intro;
+	        $intro = $Intro->get($id) ;
+    	}
+        View::share('intro',$intro);
+    	return view('admin@manage/intro');
+    }
+
+    function saveIntro() {
+    	$request = Request::instance();
+    	$post = $request->post();
+    	$intro = new Intro;
+		if(array_key_exists('id', $post)) {
+			$intro->save($post , ['id' => $post ['id']]);
+		} else {
+			$intro->save($post);
+		}
 		echo $this->output_json ( true , "OK" , null) ;
     }
 }

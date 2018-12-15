@@ -1,0 +1,36 @@
+{include file="common/header" /}
+<link rel="stylesheet" type="text/css" href="__CSS__/news.css">
+{include file="common/top" /}
+
+<div class="site-content">
+	<div class="container right-sidebar">
+		<div class="content-area">
+			<div class="site-main">
+				{volist name="news" id="article"}
+				<div class="article">
+					<div class="list-article-thumb">
+						<a href="/index/index/news/id/{$article['id']}">
+							<img src="{$article['img_url']}" width=300 height=150>
+						</a>
+					</div>
+					<div class="list-article-content">
+						<div class="list-article-meta">
+							<a href="/index/index/news/id/{$article['id']}">{$article['title']}</a> 
+						</div>
+						<div class="entry-header">
+							<h2 class="entry-title">
+								<a href="/index/index/news/id/{$article['id']}">{$article['short_title']}</a>
+							</h2>
+						</div>
+						<div class="entry-excerpt">
+							<p>{$article['summary']}</p>
+						</div>
+					</div> 
+				</div>
+				{/volist}
+			</div>
+		</div>
+	{include file="common/search" /}	
+	</div>
+</div>
+{include file="common/footer" /}

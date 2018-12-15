@@ -160,43 +160,33 @@
 <!-- NEW -->
 <div class="new" id="news_area">
 	<div class="new-container">
-		<div class="new-header"><h2>LATEST NEWS</h2></div>
+		<div class="new-header"><h2>最新新闻</h2></div>
 		<div class="new-content">
 			<div class="new-row">
 				<div class="new-col">
 					<div class="new-blog">
+						{volist name="data['news']" id="news"}
 						<div class="new-article">
 							<div class="new-left">
-								<a href=""><img src="__IMG__/new_1.jpg"></a>
+								<a href="/index/index/news/id/{$news['id']}"><img src="{$news['img_url']}"></a>
 							</div>
 							<div class="new-right">
-								<div class="new-title"><a href="">new and tests</a></div>
-								<div class="new-subtitle"><h2><a href="">Classifications And Applications Of Cutting Wheels</a></h2></div>
-								<div class="new-description"><p>Classifications And Applications Of Cutting WheelS Foreword: With the development of the machinery industry, the mechanical products which need to be processed are increasing day by day, more and more …</p></div>
+								<div class="new-title">
+									<a href="/index/index/news/id/{$news['id']}">{$news['title']}</a>
+								</div>
+								<div class="new-subtitle">
+									<h2>
+										<a href="/index/index/news/id/{$news['id']}">{$news['short_title']}</a>
+									</h2>
+								</div>
+								<div class="new-description">
+									<p>{$news['main_body']}</p>
+								</div>
 							</div>
 						</div>
-						<div class="new-article">
-							<div class="new-left">
-								<a href=""><img src="__IMG__/new_1.jpg"></a>
-							</div>
-							<div class="new-right">
-								<div class="new-title"><a href="">new and tests</a></div>
-								<div class="new-subtitle"><h2><a href="">Classifications And Applications Of Cutting Wheels</a></h2></div>
-								<div class="new-description"><p>Classifications And Applications Of Cutting WheelS Foreword: With the development of the machinery industry, the mechanical products which need to be processed are increasing day by day, more and more …</p></div>
-							</div>
-						</div>
-						<div class="new-article">
-							<div class="new-left">
-								<a href=""><img src="__IMG__/new_1.jpg"></a>
-							</div>
-							<div class="new-right">
-								<div class="new-title"><a href="">new and tests</a></div>
-								<div class="new-subtitle"><h2><a href="">Classifications And Applications Of Cutting Wheels</a></h2></div>
-								<div class="new-description"><p>Classifications And Applications Of Cutting WheelS Foreword: With the development of the machinery industry, the mechanical products which need to be processed are increasing day by day, more and more …</p></div>
-							</div>
-						</div>
+						{/volist}
 						<div class="news-all">
-							<a href="#">Read Our Blog</a>
+							<a href="/index/index/newslist">更多新闻</a>
 						</div>
 					</div>
 				</div>
