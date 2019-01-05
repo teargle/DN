@@ -18,25 +18,56 @@
 			<div class="header-right">
 				<ul>
 					<li>
-						<a href="#features_area">产品特色</a>
+						{if condition="isset($rivet)"}
+						<a href="#">{$lang ['index_home']}</a>
+						{else}
+						<a href="/index/index/index">{$lang ['index_home']}</a>
+						{/if}
 					</li>
 					<li>
-						<a href="#about_area">了解我们</a>
+						{if condition="isset($rivet)"}
+						<a href="#features_area">{$lang ['index_feature']}</a>
+						{else}
+						<a href="/index/index/index?#features_area">{$lang ['index_feature']}</a>
+						{/if}
 					</li>
 					<li>
-						<a href="#service_area">服务内容</a>
+						{if condition="isset($rivet)"}
+						<a href="#about_area">{$lang ['index_about']}</a>
+						{else}
+						<a href="/index/index/index?#about_area">{$lang ['index_about']}</a>
+						{/if}
 					</li>
 					<li>
-						<a href="/index/index/shop">产品列表</a>
+						{if condition="isset($rivet)"}
+						<a href="#service_area">{$lang ['index_service']}</a>
+						{else}
+						<a href="/index/index/index?#service_area">{$lang ['index_service']}</a>
+						{/if}
 					</li>
 					<li>
-						<a href="#product_area">产品展示</a>
+						<a href="/index/index/shop">{$lang ['index_shop']}</a>
 					</li>
 					<li>
-						<a href="#news_area">新闻链接</a>
+						{if condition="isset($rivet)"}
+						<a href="#product_area">{$lang ['index_photo']}</a>
+						{else}
+						<a href="/index/index/index?#product_area">{$lang ['index_photo']}</a>
+						{/if}
 					</li>
 					<li>
-						<a href="#">联系我们</a>
+						{if condition="isset($rivet)"}
+						<a href="#news_area">{$lang ['index_news']}</a>
+						{else}
+						<a href="/index/index/index?#news_area">{$lang ['index_news']}</a>
+						{/if}
+					</li>
+					<li>
+						{if condition="isset($rivet)"}
+						<a href="#">{$lang ['index_contact_us']}</a>
+						{else}
+						<a href="/index/index/index#">{$lang ['index_contact_us']}</a>
+						{/if}
 					</li>
 				</ul>
 			</div>

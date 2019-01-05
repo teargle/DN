@@ -28,6 +28,7 @@ class Index extends Controller
 	public function init () 
 	{
 		View::share('title','欢迎来到岱恩');
+        View::share('lang', get_lang() );
 	}
 
     public function index()
@@ -44,7 +45,8 @@ class Index extends Controller
         $news = News::all();
         $data ['news'] = array_slice($news , 0 , 3);
 
-        $this->assign('data' , $data ) ;
+        $this->assign('rivet' , 'home');
+        $this->assign('data' , $data);
         return $this->fetch('index');
     }
 
@@ -158,8 +160,36 @@ class Index extends Controller
     }
 
     private function _get_category() {
-        $categorys = Category::all() ;
-        $this->assign('categorys' , $categorys) ;
+        $category = new Category() ;
+        $categorys = $category->field("id,parent,title")->select();
+        $categorys = array_combine(array_column($categorys, 'id'), $categorys);
+        $cates = array() ;
+        foreach( $categorys as $idx => $cate ) {
+            if( $cate ['parent'] == 0 ) {
+                array_push( $cates, $cate ) ;
+            }
+            
+        }
+        foreach ($cates as &$one) {
+            foreach( $categorys as $i => $c ) {
+                $two = array();
+                if( $c ['parent'] == $one ['id'] ) {
+                    echo 'c = ' . $c ['id'] . "<br />" ;
+                    array_push($two, $c);
+                }
+                if( $two ) {
+                    $one ['child'] = $two ;
+                }
+            }
+        }
+        
+        $this->assign('categorys' , $cates) ;
+        return $cates ;
+    }
+
+    public function tt2 () {
+        print_r($this->_get_category()) ;
+        exit;
     }
 
 }

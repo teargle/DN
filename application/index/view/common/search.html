@@ -1,16 +1,18 @@
 <link rel="stylesheet" type="text/css" href="__CSS__/search.css">
+<link rel="stylesheet" href="__DIST_CSS__/bootstrap.min.css">
 <script type="text/javascript" src="__JS__/search.js"></script>
+<script type="text/javascript" src="__DIST_JS__/bootstrap.min.js"></script>
 <div class="widget-area">
 	<div class="product_search">
-		<h2 class="widget-title">搜索</h2>
+		<h2 class="h3 mb-3 font-weight-normal">{$lang ['search_title']}</h2>
 		<form method="get" class="widget-product-search" action="/index/index/shop">
-			<label class="screen-reader-text">搜索 :</label>
-			<input type="search" class="search-field" placeholder="关键字" name="keyword">
-			<button type="submit" value="Search">查询</button>
+			<label class="screen-reader-text">{$lang ['search_title']} :</label>
+			<input type="text" id="keyword" name="keyword" class="form-control" placeholder="{$lang ['search_keyword']}" required autofocus>
+			<button class="btn btn-sm btn-primary btn-block" type="submit">{$lang ['search_query']}</button>
 		</form>
 	</div>
 	<div class="widget-product-categories">
-		<h2 class="widget-title">产品种类</h2>
+		<h2 class="widget-title">{$lang ['search_category_title']}</h2>
 		<ul class="product-categories">
 			{volist name="categorys" id="category"}
 			<li class="cat-item">
