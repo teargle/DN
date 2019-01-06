@@ -161,6 +161,9 @@ class Index extends Controller
 
     private function _get_category() {
         $category = new Category() ;
+        $categorys = $category->all();
+        $this->assign('categorys' , $categorys) ;
+        return true;
         $categorys = $category->field("id,parent,title")->select();
         $categorys = array_combine(array_column($categorys, 'id'), $categorys);
         $cates = array() ;
