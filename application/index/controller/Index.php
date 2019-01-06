@@ -48,7 +48,7 @@ class Index extends Controller
         $data ['news'] = array_slice($news , 0 , 3);
 
         $this->_get_category();
-        
+
         $this->assign('rivet' , 'home');
         $this->assign('data' , $data);
         return $this->fetch('index');
@@ -164,11 +164,7 @@ class Index extends Controller
     }
 
     private function _get_category() {
-        $category = new Category() ;
-        $categorys = $category->all();
-        $this->assign('categorys' , $categorys) ;
-        return true;
-        $categorys = $category->field("id,parent,title")->select();
+        $categorys = Category::all() ;
         $categorys = array_combine(array_column($categorys, 'id'), $categorys);
         $cates = array() ;
         foreach( $categorys as $idx => $cate ) {
@@ -178,15 +174,15 @@ class Index extends Controller
             
         }
         foreach ($cates as &$one) {
+            $two = array();
             foreach( $categorys as $i => $c ) {
-                $two = array();
                 if( $c ['parent'] == $one ['id'] ) {
-                    echo 'c = ' . $c ['id'] . "<br />" ;
                     array_push($two, $c);
                 }
-                if( $two ) {
-                    $one ['child'] = $two ;
-                }
+                
+            }
+            if( $two ) {
+                $one ['child'] = $two ;
             }
         }
         

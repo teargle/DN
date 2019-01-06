@@ -63,3 +63,7 @@
 	color: #777;
 	font-size: 14px;
 }
+
+.product-categories .cat-item .sub-category {
+	text-indent:25px;
+}

@@ -17,6 +17,17 @@
 			{volist name="categorys" id="category"}
 			<li class="cat-item">
 				<a href="/index/index/shop?keyword={$category['title']}">{$category['title']}</a>
+				{notempty name="$category ['child']"}
+				<ul>
+				{volist name="$category ['child']" id="cate"}
+				<li class="sub-category">
+				<a href="/index/index/shop?keyword={$cate['title']}">
+					{$cate['title']}
+				</a>
+				</li>
+				{/volist}
+				</ul>
+				{/notempty}
 			</li>
 			{/volist}
 		</ul>
