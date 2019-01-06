@@ -15,6 +15,7 @@ use app\index\model\News;
 
 class Index extends Controller
 {
+    private $lang = null;
 
 	public function __construct()
 	{
@@ -27,8 +28,9 @@ class Index extends Controller
 	 */
 	public function init () 
 	{
-		View::share('title','欢迎来到岱恩');
-        View::share('lang', get_lang() );
+        $this->lang = get_lang();
+		View::share('title',$this->lang ['web_title']);
+        View::share('lang', $this->lang );
 	}
 
     public function index()
@@ -45,6 +47,8 @@ class Index extends Controller
         $news = News::all();
         $data ['news'] = array_slice($news , 0 , 3);
 
+        $this->_get_category();
+        
         $this->assign('rivet' , 'home');
         $this->assign('data' , $data);
         return $this->fetch('index');
@@ -78,11 +82,11 @@ class Index extends Controller
         $this->assign("total_page" , $total_page) ;
         $this->assign("next_page" , $next_page) ;
         $this->assign("pre_page" , $pre_page) ;
-        $this->assign('topTitle' , 'SHOP');
+        $this->assign('topTitle' , $this->lang ['page_shop']);
         $this->assign('products' , $products ) ;
         $this->assign('keyword' , $keyword);
         $this->_get_category();
-
+        $this->_get_sort();
         return $this->fetch('shop');
     }
 
@@ -193,6 +197,15 @@ class Index extends Controller
     public function tt2 () {
         print_r($this->_get_category()) ;
         exit;
+    }
+
+    public function _get_sort() {
+        $sorts = [
+            'product_sort_default' => $this->lang ['product_sort_default'],
+            'product_sort_popularity' => $this->lang ['product_sort_popularity'],            
+            'product_sort_average_rating' => $this->lang ['product_sort_average_rating']
+        ];
+        View::share('sorts', $sorts );
     }
 
 }

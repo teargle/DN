@@ -6,15 +6,15 @@
 	<div class="banner-inner">
 		<div class="banner-top">
 			<div class="slogan">
-				<h2 >我们承若<span>同一个地球同一个关怀</span></h2>
+				<h2 >{$lang ['index_banner_slogon']}</h2>
 			</div>
 		</div>
 		<div class="banner-midder">
-			我们提供优异的产品
+			{$lang ['index_banner_slogon_sub']}
 		</div>
 		<div class="banner-bottom">
-			<div><a href="#" class="active">关于我们</a></div>
-			<div><a href="#">联系我们</a></div>
+			<div><a href="#" class="active">{$lang ['index_about']}</a></div>
+			<div><a href="#">{$lang ['index_contact_us']}</a></div>
 		</div>
 	</div>
 </div>
@@ -23,7 +23,7 @@
 <div class="features clearfix" id="features_area">
 	<div class="features-container">
 		<div class="features-header">
-			<div class="features-tip"><h5>WHY TRICRAFT ?</h5></div>
+			<div class="features-tip"><h5>{$lang ['index_feature_sub']}?</h5></div>
 			<div class="features-title"><h2>{$lang ['index_feature']}</h2></div>
 		</div>
 		<div class="introduction">
@@ -69,25 +69,20 @@
 <div class="power clearfix" id="service_area">
 	<div class="power-container">
 		<div class="power-header">
-			<div class="power-tip"><h5>CUTTING WHEELS FOR DIFFERENT</h5></div>
+			<div class="power-tip"><h5>{$lang ['index_service_pre']}</h5></div>
 			<div class="power-title"><h2>{$lang ['index_service']}</h2></div>
 		</div>
 		<div class="power-info">
 			<div class="row clearfix">
+				{volist name="categorys" id="category"}
 				<a href="#" class="power-left clearfix">
-					<div class="tool-left"><img src="__IMG__/40.png"></div>
+					<div class="tool-left"><img src="{$category ['img_url']}"></div>
 					<div class="tool-right">
-						<div class="tool-title">Angle Grinder</div>
-						<div class="tool-tip">Precision Abrasive Cutter Cut Off Wheels , Non-Reinforced For High Precision Cutting , Thickness From 0.1mm To 2.5mm , Application including but not limited to Metallographic , Needles , Break Cable , Mold Steel , Alloy , Cores , Can Cut Hardness From HRC15 To HRC60 , Same Quality As Japanese Products .</div>
+						<div class="tool-title">{$category ['title']}</div>
+						<div class="tool-tip">{$category ['description']}</div>
 					</div>
 				</a>
-				<a href="#" class="power-right">
-					<div class="tool-left"><img src="__IMG__/40.png"></div>
-					<div class="tool-right">
-						<div class="tool-title">Angle Grinder</div>
-						<div class="tool-tip">Precision Abrasive Cutter Cut Off Wheels , Non-Reinforced For High Precision Cutting , Thickness From 0.1mm To 2.5mm , Application including but not limited to Metallographic , Needles , Break Cable , Mold Steel , Alloy , Cores , Can Cut Hardness From HRC15 To HRC60 , Same Quality As Japanese Products .</div>
-					</div>
-				</a>
+				{/volist}
 			</div>
 		</div>
 	</div>
@@ -117,14 +112,14 @@
 
 <div class="funder">
 	<div class="funder-container">
-		<div class="funder-header"><h5>SOME FUN FACTS ABOUT STAR ABRASIVES ?</h5></div>
+		<div class="funder-header"><h5>{$lang ['index_funder_sub']}</h5></div>
 		<div class="funder-row">
 			<div class="funder-col">
 				<div class="funder-item">
 					<div class="funder-number">
 						<span class="funder-n">30</span>
 					</div>
-					<div class="funder-subtitle">Years Experience</div>
+					<div class="funder-subtitle">{$lang ['index_funder_year']}</div>
 				</div>
 			</div>
 			<div class="funder-col">
@@ -133,7 +128,7 @@
 						<span class="funder-n">96</span>
 						<span class="funder-a">%</span>
 					</div>
-					<div class="funder-subtitle">High-End Market</div>
+					<div class="funder-subtitle">{$lang ['index_funder_market']}</div>
 				</div>
 			</div>
 			<div class="funder-col">
@@ -141,7 +136,7 @@
 					<div class="funder-number">
 						<span class="funder-n">100,000</span>
 					</div>
-					<div class="funder-subtitle">Wheels Per Day</div>
+					<div class="funder-subtitle">{$lang ['index_funder_sales']}</div>
 				</div>
 			</div>
 			<div class="funder-col">
@@ -150,7 +145,7 @@
 						<span class="funder-n">0.12</span>
 						<span class="funder-n">MM</span>
 					</div>
-					<div class="funder-subtitle">The Thinnest Wheel</div>
+					<div class="funder-subtitle">{$lang ['index_funder_year']}</div>
 				</div>
 			</div>
 		</div>
