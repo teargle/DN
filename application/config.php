@@ -142,6 +142,8 @@ return [
     'view_replace_str'       => [
         '__CSS__' => '/static/css',
         '__IMG__' => '/static/img',
+        '__DIST_CSS__' => '/static/dist/css',
+        '__DIST_JS__' => '/static/dist/js',
     ],
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
@@ -240,4 +242,5 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+    'language' => 'zh',
 ];

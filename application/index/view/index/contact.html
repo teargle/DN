@@ -1,0 +1,53 @@
+{include file="common/header" /}
+<link rel="stylesheet" type="text/css" href="__CSS__/intro.css">
+{include file="common/top" /}
+
+<div class="site-content">
+	<div class="container right-sidebar">
+		<div class="content-area">
+			<div class="site-main">
+			    <form class="form-horizontal" id="info">
+					<label for="name" class="control-label">{$lang ['contact_name']} :</label>
+					<input type="text" class="form-control" id="name" 
+						name="name" placeholder="{$lang ['contact_name']}">
+					<br />
+					<label for="contact_info" class="control-label">{$lang ['contact_contact']} :</label>
+					<input type="text" class="form-control" id="contact_info" 
+						name="contact" placeholder="{$lang ['contact_contact']}">
+					<br />
+					<label for="infomation" class="control-label">{$lang ['contact_info']} :</label>
+					<textarea class="form-control" placeholder="{$lang ['contact_info']}" 
+						id="infomation" name="infomation" rows="5"></textarea>
+					<br />
+		        	<button class="btn btn-lg btn-primary btn-block" type="submit"
+		        	onclick="return sendContact()">{$lang ['contact_send']}</button>
+			    </form>
+			</div>
+		</div>
+		{include file="common/search" /}
+	</div>
+</div>
+{include file="common/footer" /}
+<style type="text/css">
+.content-area {
+	padding: 40px 10px;
+}
+.bootbox-body  {
+	text-align: center;
+}
+</style>
+<script type="text/javascript">
+function sendContact() {
+	$param = $("#info").serialize() ;
+	$.post("/index/api/saveContact",$param ,function(data){
+		data = $.parseJSON(data) ;
+	  	if ( data.result ) {
+	  		bootbox.alert("{$lang ['contact_you']}",function() {
+	  			
+	  		});
+	  		$('#info') [0].reset();  
+	  	}
+	});
+	return false;
+}
+</script>

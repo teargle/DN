@@ -20,6 +20,10 @@ class Index extends Controller
 	public function __construct()
 	{
 		parent::__construct();
+        if( is_mobile_browser() ) {
+            $this->redirect("/mobile/index/index");
+            exit;
+        }
 		$this->init();
 	}
 
@@ -190,11 +194,6 @@ class Index extends Controller
         return $cates ;
     }
 
-    public function tt2 () {
-        print_r($this->_get_category()) ;
-        exit;
-    }
-
     public function _get_sort() {
         $sorts = [
             'product_sort_default' => $this->lang ['product_sort_default'],
@@ -202,6 +201,12 @@ class Index extends Controller
             'product_sort_average_rating' => $this->lang ['product_sort_average_rating']
         ];
         View::share('sorts', $sorts );
+    }
+
+    public function contact () {
+        $this->assign('topTitle' , $this->lang ['index_contact_us']);
+        $this->_get_category();
+        return $this->fetch('contact');
     }
 
 }

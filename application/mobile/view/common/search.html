@@ -1,15 +1,15 @@
-<link rel="stylesheet" type="text/css" href="__CSS__/search.css">
+<link rel="stylesheet" type="text/css" href="__CSS__/mobile_search.css">
 <link rel="stylesheet" href="__DIST_CSS__/bootstrap.min.css">
 <script type="text/javascript" src="__JS__/search.js"></script>
 <script type="text/javascript" src="__DIST_JS__/bootstrap.min.js"></script>
 <div class="widget-area">
 	<div class="product_search">
-		<h2 class="h3 mb-3 font-weight-normal">{$lang ['search_title']}</h2>
-		<form method="get" class="widget-product-search" action="/index/index/shop">
+		<form method="get" class="widget-product-search" action="/mobile/index/shop">
 			<label class="screen-reader-text">{$lang ['search_title']} :</label>
 			<input type="text" id="keyword" name="keyword" class="form-control" placeholder="{$lang ['search_keyword']}" required autofocus>
 			<br />
-			<button class="btn btn-sm btn-primary btn-block" type="submit">{$lang ['search_query']}</button>
+			<button class="btn btn-sm btn-primary btn-block" 
+				type="submit">{$lang ['search_query']}</button>
 		</form>
 	</div>
 	<div class="widget-product-categories">

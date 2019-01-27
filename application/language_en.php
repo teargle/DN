@@ -39,5 +39,11 @@ return [
 	'product_sort_default' => 'Default sorting',
 	'product_sort_popularity' => 'Sort by popularity',
 	'product_sort_average_rating' => 'Sort by average rating',
+
+	'contact_name' => 'Name',
+	'contact_contact' => 'Contact Infomation',
+	'contact_info' => 'Give us message',
+	'contact_send' => 'Send',
+	'contact_you' => 'We will contact you as soon as possible.'
 ] ;
 }

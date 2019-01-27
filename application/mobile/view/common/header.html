@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>岱恩</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="__DIST_CSS__/bootstrap.min.css">
+	<link rel="stylesheet" href="__CSS__/mobile_header.css">
+	<script type="text/javascript" src="__DIST_JS__/jquery.min.js"></script>
+	<script type="text/javascript" src="__DIST_JS__/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container header">
+		<div class="title-container">
+			<div class="header-left"><h2>DN</h2>
+			</div>
+			<div class="header-right">
+				<a id="aclick" data-toggle="collapse" data-parent="#accordion" 
+				   href="#collapse_menu"></a>
+			</div>
+		</div>
+		<div id="collapse_menu" class="collapse-menu panel-collapse collapse in">
+			<ul class="nav navbar-nav" >
+				<li>
+					{if condition="isset($rivet)"}
+					<a href="#">{$lang ['index_home']}</a>
+					{else}
+					<a href="/mobile/index/index">{$lang ['index_home']}</a>
+					{/if}
+				</li>
+				<li>
+					{if condition="isset($rivet)"}
+					<a href="#features_area">{$lang ['index_feature']}</a>
+					{else}
+					<a href="/mobile/index/index?#features_area">{$lang ['index_feature']}</a>
+					{/if}
+				</li>
+				<li>
+					{if condition="isset($rivet)"}
+					<a href="#about_area">{$lang ['index_about']}</a>
+					{else}
+					<a href="/mobile/index/index?#about_area">{$lang ['index_about']}</a>
+					{/if}
+				</li>
+				<li>
+					{if condition="isset($rivet)"}
+					<a href="#service_area">{$lang ['index_service']}</a>
+					{else}
+					<a href="/mobile/index/index?#service_area">{$lang ['index_service']}</a>
+					{/if}
+				</li>
+				<li>
+					<a href="/mobile/index/shop">{$lang ['index_shop']}</a>
+				</li>
+				<li>
+					{if condition="isset($rivet)"}
+					<a href="#product_area">{$lang ['index_photo']}</a>
+					{else}
+					<a href="/mobile/index/index?#product_area">{$lang ['index_photo']}</a>
+					{/if}
+				</li>
+				<li>
+					{if condition="isset($rivet)"}
+					<a href="#news_area">{$lang ['index_news']}</a>
+					{else}
+					<a href="/mobile/index/index?#news_area">{$lang ['index_news']}</a>
+					{/if}
+				</li>
+				<li>
+					<a href="/mobile/index/contact">{$lang ['index_contact_us']}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+	var expandedFlag = true;
+	$(function () {
+		$("#aclick").click(function(){
+			var collapse = $('#collapse_menu');
+			collapse.collapse('hide');
+			console.log( $(this).attr('aria-expanded') );
+			if( expandedFlag ) {
+				$(this).append("<style>#aclick::before{content:'\\ea02'}</style>");
+				expandedFlag = false;
+			} else {
+				$(this).append("<style>#aclick::before{content:'\\e98f'}</style>");
+				expandedFlag = true;
+			}
+		});
+		
+	});
+	</script>
+

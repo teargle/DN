@@ -1,0 +1,213 @@
+{include file="common/header" /}
+<script type="text/javascript" src="__DIST_JS__/swiper.min.js"></script>
+<link rel="stylesheet" href="__CSS__/mobile_index.css">
+<link rel="stylesheet" href="__DIST_CSS__/swiper.min.css">
+<div class="banner-container">
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide"><img src="/static/img/mobile_banner_1.jpg" alt=""></div>
+			<div class="swiper-slide"><img src="/static/img/mobile_banner_1.jpg" alt=""></div>
+			<div class="swiper-slide"><img src="/static/img/mobile_banner_1.jpg" alt=""></div>
+		</div>
+		<!-- 如果需要分页器 -->
+    	<div class="swiper-pagination"></div>
+    
+    	<!-- 如果需要导航按钮 -->
+<!--     	<div class="swiper-button-prev"></div>
+    	<div class="swiper-button-next"></div> -->
+    
+    	<!-- 如果需要滚动条 -->
+    	<div class="swiper-scrollbar"></div>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	var swiper = new Swiper('.swiper-container',{
+    	    direction: 'horizontal', // 垂直切换选项
+		    loop: true, // 循环模式选项
+		    autoplay: true,
+		    // 如果需要分页器
+		    pagination: {
+		      el: '.swiper-pagination',
+		    },
+		    
+		    // 如果需要前进后退按钮
+		    // navigation: {
+		    //   nextEl: '.swiper-button-next',
+		    //   prevEl: '.swiper-button-prev',
+		    // },
+		    
+		    // 如果需要滚动条
+		    scrollbar: {
+		      el: '.swiper-scrollbar',
+		    }
+    });
+});
+</script>
+
+<!-- FEATURE -->
+<div class="features-container container" id="features_area">
+	<div class="features-header">
+		<div class="features-tip"><h5>{$lang ['index_feature_sub']}?</h5></div>
+		<div class="features-title"><h2>{$lang ['index_feature']}</h2></div>
+	</div>
+	<div class="feature-introduction">
+		<ul>
+			{volist name="data['feature']" id="feature"}
+			<li >
+				<div class="image"><img src="{$feature['img_url']}"></div>
+				<div class="tip"><h4>{$feature['title']}</h4></div>
+				<div class="description">{$feature['description']}</div>
+			</li>
+			{/volist}
+		</ul>
+	</div>
+</div>
+
+<!-- ABOUT US -->
+<div class="section-about container" id="about_area">
+	<div class="section-container">
+		<div class="section-title-area">
+			<h2>{$lang ['index_about']}</h2>
+		</div>
+		<div class="row">
+			{volist name="data['intro']" id="intro"}
+			<div class="aboutus-region">
+				<div class="about-image">
+					<a href="/mobile/index/intro/id/{$intro['id']}">
+						<img src="{$intro['img_url']}" width=640 height=350 
+						sizes="(max-width: 640px) 100vw, 640px">
+					</a>
+				</div>
+				<h3>
+					<a href="/mobile/index/intro/id/{$intro['id']}">{$intro['title']}</a>
+				</h3>
+				<p>{$intro['short_desc']}</p>
+			</div>
+			{/volist}
+		</div>
+	</div>
+</div>
+
+<!-- power tool -->
+<div class="power container" id="service_area">
+	<div class="power-container">
+		<div class="power-header">
+			<div class="power-tip"><h5>{$lang ['index_service_pre']}</h5></div>
+			<div class="power-title"><h2>{$lang ['index_service']}</h2></div>
+		</div>
+		<div class="power-info">
+			<div class="row">
+				{volist name="categorys" id="category"}
+				<div class="power-left">
+					<div class="tool-left"><img src="{$category ['img_url']}"></div>
+					<div class="tool-right">
+						<div class="tool-title"><h4>{$category ['title']}</h4></div>
+						<p class="tool-tip">{$category ['description']}</p>
+					</div>
+				</div>
+				{/volist}
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- photos -->
+<div class="photos container" id="product_area">
+	<div class="photos-container">
+		<div class="photos-title">
+			<h2>{$lang ['index_photo']}</h2>
+		</div>
+		<div class="photos-imgs">
+			<ul>
+				{volist name="data['products']" id="product"}
+				<li>
+					<img src="{$product['img_url']}">
+				</li>
+				{/volist}
+			</ul>
+		</div>
+	</div>
+</div>
+
+<!-- fundder -->
+<div class="funder">
+	<div class="funder-container container">
+		<div class="funder-header"><h5>{$lang ['index_funder_sub']}</h5></div>
+		<div class="funder-row">
+			<div class="funder-col">
+				<div class="funder-item">
+					<div class="funder-number">
+						<span class="funder-n">30</span>
+					</div>
+					<div class="funder-subtitle">{$lang ['index_funder_year']}</div>
+				</div>
+			</div>
+			<div class="funder-col">
+				<div class="funder-item">
+					<div class="funder-number">
+						<span class="funder-n">96</span>
+						<span class="funder-a">%</span>
+					</div>
+					<div class="funder-subtitle">{$lang ['index_funder_market']}</div>
+				</div>
+			</div>
+			<div class="funder-col">
+				<div class="funder-item">
+					<div class="funder-number">
+						<span class="funder-n">100,000</span>
+					</div>
+					<div class="funder-subtitle">{$lang ['index_funder_sales']}</div>
+				</div>
+			</div>
+			<div class="funder-col">
+				<div class="funder-item">
+					<div class="funder-number">
+						<span class="funder-n">0.12</span>
+						<span class="funder-n">MM</span>
+					</div>
+					<div class="funder-subtitle">{$lang ['index_funder_year']}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- NEW -->
+<div class="new" id="news_area">
+	<div class="container new-container">
+		<div class="new-header"><h2>最新新闻</h2></div>
+		<div class="new-content">
+			<div class="new-row">
+				<div class="new-col">
+					<div class="new-blog">
+						{volist name="data['news']" id="news"}
+						<div class="new-article">
+							<div class="new-left">
+								<a href="/mobile/index/news/id/{$news['id']}"><img src="{$news['img_url']}"></a>
+							</div>
+							<div class="new-right">
+								<div class="new-title">
+									<a href="/mobile/index/news/id/{$news['id']}">{$news['title']}</a>
+								</div>
+								<div class="new-subtitle">
+									<h2>
+										<a href="/mobile/index/news/id/{$news['id']}">{$news['short_title']}</a>
+									</h2>
+								</div>
+								<div class="new-description">
+									<p>{$news['main_body']}</p>
+								</div>
+							</div>
+						</div>
+						{/volist}
+						<div class="news-all">
+							<a href="/mobile/index/newslist">更多新闻</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{include file="common/footer" /}

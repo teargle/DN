@@ -1,0 +1,17 @@
+.widget-area {
+	padding-bottom: 40px;
+	width: 100%;
+	float: none;
+}
+
+.widget-area .product_search {
+	margin-bottom: 40px;
+}
+
+.widget-area .product_search .widget-product-search label {
+	font-size: 15px;
+	margin-bottom: 13px;
+	font-weight: 700px;
+	color: #333;
+	display: inline-block;
+}

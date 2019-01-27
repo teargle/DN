@@ -63,6 +63,15 @@ class Manage extends Common
         View::share('categorys',$categorys);
     }
 
+    private function _get_parent_category () {
+        $categorys = Category::where('parent',0 )->select();
+        $cates = [ 0 => '无'] ;
+        foreach( $categorys as $c ) {
+            $cates[$c ['id']] = $c ['title'];
+        }
+        View::share('cates',$cates);
+    }
+
     private function _get_homepage( $is_home = 0 ) {
     	$home = array(0=>"否", 1=>'是');
         View::share('home_arr',$home);
@@ -129,6 +138,7 @@ class Manage extends Common
 			$Category = new Category;
 	        $category = $Category->get($id) ;
     	}
+        $this->_get_parent_category();
         View::share('category',$category);
     	return view('admin@manage/category');
     }

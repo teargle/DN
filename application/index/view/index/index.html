@@ -20,7 +20,7 @@
 </div>
 
 <!-- Features -->
-<div class="features clearfix" id="features_area">
+<div class="container features clearfix">
 	<div class="features-container">
 		<div class="features-header">
 			<div class="features-tip"><h5>{$lang ['index_feature_sub']}?</h5></div>
@@ -75,7 +75,7 @@
 		<div class="power-info">
 			<div class="row clearfix">
 				{volist name="categorys" id="category"}
-				<a href="#" class="power-left clearfix">
+				<a href="/index/index/category/id/{$category ['id']}" class="power-left clearfix">
 					<div class="tool-left"><img src="{$category ['img_url']}"></div>
 					<div class="tool-right">
 						<div class="tool-title">{$category ['title']}</div>

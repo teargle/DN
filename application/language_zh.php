@@ -40,6 +40,11 @@ return [
 	'product_sort_popularity' => '流行',
 	'product_sort_average_rating' => '性价比',
 
+	'contact_name' => '姓名',
+	'contact_contact' => '联系信息',
+	'contact_info' => '给我们消息',
+	'contact_send' => '发送',
+	'contact_you' => '我们会尽快联系您'
 ] ;
 }
 	

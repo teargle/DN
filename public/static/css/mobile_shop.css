@@ -1,0 +1,122 @@
+.right-sidebar {
+	padding: 0 15px;
+}
+
+.right-sidebar .content-area {
+	padding: 40px 0;
+}
+
+.right-sidebar .content-area .woocomerce-result-count {
+	float: left;
+	margin-bottom: 20px;
+}
+
+.right-sidebar .content-area .woocommerce-ordering {
+	float: right;
+	margin-bottom: 16px;
+}
+
+.right-sidebar .content-area .site-main ul {
+	list-style: none outside;
+	margin: 0 0 14px;
+	padding: 0;
+	clear: none;
+}
+
+.right-sidebar .content-area .site-main ul li.product {
+	width: 49%;
+	float: right;
+	clear: none;
+	margin-bottom: 10px;
+	padding: 0 1px;
+	list-style: none;
+	overflow: hidden;
+	position: relative;
+}
+
+.right-sidebar .content-area .site-main ul li.first {
+	padding-right: 1px;
+}
+
+.right-sidebar .content-area .site-main ul li.last {
+	margin-bottom: -1px;
+}
+
+.right-sidebar .content-area .site-main ul li.product a.product-top-link {
+	text-decoration: none;
+}
+
+.right-sidebar .content-area .site-main ul li.product a.product-top-link img {
+	width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 0 1em;
+    box-shadow: none;
+    max-width: 100%;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.right-sidebar .content-area .site-main ul li.product a.product-top-link h2 {
+	padding: .5em 0;
+    margin: 0;
+    font-size: 1em;
+}
+
+.right-sidebar .content-area .site-main ul li.product a.product-bottom-link {
+	margin-top: 1em;
+	text-decoration: none;
+	background-color: #03c4eb;
+	padding: 10px;
+	color: #000;
+	font-weight: 700;
+	font-size: 13px;
+	border-radius: 2px;
+	line-height: 72px;
+}
+
+.right-sidebar .content-area .site-main .nav {
+	width: 100%;
+	text-align: center;
+	padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    margin-top: 30px;
+    display: block;
+}
+
+.right-sidebar .content-area .site-main .nav ul {
+	clear: both;
+	padding: 0;
+	margin: 1px;
+}
+
+.right-sidebar .content-area .site-main .nav ul li {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    float: left;
+    overflow: hidden;
+}
+
+.right-sidebar .content-area .site-main .nav ul li a {
+	margin: 0;
+    text-decoration: none;
+    line-height: 1;
+    font-size: 1em;
+    min-width: 1em;
+    display: block;
+    padding: 2px 5px;
+    font-weight: bold;
+}
+
+.right-sidebar .content-area .site-main .nav ul li a span {
+	margin: 0;
+    text-decoration: none;
+    line-height: 1;
+    font-size: 1em;
+    min-width: 1em;
+    display: block;
+    padding: 0;
+    font-weight: bold;
+}

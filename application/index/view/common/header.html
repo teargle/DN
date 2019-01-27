@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="__CSS__/header.css">
 	<link rel="stylesheet" type="text/css" href="__CSS__/4aql.css">
 	<script type="text/javascript" src="__JS__/jquery.min.js"></script>
+	<script type="text/javascript" src="__DIST_JS__/bootbox.min.js"></script>
 </head>
 <body>
 	<div class="header">
@@ -63,11 +64,7 @@
 						{/if}
 					</li>
 					<li>
-						{if condition="isset($rivet)"}
-						<a href="#">{$lang ['index_contact_us']}</a>
-						{else}
-						<a href="/index/index/index#">{$lang ['index_contact_us']}</a>
-						{/if}
+						<a href="/index/index/contact#">{$lang ['index_contact_us']}</a>
 					</li>
 				</ul>
 			</div>
