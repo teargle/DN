@@ -60,7 +60,6 @@ class Index extends Controller
             if( $cate ['parent'] == 0 ) {
                 array_push( $cates, $cate ) ;
             }
-            
         }
         foreach ($cates as &$one) {
             $two = array();
@@ -135,5 +134,13 @@ class Index extends Controller
             'product_sort_average_rating' => $this->lang ['product_sort_average_rating']
         ];
         View::share('sorts', $sorts );
+    }
+
+    public function category ( $id = 0 ) {
+        $category = Category::get([$id]);
+        $this->assign('category' , $category);
+        $this->assign('topTitle' , $category ['title']);
+        $this->_get_category();
+        return $this->fetch('category');
     }
 }

@@ -82,6 +82,12 @@ b, strong {
     font-weight: bold;
 }
 
+img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
 .hidden {
 	display: none !important;
 }

@@ -1,0 +1,36 @@
+{include file="common/header" /}
+{include file="common/top" /}
+
+<div class="site-content">
+	<div class="container right-sidebar">
+		<div class="content-area">
+			<div class="site-main">
+				<div class="article">
+					<div class="entry-header"></div>
+					<div class="entry-content">
+						<h3><a href="/mobile/index/shop?keyword={$category['title']}">{$category['title']}</a></h3>
+						<p>
+							{$category ['intro']}
+						</p>
+						{$category['description']}
+						<p>&nbsp;</p>
+						<div >
+							<img src="{$category['img_url']}">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{include file="common/search" /}
+	</div>
+</div>
+{include file="common/footer" /}
+<style type="text/css">
+.site-content .content-area {
+	margin-top: 40px;
+	margin-bottom: 60px;
+}
+.site-content .site-main .article .entry-content h3 a {
+	color: #ff0000;
+}
+</style>

@@ -167,6 +167,14 @@ class Index extends Controller
         $this->redirect("/index/index/product/id/{$post ['product_id']}");
     }
 
+    public function category ( $id = 0){
+        $category = Category::get([$id]);
+        $this->assign('category' , $category);
+        $this->assign('topTitle' , $category ['title']);
+        $this->_get_category();
+        return $this->fetch('category');
+    }
+
     private function _get_category() {
         $categorys = Category::all() ;
         $categorys = array_combine(array_column($categorys, 'id'), $categorys);
