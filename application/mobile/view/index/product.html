@@ -1,0 +1,86 @@
+{include file="common/header" /}
+<link rel="stylesheet" type="text/css" href="__CSS__/mobile_product.css">
+<div class="page-header">
+	<div class="container">
+		<h1 class="entry-title">SHOP</h1>
+	</div>
+</div>
+
+<div class="site-content">
+	<div class="container right-sidebar">
+		<div class="content-area">
+			<div class="site-main">
+				<div class="product-collect">
+					<div class="product-image">
+						<a href="#" class="product-gallery"></a>
+						<figure class="product-gallery-wrapper">
+							<div class="product-gallery-image">
+								<a href="#">
+									<img width="300" height="300" src="{$product['img_url']}">
+								</a>
+								<img src="__IMG__/product-1-300x300.jpg" class="zoomImg">
+							</div>
+						</figure> 
+					</div>
+					<div class="entry-summary">
+						<h1 class="entry-title-h1">{$product['short_title']}</h1>
+						<p></p>
+						<div class="short-description">
+							{$product['short_desc']}
+						</div>
+						<div class="product-meta">
+							<span class="posted-in">
+								分类:
+								<a href="#">{$product['category_title']}</a>
+							</span>
+						</div>
+					</div>
+					<div class="product-tabs-wrapper">
+						<h2>产品规格：</h2>
+						<div class="spec-row">
+							<table class="tbs-panel-desc-table">
+								<tbody>
+									{foreach name="product['property']" item="property" key="idx" }
+									<tr>
+										<td width=133><span><strong>{$idx}:</strong></span></td>
+										<td width=956>
+											<span >
+												<strong>{$property}</strong>
+											</span>
+										</td>
+									</tr>
+									{/foreach}
+								</tbody>
+							</table>
+						</div>
+						<h2 class="buy">
+							<span><strong>如果购买</strong></span>
+						</h2>
+						<p class="contact">
+							<span>快来联系我们，24小时内回复！</span>
+						</p>
+						<p>
+							<img src="__IMG__/wechart.jpg">
+						</p>
+					</div>
+					<div class="related-products">
+						<h2>相关产品</h2>
+						<ul class="products">
+							{foreach name="$product['related_products']" item="related" key="idx" }
+							<li class="product product-type">
+								<a class="related-product-a" href="/mobile/index/product/id/{$related['id']}">
+									<img src="{$related['img_url']}" width=300 height=300 sizes="(max-width:300px) 100vw, 300px">
+									<h2 >{$related['short_title']}</h2>
+								</a>
+								<a class="related-product-read" href="">了解更多</a>
+							</li>
+							{/foreach}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		{include file="common/search" /}
+	</div>
+</div>
+{include file="common/footer" /}

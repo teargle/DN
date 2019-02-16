@@ -1,0 +1,196 @@
+.content-area {
+	padding: 40px 0;
+	width: 100%;
+	float: none;
+}
+
+.content-area .site-main {
+	display: block;
+}
+
+.content-area .site-main .product-collect {
+	margin-bottom: 0;
+	position: relative;
+}
+
+.content-area .site-main .product-collect .product-image {
+	float: none;
+	width: 100%;
+	margin-bottom: 2em;
+}
+
+.content-area .site-main .product-collect .product-image .product-gallery {
+	position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    font-size: 2em;
+    z-index: 9;
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    text-indent: -9999px;
+    border-radius: 100%;
+    box-sizing: content-box;
+}
+
+.content-area .site-main .product-collect .product-image .product-gallery:before {
+	content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #000;
+    border-radius: 100%;
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    box-sizing: content-box;
+}
+
+.content-area .site-main .product-collect .product-image .product-gallery:after {
+	content: "";
+    display: block;
+    width: 2px;
+    height: 8px;
+    background: #000;
+    border-radius: 6px;
+    position: absolute;
+    top: 19px;
+    left: 22px;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    box-sizing: content-box;
+}
+
+.content-area .site-main .product-collect .product-image .product-gallery-wrapper {
+	margin: 0;
+	padding: 0;
+}
+
+.content-area .site-main .product-collect .product-image .product-gallery-image {
+	position: relative;
+	overflow: hidden;
+}
+
+.content-area .site-main .product-collect .product-image .product-gallery-image a img {
+	width: 100%;
+	height: auto;
+	display: block;
+	max-width: 100%;
+}
+
+.content-area .site-main .product-collect .product-image .product-gallery-image .zoomImg {
+	position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    width: 850px;
+    height: 850px;
+    border: none;
+    max-width: none;
+    max-height: none;
+    background-color: #fff;
+    display: block;
+}
+
+.content-area .site-main .product-collect .entry-summary {
+	float: none;
+	width: 100%;
+	clear: none;
+	margin-bottom: 2em;
+}
+
+.content-area .site-main .product-collect .entry-summary h1 {
+	clear: none;
+	margin-top: 0;
+	padding: 0;
+	font-weight: 600;
+	margin-bottom: 15px;
+	color: #333;
+	font-size: 33px;
+}
+
+.product-tabs-wrapper .spec-row {
+	margin-bottom: 20px;
+}
+
+.tbs-panel-desc-table tr td {
+	border: 1px solid #e9e9e9;
+    line-height: 1.42857;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.product-tabs-wrapper .buy {
+	font-size: 17px;
+	margin-bottom: 20px;
+}
+
+.product-tabs-wrapper .buy span {
+	color: #ff0000;
+}
+
+.product-tabs-wrapper .contact {
+	margin-top: 0;
+	margin-bottom: 15px;
+}
+
+.product-tabs-wrapper .contact span {
+	color: #ff0000;
+}
+
+.content-area .site-main .product-collect .related-products h2 {
+	font-size: 17px;
+	margin-bottom: 20px;
+	line-height: 1.2;
+}
+
+.content-area .site-main .product-collect .related-products ul.products {
+	margin: 0 0 1em;
+    padding: 0;
+    list-style: none outside;
+    clear: both;
+}
+
+.content-area .site-main .product-collect .related-products ul.products li.product {
+	width: 48%;
+    float: left;
+    margin: 0 0 3em;
+    margin-left:5px;
+}
+
+.content-area .site-main .product-collect .related-products 
+	ul.products li.product a.related-product-a {
+	text-decoration: none;
+}
+
+.content-area .site-main .product-collect .related-products 
+	ul.products li.product a.related-product-a img {
+	width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 0 1em;
+    box-shadow: none;
+    max-width: 100%;
+    margin-top: 1em;
+}
+
+.content-area .site-main .product-collect .related-products 
+	ul.products li.product a.related-product-a h2 {
+	padding: 0.5em 0;
+	margin: 0;
+	font-size: 1em;
+}
+
+.content-area .site-main .product-collect .related-products 
+	ul.products li.product a.related-product-read {
+	text-decoration: none;
+	font-size: 13px;
+	background-color: #03c4eb;
+	padding: 10px 20px;
+	color: #fff;
+	font-weight: 700;
+	border-radius: 2px;
+	margin: 0;
+    line-height: 1;
+}

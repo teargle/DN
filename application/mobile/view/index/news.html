@@ -1,0 +1,24 @@
+{include file="common/header" /}
+<link rel="stylesheet" type="text/css" href="__CSS__/mobile_news.css">
+{include file="common/top" /}
+
+<div class="site-content">
+	<div class="container right-sidebar">
+		<div class="content-area">
+			<div class="site-main">
+				<div class="article">
+					<div class="entry-header"></div>
+					<div class="entry-content">
+						<p>
+							<img width=1428 height=781 src="{$news['img_url']}" sizes="(max-width: 1428px) 100vw, 1428px" sizes="(max-width: 1428px) 100vw, 1428px">
+						</p>
+						{$news['main_body']}
+						<p>&nbsp;</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		{include file="common/search" /}
+	</div>
+</div>
+{include file="common/footer" /}

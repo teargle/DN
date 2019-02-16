@@ -143,4 +143,29 @@ class Index extends Controller
         $this->_get_category();
         return $this->fetch('category');
     }
+
+    public function product ($id  = 0) {
+        $Product = new Product;
+        $product = $Product->get_product_with_category($id) ;
+        $product ['property'] = json_decode($product['prop'] , true) ;
+        $product ['related_products'] = $this->_related( $product ['category_id'] , 4) ;
+        $this->assign('product' , $product ) ;
+        $this->assign('topTitle' , 'SHOP');
+        $this->_get_category();
+        return $this->fetch('product');
+    }
+
+    private function _related($category_id , $limit) {
+        $where = ['dn_category.id' => $category_id] ;
+        $product = new Product ;
+        return $product->query_product_with_category($where, null,1,$limit) ;
+    }
+
+    public function news($id) {
+        $news = News::get([$id]);
+        $this->assign('news' , $news);
+        $this->assign('topTitle' , $news ['title'] );
+        $this->_get_category();
+        return $this->fetch('news');
+    }
 }
