@@ -1,8 +1,40 @@
 {include file="common/header" /}
 <link rel="stylesheet" type="text/css" href="__CSS__/index.css">
+<link rel="stylesheet" href="__DIST_CSS__/swiper.min.css">
 <script type="text/javascript" src="__JS__/index.js"></script>
+<script type="text/javascript" src="__DIST_JS__/swiper.min.js"></script>
 <div class="header-banner">
-	<div class="banner"></div>
+<!-- 	<div class="banner"></div> -->
+	<div class="swiper-container banner">
+		<div class="banner swiper-wrapper">
+			<div class="swiper-slide"><img src="/static/img/header_banner.jpg" alt=""></div>
+			<div class="swiper-slide"><img src="/static/img/header_banner_1.jpg" alt=""></div>
+			<div class="swiper-slide"><img src="/static/img/header_banner_2.jpg" alt=""></div>
+		</div>
+		<!-- 如果需要分页器 -->
+    	<div class="swiper-pagination"></div>
+    
+    	<!-- 如果需要滚动条 -->
+    	<!-- <div class="swiper-scrollbar"></div> -->
+	</div>
+	<script type="text/javascript">
+	$(function(){
+		var swiper = new Swiper('.swiper-container',{
+	    	    direction: 'horizontal', // 垂直切换选项
+			    loop: true, // 循环模式选项
+			    autoplay: true,
+			    // 如果需要分页器
+			    pagination: {
+			      el: '.swiper-pagination',
+			    },
+			    
+			    // 如果需要滚动条
+			    scrollbar: {
+			      el: '.swiper-scrollbar',
+			    }
+	    });
+	});
+	</script>
 	<div class="banner-inner">
 		<div class="banner-top">
 			<div class="slogan">
@@ -14,7 +46,7 @@
 		</div>
 		<div class="banner-bottom">
 			<div><a href="#" class="active">{$lang ['index_about']}</a></div>
-			<div><a href="#">{$lang ['index_contact_us']}</a></div>
+			<div><a href="/index/index/contact">{$lang ['index_contact_us']}</a></div>
 		</div>
 	</div>
 </div>
