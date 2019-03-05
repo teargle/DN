@@ -4,10 +4,9 @@ function get_lang() {
 return [
 	'web_title' => '欢迎来到岱恩',
 
-	'index_banner_slogon' => '我们承若<span>同一个地球同一个关怀</span>',
-	'index_banner_slogon_sub' => '我们提供优异的产品',
-
 	'index_home' => "首页",
+	'index_banner_slogon' => "同一个世界 同一个美好",
+	'index_banner_slogon_sub' =>  '共建一个美好世界',
 	'index_contact_us' => '联系我们',
 	'index_feature' => '我们的优势',
 	'index_feature_sub' => '为什么选择我们',

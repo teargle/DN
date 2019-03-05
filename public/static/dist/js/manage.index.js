@@ -7,6 +7,7 @@ function resetTable(href) {
   $("#btn-new").removeClass("hidden");
   $("#btn-new a").attr('href', href);
   $("#manage_list").bootstrapTable('destroy');
+  $("#manage_list").html('');
 }
 
 function revertProduct() {
@@ -214,7 +215,7 @@ function delCategory( id ) {
 }
 
 function revertIntro() {
-$("#btn-new").addClass("hidden");
+resetTable('/admin/manage/edit_intro/id/0');
 $("#manage_list").bootstrapTable({ // 对应table标签的id
       url: "/admin/manage/intro", // 获取表格数据的url
       cache: false, // 设置为 false 禁用 AJAX 数据缓存， 默认为true

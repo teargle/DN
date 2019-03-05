@@ -8,6 +8,7 @@ use think\Request;
 use app\index\model\Product;
 use app\index\model\Category;
 use app\index\model\Intro;
+use app\index\model\Dict;
 
 class Manage extends Common
 {
@@ -206,5 +207,12 @@ class Manage extends Common
 			$intro->save($post);
 		}
 		echo $this->output_json ( true , "OK" , null) ;
+    }
+
+    public function home() {
+        $dict = new Dict ;
+        $home = $dict->field('name,value')->where('model' , 'home')->select() ;
+        echo $this->output_json ( true , "OK" , $home) ;
+        exit;
     }
 }

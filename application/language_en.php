@@ -4,10 +4,9 @@ function get_lang() {
 return [
 	'web_title' => 'Welcome to DN',
 
-	'index_banner_slogon' => 'Our service is credit',
-	'index_banner_slogon_sub' => 'Give Our The Best Service To You',
-
 	'index_home' => "HOME",
+	'index_banner_slogon' => "同一个世界 同一个美好",
+	'index_banner_slogon_sub' =>  '共建一个美好世界',
 	'index_contact_us' => 'CONTACT',
 	'index_feature' => 'FEATURES',
 	'index_feature_sub' => 'Why DN',

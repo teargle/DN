@@ -21,7 +21,11 @@ class Index extends Controller
 	{
 		parent::__construct();
         if( is_mobile_browser() ) {
-            $this->redirect("/mobile/index/index");
+            $request= \think\Request::instance();
+            $url = $request->url();
+            $i = strpos( $url , 'index' );
+            $url = substr_replace  ($url , 'mobile' ,$i , strlen('index') );
+            $this->redirect($url);
             exit;
         }
 		$this->init();
