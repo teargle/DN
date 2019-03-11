@@ -22,6 +22,9 @@ return [
 	'index_funder_thinnest' => 'The Thinnest Wheel',
 	'index_news' => 'NEWS',
 
+	'index_last_news' => 'LAST NEWS',
+	'index_news_more' => 'NEWS MORE',
+
 	'search_title' => 'SEARCH',
 	'search_query' => 'SEARCH',
 	'search_keyword' => 'Search ...',

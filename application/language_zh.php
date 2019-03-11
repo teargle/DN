@@ -19,8 +19,11 @@ return [
 	'index_funder_year' => '实践',
 	'index_funder_market' => '市场',
 	'index_funder_sales' => '每天销售',
-	'index_funder_thinnest' => '产品厚度',
+	'index_funder_thinnest' => '切片最薄',
 	'index_news' => '新闻',
+
+	'index_last_news' => '最近新闻',
+	'index_news_more' => '更多新闻',
 
 	'search_title' => '搜索',
 	'search_query' => '查询',

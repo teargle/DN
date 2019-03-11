@@ -1,3 +1,92 @@
-<div>
-	News
+<!DOCTYPE html>
+<html>
+<head>
+	<title>编辑新闻</title>
+	<link rel="stylesheet" href="__CSS__/bootstrap.min.css">
+	<link rel="stylesheet" href="__CSS__/trumbowyg.min.css">
+	<link rel="stylesheet" href="__CSS__/manage.index.css">
+	<script type="text/javascript" src="__JS__/jquery.min.js"></script>
+	<script type="text/javascript" src="__JS__/bootstrap.min.js"></script>
+	<script type="text/javascript" src="__JS__/trumbowyg.min.js"></script>
+	<script type="text/javascript" src="__JS__/manage.index.js"></script>
+	 <style>
+        fieldset {
+            padding: .35em .625em .75em;
+            margin: 0 2px;
+            border: 1px solid silver;
+        }
+
+        legend {
+            padding: .5em;
+            border: 0;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="full-container">
+<form  class="form-horizontal" role="form" id="news-from">
+	<div class="page-header text-center ">
+	{if condition="!empty($news) && !empty($news['id'])"}
+	<h1>{$news['title']}</h1>
+	<input type="hidden" name="id" value="{$news['id']}">
+	{else /}
+	<h1>创建分类</h1>
+	{/if}
+	</div>
+	<div class="row form-group">
+		<label for="title" class="col-sm-2 control-label text-right">名称：</label>
+		<div class="col-sm-8">
+			<input type="text" class="form-control" name="title" placeholder="请输入名称"
+			value='{if condition="!empty($news)"}{$news["title"]}{/if}'
+			>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label for="short_title" class="col-sm-2 control-label text-right">短标题：</label>
+		<div class="col-sm-8">
+			<input type="text" class="form-control" name="short_title" placeholder="请输入短标题"
+			value='{if condition="!empty($news)"}{$news["short_title"]}{/if}'
+			>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label for="summary" class="col-sm-2 control-label text-right">短标题：</label>
+		<div class="col-sm-8">
+			<input type="text" class="form-control" name="summary" placeholder="请输入简介"
+			value='{if condition="!empty($news)"}{$news["summary"]}{/if}'
+			>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label for="img_url" class="col-sm-2 control-label text-right">图片地址：</label>
+		<div class='col-sm-8'>
+			<input type="text" class="form-control" name="img_url" placeholder="图片地址"
+			value='{if condition="!empty($news)"}{$news["img_url"]}{/if}'
+			>
+		</div>
+	</div>
+	<div class="row form-group">
+        <label for="main_body" class="col-md-2 control-label text-right">详细描述 : </label>
+        <div class="col-sm-8">
+            <div id="main_body" name="main_body">
+            	{if condition="!empty($news)"}{$news['main_body']}{/if}
+            </div>
+        </div>
+    </div>
+	<hr >
+	<div class="row form-group">
+		<div class="col-sm-8"></div>
+		<div class="col-sm-2">
+			<button type="button" class="btn btn-primary" onclick="savenews()">保存</button>
+			{if condition="!empty($news)"}
+			<button type="button" class="btn btn-danger" onclick="delnews({$news['id']})">删除</button>
+			{/if}
+		</div>
+	</div>
+</form>
+<br /><br /><br />
+
 </div>
+</body>
+</html>

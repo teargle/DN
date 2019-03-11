@@ -1,22 +1,51 @@
 <div id="home_manage">
 	<form class="home-manage-form">
 		<br /><div style="text-align: center;"><h1>首页配置</h1></div><br />
+		<hr />
 		<div class="row form-group">
 			<label for="banner_main_title" class="col-sm-2 control-label text-right">图片主标题：</label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" name="banner_main_title" 
-				placeholder="请输入标题" value=''>
+				placeholder="请输入标题" />
 			</div>
 		</div>
 		<div class="row form-group" id="banner_sub_title">
 			<label for="banner_sub_title" class="col-sm-2 control-label text-right">图片副标题：</label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" name="banner_sub_title" 
-				placeholder="请输入标题" value=''>
+				placeholder="请输入标题" />
 			</div>
 		</div>
-		<div id="separate"></div>
-		<div id='btns' class="row form-group">
+		<hr />
+		<div class="row form-group">
+			<label for="st_practice" class="col-sm-2 control-label text-right">相关数据-实践：</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="st_practice" 
+				placeholder="请输入信息" />
+			</div>
+		</div>
+		<div class="row form-group">
+			<label for="st_market" class="col-sm-2 control-label text-right">相关数据-市场：</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="st_market" placeholder="请输入信息" />
+			</div>
+		</div>
+		<div class="row form-group">
+			<label for="st_sale" class="col-sm-2 control-label text-right">相关数据-销售：</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="st_sale" placeholder="请输入信息" />
+			</div>
+		</div>
+		<div class="row form-group">
+			<label for="st_think" class="col-sm-2 control-label text-right">相关数据-最薄：</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="st_think" placeholder="请输入信息" />
+			</div>
+		</div>
+		<hr />
+		<hr id="separate" />
+		<hr id="up_banner_input_area" />
+		<div class="row form-group">
 			<div class="col-sm-2">
 				<button type="button" class="btn btn-primary" onclick="addWebImg()">添加网页首页图片</button>
 			</div>
@@ -42,13 +71,15 @@
 </div>
 
 <script type="text/javascript">
+var maxMobileBannerId = 0;
+var maxWebBannerId = 0;
 function revertIndex() {
   $("#btn-new").removeClass("hidden");
   $("#btn-new").addClass('hidden');
   $("#manage_list").bootstrapTable('destroy');
   $("#manage_list").html('');
 
-  var $home = $("#home_manage").clone();
+  var $home = $("#home_manage");
   $("#manage_list").append($home);
 
   $.post("/admin/manage/home", {} ,
@@ -68,15 +99,29 @@ function revertIndex() {
             	var webImg = $("#web_input_template").clone();
             	webImg.find(".control-label").html("网页图片：");
             	webImg.removeAttr('id');
-            	webImg.find('input').attr('name' , arr [0]).val(item ['value']);
+            	webImg.find('input').attr('name' , item ['name']).val(item ['value']);
             	webImg.insertBefore("#separate");
+            	maxWebBannerId = maxWebBannerId > parseInt(arr[1]) ? maxWebBannerId : parseInt(arr [1]);
             }
             if( arr [0] == 'banner_mobile_img' ) {
             	var webImg = $("#web_input_template").clone();
             	webImg.find(".control-label").html("网页图片：");
             	webImg.removeAttr('id');
-            	webImg.find('input').attr('name' , arr [0]).val(item ['value']);
-            	webImg.insertBefore("#btns");
+            	webImg.find('input').attr('name' , item ['name']).val(item ['value']);
+            	webImg.insertBefore("#up_banner_input_area");
+            	maxMobileBannerId = maxMobileBannerId > parseInt(arr[1]) ? maxMobileBannerId : parseInt(arr [1]);
+            }
+            if(item['name'] == 'st_practice' ) {
+            	$("input[name='st_practice']").val(item ['value']);
+            }
+            if(item['name'] == 'st_market' ) {
+            	$("input[name='st_market']").val(item ['value']);
+            }
+            if(item['name'] == 'st_sale' ) {
+            	$("input[name='st_sale']").val(item ['value']);
+            }
+            if(item['name'] == 'st_think' ) {
+            	$("input[name='st_think']").val(item ['value']);
             }
           });
         } else {
@@ -86,26 +131,29 @@ function revertIndex() {
 }
 
 function addWebImg() {
+	maxWebBannerId = maxWebBannerId + 1;
+	var num = maxWebBannerId;
 	var webImg = $("#web_input_template").clone();
 	webImg.find(".control-label").html("网页图片：");
 	webImg.removeAttr('id');
-	webImg.find("input").attr('name' , 'banner_web_img');
+	webImg.find("input").attr('name' , 'banner_web_img__' + num );
 	webImg.insertBefore("#separate");
 }
 function addMobileImg() {
+	maxMobileBannerId = maxMobileBannerId + 1;
+	var num = maxMobileBannerId ;
 	var webImg = $("#web_input_template").clone();
 	webImg.find(".control-label").html("手机图片：");
 	webImg.removeAttr('id');
-	webImg.find("input").attr('name' , 'banner_mobile_img');
-	webImg.insertBefore("#btns");
+	webImg.find("input").attr('name' , 'banner_mobile_img__' + num );
+	webImg.insertBefore("#up_banner_input_area");
 }
 function saveImg() {
-  var params = $("#home-manage-form").serializeArray();
-  $.post("/admin/manage/saveIndex",  params ,
+  $.post("/admin/manage/saveIndex",  $(".home-manage-form").serialize(),
       function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-          document.location.reload();
+           //document.location.reload();
         } else {
            alert( data.message ) ;
         }

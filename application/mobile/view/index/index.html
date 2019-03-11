@@ -5,19 +5,13 @@
 <div class="banner-container">
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
-			<div class="swiper-slide"><img src="/static/img/mobile_banner_1.jpg" alt=""></div>
-			<div class="swiper-slide"><img src="/static/img/mobile_banner_1.jpg" alt=""></div>
-			<div class="swiper-slide"><img src="/static/img/mobile_banner_1.jpg" alt=""></div>
+			{volist name="banners" id="banner"}
+			<div class="swiper-slide"><img src="{$banner ['value']}" alt=""></div>
+			{/volist}
 		</div>
 		<!-- 如果需要分页器 -->
     	<div class="swiper-pagination"></div>
-    
-    	<!-- 如果需要导航按钮 -->
-<!--     	<div class="swiper-button-prev"></div>
-    	<div class="swiper-button-next"></div> -->
-    
-    	<!-- 如果需要滚动条 -->
-    	<div class="swiper-scrollbar"></div>
+
 	</div>
 </div>
 <script type="text/javascript">
@@ -30,12 +24,6 @@ $(function(){
 		    pagination: {
 		      el: '.swiper-pagination',
 		    },
-		    
-		    // 如果需要前进后退按钮
-		    // navigation: {
-		    //   nextEl: '.swiper-button-next',
-		    //   prevEl: '.swiper-button-prev',
-		    // },
 		    
 		    // 如果需要滚动条
 		    scrollbar: {
@@ -133,6 +121,7 @@ $(function(){
 </div>
 
 <!-- fundder -->
+{notempty name="something"}
 <div class="funder">
 	<div class="funder-container container">
 		<div class="funder-header"><h5>{$lang ['index_funder_sub']}</h5></div>
@@ -140,7 +129,7 @@ $(function(){
 			<div class="funder-col">
 				<div class="funder-item">
 					<div class="funder-number">
-						<span class="funder-n">30</span>
+						<span class="funder-n">{$something['st_practice']}</span>
 					</div>
 					<div class="funder-subtitle">{$lang ['index_funder_year']}</div>
 				</div>
@@ -148,7 +137,7 @@ $(function(){
 			<div class="funder-col">
 				<div class="funder-item">
 					<div class="funder-number">
-						<span class="funder-n">96</span>
+						<span class="funder-n">{$something['st_market']}</span>
 						<span class="funder-a">%</span>
 					</div>
 					<div class="funder-subtitle">{$lang ['index_funder_market']}</div>
@@ -157,7 +146,7 @@ $(function(){
 			<div class="funder-col">
 				<div class="funder-item">
 					<div class="funder-number">
-						<span class="funder-n">100,000</span>
+						<span class="funder-n">{$something['st_sale']}</span>
 					</div>
 					<div class="funder-subtitle">{$lang ['index_funder_sales']}</div>
 				</div>
@@ -165,20 +154,21 @@ $(function(){
 			<div class="funder-col">
 				<div class="funder-item">
 					<div class="funder-number">
-						<span class="funder-n">0.12</span>
-						<span class="funder-n">MM</span>
+						<span class="funder-n">{$something['st_think']}</span>
 					</div>
-					<div class="funder-subtitle">{$lang ['index_funder_year']}</div>
+					<div class="funder-subtitle">{$lang ['index_funder_thinnest']}</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+{/notempty}
 
 <!-- NEW -->
+{notempty name="data['news']"}
 <div class="new" id="news_area">
 	<div class="container new-container">
-		<div class="new-header"><h2>最新新闻</h2></div>
+		<div class="new-header"><h2>{$lang ['index_last_news']}</h2></div>
 		<div class="new-content">
 			<div class="new-row">
 				<div class="new-col">
@@ -204,7 +194,7 @@ $(function(){
 						</div>
 						{/volist}
 						<div class="news-all">
-							<a href="/mobile/index/newslist">更多新闻</a>
+							<a href="/mobile/index/newslist">{$lang ['index_news_more']}</a>
 						</div>
 					</div>
 				</div>
@@ -212,4 +202,5 @@ $(function(){
 		</div>
 	</div>
 </div>
+{/notempty}
 {include file="common/footer" /}

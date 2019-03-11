@@ -9,6 +9,7 @@ use app\index\model\Product;
 use app\index\model\Category;
 use app\index\model\Intro;
 use app\index\model\Dict;
+use app\index\model\News;
 
 class Manage extends Common
 {
@@ -61,6 +62,7 @@ class Manage extends Common
 
 	private function _get_category() {
         $categorys = Category::all() ;
+        $categorys = array_combine(array_column($categorys, 'id'), $categorys);
         View::share('categorys',$categorys);
     }
 
@@ -214,5 +216,63 @@ class Manage extends Common
         $home = $dict->field('name,value')->where('model' , 'home')->select() ;
         echo $this->output_json ( true , "OK" , $home) ;
         exit;
+    }
+
+    public function saveIndex() {
+        $request = Request::instance();
+        $post = $request->post();
+        $dict = new Dict ;
+        $result = true;
+        foreach ($post as $key => $value) {
+            if( empty( $value ) ) continue ;
+            $record = $dict->get( [
+                'name' => $key,
+                'model' => 'home'
+            ]) ;
+            if( $record ) {
+                if( $record ['value'] != $value ) {
+                    $result = $dict->save(['value' => $value] , [
+                        'id' => $record ['id']
+                    ]);
+                }
+            } else {
+                $dict = new Dict ;
+                $dict->name = $key;
+                $dict->value = $value;
+                $dict->model = 'home';
+                $result = $dict->save();
+            }
+        }
+        if( $result ) {
+            echo $this->output_json ( true , "OK" , null) ;
+        } else {
+            echo $this->output_json ( false , "更新失败" , null) ;
+        }
+    }
+
+    public function news() {
+        $request = Request::instance();
+        $orderby = $request->get('sort') ;
+        $limit = $request->get('pageSize');
+        $start = $request->get('offset') ; 
+        $news = new News ;
+        $dataNews = $news->limit($start,$limit)->order($orderby)->select() ;
+        $count = $news->count();;
+        $data = [
+                'total' => $count , 
+                'rows' =>$dataNews
+        ] ;
+        echo json_encode($data) ;
+        exit;
+    }
+
+    public function edit_news($id = 0) {
+        $data = null;
+        if( $id ) {
+            $news = new News;
+            $data = $news->get($id) ;
+        }
+        View::share('news',$data);
+        return view('admin@manage/news');
     }
 }

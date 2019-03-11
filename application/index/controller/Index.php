@@ -12,6 +12,7 @@ use app\index\model\Intro;
 use app\index\model\Feature;
 use app\index\model\Category;
 use app\index\model\News;
+use app\index\model\Dict;
 
 class Index extends Controller
 {
@@ -55,11 +56,29 @@ class Index extends Controller
         $news = News::all();
         $data ['news'] = array_slice($news , 0 , 3);
 
+        $this->_get_home_banner();
+        $this->_get_home_something();
         $this->_get_category();
 
         $this->assign('rivet' , 'home');
         $this->assign('data' , $data);
         return $this->fetch('index');
+    }
+
+    private function _get_home_banner() {
+        $dict = new Dict ;
+        $banners = $dict->where('model' , 'home')
+             ->where('name','like',"%banner_mobile_img%")->select();
+        $this->assign('banners' , $banners);
+
+    }
+
+    private function _get_home_something () {
+        $dict = new Dict ;
+        $something = $dict->where('model' , 'home')
+             ->where('name','like',"st_%")->select();
+        $something = array_column($something, 'value' , 'name');
+        $this->assign('something' , $something);
     }
 
     public function shop() {
