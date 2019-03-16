@@ -37,4 +37,8 @@ class Index extends Common
 	    }
         return view('admin@index/index');
     }
+
+    public function manage() {
+    	return view('admin@index/manage');
+    }
 }

@@ -76,6 +76,7 @@ $("#manage_list").bootstrapTable({ // 对应table标签的id
 $(document).ready(function() {
     $('#short_desc').trumbowyg();
     $('#description').trumbowyg();
+    $('#main_body').trumbowyg();
 });
 
 function addProp () {

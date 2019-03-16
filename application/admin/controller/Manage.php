@@ -275,4 +275,6 @@ class Manage extends Common
         View::share('news',$data);
         return view('admin@manage/news');
     }
+
+    
 }
