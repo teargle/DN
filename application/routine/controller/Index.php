@@ -26,7 +26,7 @@ class Index extends Controller
         ]) ;
 	}
 
-	public function saveContact （） {
+	public function saveContact(){
 		$request = Request::instance();
         $post = $request->post();
 
