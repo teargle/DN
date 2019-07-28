@@ -67,11 +67,11 @@
 	<div class="row form-group">
 		<label for="category_id" class="col-sm-2 control-label text-right">分类：</label>
 		<div class="col-sm-4">
-			<select id="selected_category" onchange="categoryChange()" class="form-control" >
+			<select id="selected_category" onchange="categoryChange" class="form-control" >
 			{foreach name="categorys" item="category" key="k" }
 			  {if condition="$category['parent'] eq 0"}
 			  <option value="{$category['id']}" 
-			  {if condition="$categorys[$product['category_id']]['parent'] == $k"}selected{/if}
+			  {if condition="$product && $categorys[$product['category_id']]['parent'] == $k"}selected{/if}
 			  >{$category['title']}</option>
 			  {/if}
 			{/foreach}
@@ -154,7 +154,7 @@
 </div>
 <script type="text/javascript">
 var categorys = {:json_encode($categorys)};
-var initCategoryId = {$product['category_id']};
+var initCategoryId = "{$product['category_id']}";
 
 $(document).ready( function(){
 	categoryChange() ;

@@ -67,8 +67,12 @@ class Index extends Controller
 
     private function _get_home_banner() {
         $dict = new Dict ;
+        $banner_names = "%banner_mobile_img%";
+        if( !is_mobile_browser () ) {
+            $banner_names = "%banner_web_img%";
+        }
         $banners = $dict->where('model' , 'home')
-             ->where('name','like',"%banner_mobile_img%")->select();
+             ->where('name','like', $banner_names)->select();
         $this->assign('banners' , $banners);
 
     }
