@@ -38,7 +38,6 @@ class Index extends Controller
 	public function init () 
 	{
         $this->lang = get_lang();
-        $this->_get_header_info();
 		View::share('title',$this->lang ['web_title']);
         View::share('lang', $this->lang );
 	}
@@ -60,7 +59,7 @@ class Index extends Controller
         $this->_get_home_banner();
         $this->_get_home_something();
         $this->_get_category();
-
+        $this->_get_setting_info();
         $this->assign('rivet' , 'home');
         $this->assign('data' , $data);
         return $this->fetch('index');
@@ -86,9 +85,8 @@ class Index extends Controller
         $this->assign('something' , $something);
     }
 
-    private function _get_header_info() {
-        $dict = new Dict ;
-        $something = $dict->where('model' , 'setting')
+    private function _get_setting_info() {
+        $something = Dict::where('model' , 'setting')
              ->where('name','like',"setting_%")->select();
         $something = array_column($something, 'value' , 'name');
         $this->assign('setting' , $something);
@@ -127,6 +125,7 @@ class Index extends Controller
         $this->assign('keyword' , $keyword);
         $this->_get_category();
         $this->_get_sort();
+        $this->_get_setting_info();
         return $this->fetch('shop');
     }
 
@@ -138,6 +137,7 @@ class Index extends Controller
         $this->assign('product' , $product ) ;
     	$this->assign('topTitle' , 'SHOP');
         $this->_get_category();
+        $this->_get_setting_info();
     	return $this->fetch('product');
     }
 
@@ -146,6 +146,7 @@ class Index extends Controller
         $this->assign('intro' , $intro);
     	$this->assign('topTitle' , $intro['title']);
         $this->_get_category();
+        $this->_get_setting_info();
     	return $this->fetch('intro');
     }
 
@@ -154,6 +155,7 @@ class Index extends Controller
         $this->assign('news' , $news);
         $this->assign('topTitle' , '新闻');
         $this->_get_category();
+        $this->_get_setting_info();
         return $this->fetch('newslist');
     }
 
@@ -162,6 +164,7 @@ class Index extends Controller
         $this->assign('news' , $news);
         $this->assign('topTitle' , $news ['title']);
         $this->_get_category();
+        $this->_get_setting_info();
         return $this->fetch('news');
     }
 
@@ -208,6 +211,7 @@ class Index extends Controller
         $this->assign('category' , $category);
         $this->assign('topTitle' , $category ['title']);
         $this->_get_category();
+        $this->_get_setting_info();
         return $this->fetch('category');
     }
 
@@ -250,6 +254,7 @@ class Index extends Controller
     public function contact () {
         $this->assign('topTitle' , $this->lang ['index_contact_us']);
         $this->_get_category();
+        $this->_get_setting_info();
         return $this->fetch('contact');
     }
 
