@@ -12,7 +12,7 @@ return [
 	'index_feature_sub' => 'Why DN',
 	'index_about' => 'ABOUT US',
 	'index_service' => 'SERVICES',
-	'index_service_pre' => 'CUTTING WHEELS FOR DIFFERENT',
+	'index_service_pre' => 'DIFFERENT SERVICES FOR YOU',
 	'index_shop' => 'PRODUCTS',
 	'index_photo' => 'PHOTO',
 	'index_funder_sub' => 'SOME FUN FACTS ABOUT STAR ABRASIVES ?',

@@ -58,6 +58,7 @@ class Index extends Controller
 
         $this->_get_home_banner();
         $this->_get_home_something();
+        $this->_get_header_info();
         $this->_get_category();
 
         $this->assign('rivet' , 'home');
@@ -83,6 +84,14 @@ class Index extends Controller
              ->where('name','like',"st_%")->select();
         $something = array_column($something, 'value' , 'name');
         $this->assign('something' , $something);
+    }
+
+    private function _get_header_info() {
+        $dict = new Dict ;
+        $something = $dict->where('model' , 'home')
+             ->where('name','like',"header_%")->select();
+        $something = array_column($something, 'value' , 'name');
+        $this->assign('header' , $something);
     }
 
     public function shop() {

@@ -34,7 +34,7 @@ body {
 .header img {
 	display: inline-block;
 	height: 36px;
-	width: 160;
+	width: 160px;
 	vertical-align: middle;
 }
 
@@ -61,6 +61,11 @@ body {
 
 .header-right ul li a:hover {
 	color:#03c4eb;
+}
+
+.header-right ul li img {
+	width: auto;
+	height: 72px;
 }
 
 .perch {
