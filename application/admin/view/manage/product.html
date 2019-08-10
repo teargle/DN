@@ -84,9 +84,9 @@
 		</div>
 	</div>
 	<div class="row form-group">
-		<label for="category_id" class="col-sm-2 control-label text-right">首页展示：</label>
+		<label for="is_home" class="col-sm-2 control-label text-right">首页展示：</label>
 		<div class="col-sm-8">
-			<select class="form-control">
+			<select name="is_home" class="form-control">
 			{foreach name="home_arr" item="home" key="k"}
 			  <option value="{$k}" {if condition="$ishome == $k"}selected{/if}>{$home}</option>
 			{/foreach}
