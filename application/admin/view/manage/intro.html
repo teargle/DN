@@ -59,6 +59,14 @@
 		</div>
 	</div>
 	<div class="row form-group">
+        <label for="short_desc" class="col-md-2 control-label text-right">短描述 : </label>
+        <div class="col-sm-8">
+            <div id="short_desc" name="short_desc">
+            	{if condition="!empty($intro)"}{$intro['short_desc']}{/if}
+            </div>
+        </div>
+    </div>
+	<div class="row form-group">
         <label for="description" class="col-md-2 control-label text-right">详细描述 : </label>
         <div class="col-sm-8">
             <div id="description" name="description">
