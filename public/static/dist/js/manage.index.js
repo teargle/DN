@@ -9,6 +9,96 @@ function resetTable(href) {
   $("#manage_list").bootstrapTable('destroy');
   $("#manage_list").html('');
 }
+var maxMobileBannerId = 0;
+var maxWebBannerId = 0;
+function revertIndex() {
+  $("#btn-new").addClass('hidden');
+  $("#manage_list").bootstrapTable('destroy');
+  $("#manage_list").html('');
+
+  var $home = $("#home_manage");
+  $("#manage_list").append($home);
+  console.log( $home ) ;
+  $.post("/admin/manage/home", {} ,
+      function(data){
+        data = $.parseJSON(data);
+        if( data.result ) {
+          var dict = data.obj ;
+          $.each(dict , function ( idx , item) {
+            if(item ['name'] == 'banner_main_title') {
+              $("input[name='banner_main_title']").val(item ['value']);
+            }
+            if(item ['name'] == 'banner_sub_title') {
+              $("input[name='banner_sub_title']").val(item ['value']);
+            }
+            var arr = item ['name'].split('__');
+            if( arr [0] == 'banner_web_img' ) {
+              var webImg = $("#web_input_template").clone();
+              webImg.find(".control-label").html("网页图片：");
+              webImg.removeAttr('id');
+              webImg.find('input').attr('name' , item ['name']).val(item ['value']);
+              webImg.insertBefore("#separate");
+              maxWebBannerId = maxWebBannerId > parseInt(arr[1]) ? maxWebBannerId : parseInt(arr [1]);
+            }
+            if( arr [0] == 'banner_mobile_img' ) {
+              var webImg = $("#web_input_template").clone();
+              webImg.find(".control-label").html("网页图片：");
+              webImg.removeAttr('id');
+              webImg.find('input').attr('name' , item ['name']).val(item ['value']);
+              webImg.insertBefore("#up_banner_input_area");
+              maxMobileBannerId = maxMobileBannerId > parseInt(arr[1]) ? maxMobileBannerId : parseInt(arr [1]);
+            }
+            if(item['name'] == 'st_practice' ) {
+              $("input[name='st_practice']").val(item ['value']);
+            }
+            if(item['name'] == 'st_market' ) {
+              $("input[name='st_market']").val(item ['value']);
+            }
+            if(item['name'] == 'st_sale' ) {
+              $("input[name='st_sale']").val(item ['value']);
+            }
+            if(item['name'] == 'st_think' ) {
+              $("input[name='st_think']").val(item ['value']);
+            }
+          });
+        } else {
+          console.log( "加载失败" );
+        }
+  });
+}
+
+function addWebImg() {
+  maxWebBannerId = maxWebBannerId + 1;
+  var num = maxWebBannerId;
+  var webImg = $("#web_input_template").clone();
+  webImg.find(".control-label").html("网页图片：");
+  webImg.removeAttr('id');
+  webImg.find("input").attr('name' , 'banner_web_img__' + num );
+  webImg.insertBefore("#separate");
+}
+function addMobileImg() {
+  maxMobileBannerId = maxMobileBannerId + 1;
+  var num = maxMobileBannerId ;
+  var webImg = $("#web_input_template").clone();
+  webImg.find(".control-label").html("手机图片：");
+  webImg.removeAttr('id');
+  webImg.find("input").attr('name' , 'banner_mobile_img__' + num );
+  webImg.insertBefore("#up_banner_input_area");
+}
+function saveImg() {
+  $.post("/admin/manage/saveIndex",  $(".home-manage-form").serialize(),
+      function(data){
+        data = $.parseJSON(data);
+        if( data.result ) {
+           //document.location.reload();
+        } else {
+           alert( data.message ) ;
+        }
+  });
+}
+function delImg(obj) {
+  $(obj).closest(".form-group").remove();
+}
 
 function revertProduct() {
 resetTable('/admin/manage/edit_product/id/0');

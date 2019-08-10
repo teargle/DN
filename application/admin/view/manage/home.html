@@ -3,10 +3,10 @@
 		<br /><div style="text-align: center;"><h1>首页配置</h1></div><br />
 		<hr />
 		<div class="row form-group">
-			<label for="banner_main_title" class="col-sm-2 control-label text-right">图片主标题：</label>
+			<label for="header_qrcode" class="col-sm-2 control-label text-right">首页二维码：</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" name="banner_main_title" 
-				placeholder="请输入标题" />
+				<input type="text" class="form-control" name="header_qrcode" 
+				placeholder="二维码图片" />
 			</div>
 		</div>
 		<div class="row form-group" id="banner_sub_title">
@@ -43,8 +43,14 @@
 			</div>
 		</div>
 		<hr />
+		<div>
+		<div class="text-center"><label><h3>添加网页首页图片</h3></label></div>
 		<hr id="separate" />
+		</div>
+		<div>
+		<div class="text-center"><label><h3>添加手机首页图片</h3></label></div>
 		<hr id="up_banner_input_area" />
+		</div>
 		<div class="row form-group">
 			<div class="col-sm-2">
 				<button type="button" class="btn btn-primary" onclick="addWebImg()">添加网页首页图片</button>
@@ -63,7 +69,7 @@
 	<label for="imgs" class="col-sm-2 control-label text-right">图片：</label>
 	<div class="col-sm-8">
 		<input type="text" class="form-control" name="imgs"
-			placeholder="请输入名称" value=''>
+			placeholder="网页图片宽度:1280, 高度:500; 手机图片宽度:375,高度:750;" value=''>
 	</div>
 	<div class="col-sm-2 pull-right">
 		<button type="button" class="btn btn-primary" onclick="delImg(this)">删除</button>
@@ -71,95 +77,5 @@
 </div>
 
 <script type="text/javascript">
-var maxMobileBannerId = 0;
-var maxWebBannerId = 0;
-function revertIndex() {
-  $("#btn-new").removeClass("hidden");
-  $("#btn-new").addClass('hidden');
-  $("#manage_list").bootstrapTable('destroy');
-  $("#manage_list").html('');
 
-  var $home = $("#home_manage");
-  $("#manage_list").append($home);
-
-  $.post("/admin/manage/home", {} ,
-      function(data){
-        data = $.parseJSON(data);
-        if( data.result ) {
-          var dict = data.obj ;
-          $.each(dict , function ( idx , item) {
-            if(item ['name'] == 'banner_main_title') {
-              $("input[name='banner_main_title']").val(item ['value']);
-            }
-            if(item ['name'] == 'banner_sub_title') {
-              $("input[name='banner_sub_title']").val(item ['value']);
-            }
-            var arr = item ['name'].split('__');
-            if( arr [0] == 'banner_web_img' ) {
-            	var webImg = $("#web_input_template").clone();
-            	webImg.find(".control-label").html("网页图片：");
-            	webImg.removeAttr('id');
-            	webImg.find('input').attr('name' , item ['name']).val(item ['value']);
-            	webImg.insertBefore("#separate");
-            	maxWebBannerId = maxWebBannerId > parseInt(arr[1]) ? maxWebBannerId : parseInt(arr [1]);
-            }
-            if( arr [0] == 'banner_mobile_img' ) {
-            	var webImg = $("#web_input_template").clone();
-            	webImg.find(".control-label").html("网页图片：");
-            	webImg.removeAttr('id');
-            	webImg.find('input').attr('name' , item ['name']).val(item ['value']);
-            	webImg.insertBefore("#up_banner_input_area");
-            	maxMobileBannerId = maxMobileBannerId > parseInt(arr[1]) ? maxMobileBannerId : parseInt(arr [1]);
-            }
-            if(item['name'] == 'st_practice' ) {
-            	$("input[name='st_practice']").val(item ['value']);
-            }
-            if(item['name'] == 'st_market' ) {
-            	$("input[name='st_market']").val(item ['value']);
-            }
-            if(item['name'] == 'st_sale' ) {
-            	$("input[name='st_sale']").val(item ['value']);
-            }
-            if(item['name'] == 'st_think' ) {
-            	$("input[name='st_think']").val(item ['value']);
-            }
-          });
-        } else {
-          console.log( "加载失败" );
-        }
-  });
-}
-
-function addWebImg() {
-	maxWebBannerId = maxWebBannerId + 1;
-	var num = maxWebBannerId;
-	var webImg = $("#web_input_template").clone();
-	webImg.find(".control-label").html("网页图片：");
-	webImg.removeAttr('id');
-	webImg.find("input").attr('name' , 'banner_web_img__' + num );
-	webImg.insertBefore("#separate");
-}
-function addMobileImg() {
-	maxMobileBannerId = maxMobileBannerId + 1;
-	var num = maxMobileBannerId ;
-	var webImg = $("#web_input_template").clone();
-	webImg.find(".control-label").html("手机图片：");
-	webImg.removeAttr('id');
-	webImg.find("input").attr('name' , 'banner_mobile_img__' + num );
-	webImg.insertBefore("#up_banner_input_area");
-}
-function saveImg() {
-  $.post("/admin/manage/saveIndex",  $(".home-manage-form").serialize(),
-      function(data){
-        data = $.parseJSON(data);
-        if( data.result ) {
-           //document.location.reload();
-        } else {
-           alert( data.message ) ;
-        }
-  });
-}
-function delImg(obj) {
-	$(obj).closest(".form-group").remove();
-}
 </script>

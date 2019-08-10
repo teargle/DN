@@ -31,7 +31,7 @@
 	<h1>{$intro['title']}</h1>
 	<input type="hidden" name="id" value="{$intro['id']}">
 	{else /}
-	<h1>创建分类</h1>
+	<h1>创建公司信息</h1>
 	{/if}
 	</div>
 	<div class="row form-group">
@@ -45,7 +45,8 @@
 	<div class="row form-group">
 		<label for="img_url" class="col-sm-2 control-label text-right">图片地址：</label>
 		<div class='col-sm-8'>
-			<input type="text" class="form-control" name="img_url" placeholder="图片地址"
+			<input type="text" class="form-control" name="img_url" 
+			placeholder="图片地址 宽度:640,高度：350"
 			value='{if condition="!empty($intro)"}{$intro["img_url"]}{/if}'
 			>
 		</div>
