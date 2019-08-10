@@ -10,6 +10,7 @@ use app\index\model\Category;
 use app\index\model\Intro;
 use app\index\model\Dict;
 use app\index\model\News;
+use app\index\model\Feature;
 
 class Manage extends Common
 {
@@ -316,4 +317,41 @@ class Manage extends Common
         }
     }
     
+    public function feature() {
+        $request = Request::instance();
+        $orderby = $request->get('sort') ;
+        $limit = $request->get('pageSize');
+        $start = $request->get('offset') ; 
+        $feature = new Feature ;
+        $features = $feature->limit($start,$limit)->order($orderby)->select() ;
+        $count = $feature->count();
+        $data = [
+                'total' => $count , 
+                'rows' =>$features
+        ] ;
+        echo json_encode($data) ;
+        exit;
+    }
+
+    public function edit_feature( $id = 0) {
+        $ftur = null;
+        if( $id ) {
+            $feature = new Feature;
+            $ftur = $feature->get($id) ;
+        }
+        View::share('featrue',$ftur);
+        return view('admin@manage/feature');
+    }
+
+    public function saveFeatures() {
+        $request = Request::instance();
+        $data = $request->post();
+        $feature = new Feature;
+        if(array_key_exists('id', $data)) {
+            $feature->save($data , ['id' => $data ['id']]);
+        } else {
+            $feature->save($data);
+        }
+        echo $this->output_json ( true , "OK" , null) ;
+    }
 }

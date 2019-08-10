@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>编辑优势</title>
+	<link rel="stylesheet" href="__CSS__/bootstrap.min.css">
+	<link rel="stylesheet" href="__CSS__/trumbowyg.min.css">
+	<link rel="stylesheet" href="__CSS__/manage.index.css">
+	<script type="text/javascript" src="__JS__/jquery.min.js"></script>
+	<script type="text/javascript" src="__JS__/bootstrap.min.js"></script>
+	<script type="text/javascript" src="__JS__/trumbowyg.min.js"></script>
+	<script type="text/javascript" src="__JS__/manage.index.js"></script>
+	 <style>
+        fieldset {
+            padding: .35em .625em .75em;
+            margin: 0 2px;
+            border: 1px solid silver;
+        }
+
+        legend {
+            padding: .5em;
+            border: 0;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="full-container">
+<form  class="form-horizontal" role="form" id="features-from">
+	<div class="page-header text-center ">
+	{if condition="!empty($features) && !empty($features['id'])"}
+	<h1>{$features['title']}</h1>
+	<input type="hidden" name="id" value="{$features['id']}">
+	{else /}
+	<h1>创建优势信息</h1>
+	{/if}
+	</div>
+	<div class="row form-group">
+		<label for="title" class="col-sm-2 control-label text-right">标题：</label>
+		<div class="col-sm-8">
+			<input type="text" class="form-control" name="title" placeholder="请输入名称"
+			value='{if condition="!empty($features)"}{$features["title"]}{/if}'
+			>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label for="description" class="col-sm-2 control-label text-right">短描述：</label>
+		<div class="col-sm-8">
+			<input type="text" class="form-control" name="description" placeholder="请输入短标题"
+			value='{if condition="!empty($features)"}{$features["description"]}{/if}'
+			>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label for="img_url" class="col-sm-2 control-label text-right">图片地址：</label>
+		<div class='col-sm-8'>
+			<input type="text" class="form-control" name="img_url" placeholder="图片地址"
+			value='{if condition="!empty($features)"}{$features["img_url"]}{/if}'
+			>
+		</div>
+	</div>
+	<hr >
+	<div class="row form-group">
+		<div class="col-sm-8"></div>
+		<div class="col-sm-2">
+			<button type="button" class="btn btn-primary" onclick="savefeatures()">保存</button>
+			{if condition="!empty($features)"}
+			<button type="button" class="btn btn-danger" onclick="delfeatures({$features['id']})">删除</button>
+			{/if}
+		</div>
+	</div>
+</form>
+<br /><br /><br />
+
+</div>
+</body>
+<script type="text/javascript">
+function savefeatures() {
+  var params = $("#features-from").serializeArray();
+  $.post("/admin/manage/saveFeatures",  params ,
+      function(data){
+        data = $.parseJSON(data);
+        if( data.result ) {
+          document.location.reload();
+        } else {
+           alert( data.message ) ;
+        }
+  });
+}
+
+function delfeatures( id ) {
+  $.post("/admin/manage/delfeatures", {
+         id : id
+      } ,
+      function(data){
+        data = $.parseJSON(data);
+        if( data.result ) {
+           window.location.href = "/admin/manage/index";
+        } else {
+           alert( data.message ) ;
+        }
+  });
+}
+</script>
+</html>
