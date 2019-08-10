@@ -5,6 +5,13 @@
 <div class="site-content">
 	<div class="container right-sidebar">
 		<div class="content-area">
+			<div class="contact-info">
+				<span class="contact-qrcode"><img src="{$setting ['setting_qrcode']}"></span>
+				<span class="contact-other">
+					<div>{$setting ['setting_address']}</div>
+					<div>{$setting ['setting_phone']}</div>
+				</span>
+			</div>
 			<div class="site-main">
 			    <form class="form-horizontal" id="info">
 					<label for="name" class="control-label">{$lang ['contact_name']} :</label>

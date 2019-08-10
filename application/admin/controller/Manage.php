@@ -276,5 +276,44 @@ class Manage extends Common
         return view('admin@manage/news');
     }
 
+    public function setting() {
+        $dict = new Dict ;
+        $something = $dict->where('model' , 'setting')
+             ->where('name','like',"setting_%")->select();
+        $something = array_column($something, 'value' , 'name');
+        echo $this->output_json ( true , "OK" , $something) ;
+    }
+
+    public function saveSetting() {
+        $request = Request::instance();
+        $post = $request->post();
+        $dict = new Dict ;
+        $result = true;
+        foreach ($post as $key => $value) {
+            if( empty( $value ) ) continue ;
+            $record = $dict->get( [
+                'name' => $key,
+                'model' => 'setting'
+            ]) ;
+            if( $record ) {
+                if( $record ['value'] != $value ) {
+                    $result = $dict->save(['value' => $value] , [
+                        'id' => $record ['id']
+                    ]);
+                }
+            } else {
+                $dict = new Dict ;
+                $dict->name = $key;
+                $dict->value = $value;
+                $dict->model = 'home';
+                $result = $dict->save();
+            }
+        }
+        if( $result ) {
+            echo $this->output_json ( true , "OK" , null) ;
+        } else {
+            echo $this->output_json ( false , "更新失败" , null) ;
+        }
+    }
     
 }

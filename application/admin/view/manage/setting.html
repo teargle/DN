@@ -1,0 +1,47 @@
+<div id="setting_manage">
+	<form class="setting-manage-form" id="setting_form">
+		<br /><div style="text-align: center;"><h1>基本配置</h1></div><br />
+		<hr />
+		<div class="row form-group">
+			<label for="setting_qrcode" class="col-sm-2 control-label text-right">二维码：</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="setting_qrcode" 
+				placeholder="二维码图片" />
+			</div>
+		</div>
+		<div class="row form-group">
+			<label for="setting_address" class="col-sm-2 control-label text-right">公司地址：</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="setting_address" 
+				placeholder="请输入信息" />
+			</div>
+		</div>
+		<div class="row form-group">
+			<label for="setting_phone" class="col-sm-2 control-label text-right">手机号码：</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="setting_phone" placeholder="请输入信息" />
+			</div>
+		</div>
+		<div class="row form-group">
+			<div class="col-sm-8"></div>
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-primary" onclick="saveSetting()">保存</button>
+			</div>
+		</div>
+    </form>
+</div>
+
+<script type="text/javascript">
+function saveSetting() {
+  var params = $("#setting_form").serializeArray();
+  $.post("/admin/manage/saveSetting",  params ,
+      function(data){
+        data = $.parseJSON(data);
+        if( data.result ) {
+           // document.location.reload();
+        } else {
+           alert( data.message ) ;
+        }
+  });
+}
+</script>

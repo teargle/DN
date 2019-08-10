@@ -16,9 +16,9 @@ function revertIndex() {
   $("#manage_list").bootstrapTable('destroy');
   $("#manage_list").html('');
 
-  var $home = $("#home_manage");
+  var $home = $("#home_manage").clone();
   $("#manage_list").append($home);
-  console.log( $home ) ;
+  
   $.post("/admin/manage/home", {} ,
       function(data){
         data = $.parseJSON(data);
@@ -438,3 +438,22 @@ $("#manage_list").bootstrapTable({ // 对应table标签的id
 
 }) ;
 }
+
+function revertSetting() {
+  $("#btn-new").addClass('hidden');
+  $("#manage_list").bootstrapTable('destroy');
+  $("#manage_list").html('');
+
+  var $home = $("#setting_manage").clone();
+  $("#manage_list").append($home);
+  
+  $.post("/admin/manage/setting", {} , function(data){
+        data = $.parseJSON(data);
+        if( data.result ) {
+          
+        } else {
+          console.log( "加载失败" );
+        }
+  });
+}
+

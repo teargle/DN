@@ -38,6 +38,7 @@ class Index extends Controller
 	public function init () 
 	{
         $this->lang = get_lang();
+        $this->_get_header_info();
 		View::share('title',$this->lang ['web_title']);
         View::share('lang', $this->lang );
 	}
@@ -58,7 +59,6 @@ class Index extends Controller
 
         $this->_get_home_banner();
         $this->_get_home_something();
-        $this->_get_header_info();
         $this->_get_category();
 
         $this->assign('rivet' , 'home');
@@ -88,10 +88,10 @@ class Index extends Controller
 
     private function _get_header_info() {
         $dict = new Dict ;
-        $something = $dict->where('model' , 'home')
-             ->where('name','like',"header_%")->select();
+        $something = $dict->where('model' , 'setting')
+             ->where('name','like',"setting_%")->select();
         $something = array_column($something, 'value' , 'name');
-        $this->assign('header' , $something);
+        $this->assign('setting' , $something);
     }
 
     public function shop() {
