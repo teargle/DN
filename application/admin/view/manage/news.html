@@ -51,7 +51,7 @@
 		</div>
 	</div>
 	<div class="row form-group">
-		<label for="summary" class="col-sm-2 control-label text-right">短标题：</label>
+		<label for="summary" class="col-sm-2 control-label text-right">简短描述：</label>
 		<div class="col-sm-8">
 			<input type="text" class="form-control" name="summary" placeholder="请输入简介"
 			value='{if condition="!empty($news)"}{$news["summary"]}{/if}'
@@ -78,7 +78,7 @@
 	<div class="row form-group">
 		<div class="col-sm-8"></div>
 		<div class="col-sm-2">
-			<button type="button" class="btn btn-primary" onclick="savenews()">保存</button>
+			<button type="button" class="btn btn-primary" onclick="saveNews()">保存</button>
 			{if condition="!empty($news)"}
 			<button type="button" class="btn btn-danger" onclick="delnews({$news['id']})">删除</button>
 			{/if}
@@ -89,4 +89,32 @@
 
 </div>
 </body>
+<script type="text/javascript">
+function saveNews() {
+  var params = $("#news-from").serializeArray();
+  $.post("/admin/manage/saveNews",  params ,
+      function(data){
+        data = $.parseJSON(data);
+        if( data.result ) {
+          window.location.href = "/admin/manage/index#news";
+        } else {
+           alert( data.message ) ;
+        }
+  });
+}
+
+function delNews( id ) {
+  $.post("/admin/manage/delNews", {
+         id : id
+      } ,
+      function(data){
+        data = $.parseJSON(data);
+        if( data.result ) {
+           window.location.href = "/admin/manage/index#news";
+        } else {
+           alert( data.message ) ;
+        }
+  });
+}
+</script>
 </html>
