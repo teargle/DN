@@ -52,6 +52,7 @@ class Manage extends Common
 
 	public function edit_product ( $id = 0) { 
 		$product = null;
+        $fcategory = $scategory = $tcategory = 0 ;
 		if( $id ) {
 			$Product = new Product;
 	        $product = $Product->get_product_with_category($id) ;
@@ -62,7 +63,6 @@ class Manage extends Common
             $categorys = Category::all() ;
             $categorys = array_combine(array_column($categorys, 'id'), $categorys);
             $parent_id = $product ['category_id'] ;
-            $fcategory = $scategory = $tcategory = 0 ;
             if( $parent_id ) {
                 $fcategory = $parent_id ;
                 if( array_key_exists($parent_id, $categorys) ) {
@@ -118,9 +118,13 @@ class Manage extends Common
     	}
     	$data ['prop'] = json_encode($post['prop']) ;
     	$product = new Product;
+        $data ['category_id'] = isset($data ['thirdClass']) ? $data ['thirdClass'] : isset($data ['secondClass']) ? $data ['secondClass'] : $data ['firstClass'];
+        unset( $data ['thirdClass'] ) ;
+        unset( $data ['secondClass'] ) ;
+        unset( $data ['firstClass'] ) ;
 		if(array_key_exists('id', $data)) {
 			$product->save($data , ['id' => $data ['id']]);
-		} else {
+		} else {            
 			$data ['status'] = 'A';
 			$product->save($data);
 		}
