@@ -21,7 +21,11 @@ class Manage extends Common
 		$this->_init();
 	}
 
-	private function _init() {}
+	private function _init() {
+        $request = Request::instance();
+        $main = $request->get('main') ;
+        View::share('main',ucfirst($main));
+    }
 
 	public function index() {
 		return view('admin@manage/index');
@@ -352,6 +356,29 @@ class Manage extends Common
         } else {
             $feature->save($data);
         }
+        echo $this->output_json ( true , "OK" , null) ;
+    }
+
+    public function saveNews() {
+        $request = Request::instance();
+        $data = $request->post();
+        $news = new News;
+        if(array_key_exists('id', $data)) {
+            $news->save($data , ['id' => $data ['id']]);
+        } else {
+            $news->save($data);
+        }
+        echo $this->output_json ( true , "OK" , null) ;
+    }
+
+    public function delNews ( $id ) {
+        $request = Request::instance();
+        $id = $request->param('id');
+        if( ! $id ) {
+            echo $this->output_json(false, "ERROR param" ) ;
+        }
+        $news = new News;
+        $news->where('id='.$id)->delete();
         echo $this->output_json ( true , "OK" , null) ;
     }
 }

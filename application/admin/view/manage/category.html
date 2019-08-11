@@ -99,4 +99,32 @@
 
 </div>
 </body>
+<script type="text/javascript">
+function saveCategory() {
+  var params = $("#category-from").serializeArray();
+  $.post("/admin/manage/saveCategory",  params ,
+      function(data){
+        data = $.parseJSON(data);
+        if( data.result ) {
+        	window.location.href = "/admin/manage/index?main=category";
+        } else {
+        	alert( data.message ) ;
+        }
+  });
+}
+
+function delCategory( id ) {
+  $.post("/admin/manage/delCategory", {
+         id : id
+      } ,
+      function(data){
+        data = $.parseJSON(data);
+        if( data.result ) {
+           window.location.href = "/admin/manage/index?main=category";
+        } else {
+           alert( data.message ) ;
+        }
+  });
+}
+</script>
 </html>

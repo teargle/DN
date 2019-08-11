@@ -96,7 +96,7 @@ function saveNews() {
       function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-          window.location.href = "/admin/manage/index#news";
+          window.location.href = "/admin/manage/index?main=news";
         } else {
            alert( data.message ) ;
         }
@@ -110,7 +110,7 @@ function delNews( id ) {
       function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-           window.location.href = "/admin/manage/index#news";
+           window.location.href = "/admin/manage/index?main=news";
         } else {
            alert( data.message ) ;
         }

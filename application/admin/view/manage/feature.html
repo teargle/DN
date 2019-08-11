@@ -80,7 +80,7 @@ function savefeatures() {
       function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-          document.location.reload();
+          window.location.href = "/admin/manage/index?main=feature";
         } else {
            alert( data.message ) ;
         }
@@ -94,7 +94,7 @@ function delfeatures( id ) {
       function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-           window.location.href = "/admin/manage/index";
+           window.location.href = "/admin/manage/index?main=feature";
         } else {
            alert( data.message ) ;
         }

@@ -8,7 +8,7 @@ html, body {
 
 }
 #nav {
-	/*border: 1px solid red;*/
+	border-left: 1px solid blue;
     width:100%;
 }
 #content {
@@ -32,4 +32,3 @@ html, body {
     padding-left: 50px;
     color: #fff;
 }
-

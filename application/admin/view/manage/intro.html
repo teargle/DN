@@ -89,4 +89,32 @@
 
 </div>
 </body>
+<script type="text/javascript">
+function saveIntro() {
+  var params = $("#intro-from").serializeArray();
+  $.post("/admin/manage/saveIntro",  params ,
+      function(data){
+        data = $.parseJSON(data);
+        if( data.result ) {
+          window.location.href = "/admin/manage/index?main=intro";
+        } else {
+           alert( data.message ) ;
+        }
+  });
+}
+
+function delIntro( id ) {
+  $.post("/admin/manage/delIntro", {
+         id : id
+      } ,
+      function(data){
+        data = $.parseJSON(data);
+        if( data.result ) {
+           window.location.href = "/admin/manage/index?main=intro";
+        } else {
+           alert( data.message ) ;
+        }
+  });
+}
+</script>
 </html>

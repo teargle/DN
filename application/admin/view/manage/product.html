@@ -175,6 +175,57 @@ function categoryChange() {
 		}
 	}
 }
+
+function saveProduct() {
+  var params = $("#product-from").serializeArray();
+  var $props = $("#props .row") ;
+  var prop = {};
+  $props.each(function(){
+      var n = $(this).find('.prop-name').val();
+      var value = $(this).find('.prop-content').val();
+      prop[n] = value ;
+  });
+  params.prop = prop;
+  $.post("/admin/manage/saveProduct", {
+         params : params,
+         prop : prop,
+
+      } ,
+      function(data){
+        data = $.parseJSON(data);
+        if( data.result ) {
+           window.location.href = "/admin/manage/index?main=product";
+        } else {
+           alert( data.message ) ;
+        }
+  });
+}
+
+function delProduct( id ) {
+  $.post("/admin/manage/delProduct", {
+         id : id
+      } ,
+      function(data){
+        data = $.parseJSON(data);
+        if( data.result ) {
+           window.location.href = "/admin/manage/index?main=product";
+        } else {
+           alert( data.message ) ;
+        }
+  });
+}
+
+function addProp () {
+  var $prop = $("#prop-template").clone().removeClass('hidden') ;
+  $prop.removeAttr('id');
+  $prop.find('input').val('');
+  var $props = $("#props") ;
+  $props.append($prop);
+}
+
+function delProp (obj) {
+  $(obj).closest('.row').remove();
+}
 </script>
 </body>
 </html>

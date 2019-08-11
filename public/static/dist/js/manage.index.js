@@ -67,39 +67,6 @@ function revertIndex() {
   });
 }
 
-function addWebImg() {
-  maxWebBannerId = maxWebBannerId + 1;
-  var num = maxWebBannerId;
-  var webImg = $("#web_input_template").clone();
-  webImg.find(".control-label").html("网页图片：");
-  webImg.removeAttr('id');
-  webImg.find("input").attr('name' , 'banner_web_img__' + num );
-  webImg.insertBefore("#separate");
-}
-function addMobileImg() {
-  maxMobileBannerId = maxMobileBannerId + 1;
-  var num = maxMobileBannerId ;
-  var webImg = $("#web_input_template").clone();
-  webImg.find(".control-label").html("手机图片：");
-  webImg.removeAttr('id');
-  webImg.find("input").attr('name' , 'banner_mobile_img__' + num );
-  webImg.insertBefore("#up_banner_input_area");
-}
-function saveImg() {
-  $.post("/admin/manage/saveIndex",  $(".home-manage-form").serialize(),
-      function(data){
-        data = $.parseJSON(data);
-        if( data.result ) {
-           //document.location.reload();
-        } else {
-           alert( data.message ) ;
-        }
-  });
-}
-function delImg(obj) {
-  $(obj).closest(".form-group").remove();
-}
-
 function revertProduct() {
 resetTable('/admin/manage/edit_product/id/0');
 $("#manage_list").bootstrapTable({ // 对应table标签的id
@@ -169,56 +136,6 @@ $(document).ready(function() {
     $('#main_body').trumbowyg();
 });
 
-function addProp () {
-  var $prop = $("#prop-template").clone().removeClass('hidden') ;
-  $prop.removeAttr('id');
-  $prop.find('input').val('');
-  var $props = $("#props") ;
-  $props.append($prop);
-}
-
-function delProp (obj) {
-  $(obj).closest('.row').remove();
-}
-
-function saveProduct() {
-  var params = $("#product-from").serializeArray();
-  var $props = $("#props .row") ;
-  var prop = {};
-  $props.each(function(){
-      var n = $(this).find('.prop-name').val();
-      var value = $(this).find('.prop-content').val();
-      prop[n] = value ;
-  });
-  params.prop = prop;
-  $.post("/admin/manage/saveProduct", {
-         params : params,
-         prop : prop,
-
-      } ,
-      function(data){
-        data = $.parseJSON(data);
-        if( data.result ) {
-          document.location.reload();
-        } else {
-           alert( data.message ) ;
-        }
-  });
-}
-
-function delProduct( id ) {
-  $.post("/admin/manage/delProduct", {
-         id : id
-      } ,
-      function(data){
-        data = $.parseJSON(data);
-        if( data.result ) {
-           window.location.href = "/admin/manage/index";
-        } else {
-           alert( data.message ) ;
-        }
-  });
-}
 
 function revertCategory() {
 resetTable('/admin/manage/edit_category/id/0');
@@ -278,33 +195,6 @@ $("#manage_list").bootstrapTable({ // 对应table标签的id
 }) ;
 }
 
-function saveCategory() {
-  var params = $("#category-from").serializeArray();
-  $.post("/admin/manage/saveCategory",  params ,
-      function(data){
-        data = $.parseJSON(data);
-        if( data.result ) {
-          document.location.reload();
-        } else {
-           alert( data.message ) ;
-        }
-  });
-}
-
-function delCategory( id ) {
-  $.post("/admin/manage/delCategory", {
-         id : id
-      } ,
-      function(data){
-        data = $.parseJSON(data);
-        if( data.result ) {
-           window.location.href = "/admin/manage/index";
-        } else {
-           alert( data.message ) ;
-        }
-  });
-}
-
 function revertIntro() {
 resetTable('/admin/manage/edit_intro/id/0');
 $("#manage_list").bootstrapTable({ // 对应table标签的id
@@ -356,33 +246,6 @@ $("#manage_list").bootstrapTable({ // 对应table标签的id
       }
 
 }) ;
-}
-
-function saveIntro() {
-  var params = $("#intro-from").serializeArray();
-  $.post("/admin/manage/saveIntro",  params ,
-      function(data){
-        data = $.parseJSON(data);
-        if( data.result ) {
-          document.location.reload();
-        } else {
-           alert( data.message ) ;
-        }
-  });
-}
-
-function delIntro( id ) {
-  $.post("/admin/manage/delIntro", {
-         id : id
-      } ,
-      function(data){
-        data = $.parseJSON(data);
-        if( data.result ) {
-           window.location.href = "/admin/manage/index";
-        } else {
-           alert( data.message ) ;
-        }
-  });
 }
 
 
