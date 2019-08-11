@@ -40,7 +40,7 @@ class Manage extends Common
 		$limit = $request->get('pageSize');
 		$start = $request->get('offset') ; 
 		$product = new Product ;
-		$products = $product->query_product_with_category( $where , $orderby , $start , $limit ) ;
+		$products = $product->query_product_with_category( $where, $orderby, $start, $limit );
 		$count = $product->count_product_with_category( $where );
 		$data = [
 				'total' => $count , 
@@ -56,11 +56,34 @@ class Manage extends Common
 			$Product = new Product;
 	        $product = $Product->get_product_with_category($id) ;
 	        $product ['property'] = json_decode($product['prop'] , true) ;
+
+            // 归类
+            $Category = new Category ;
+            $categorys = Category::all() ;
+            $categorys = array_combine(array_column($categorys, 'id'), $categorys);
+            $parent_id = $product ['category_id'] ;
+            $fcategory = $scategory = $tcategory = 0 ;
+            if( $parent_id ) {
+                $fcategory = $parent_id ;
+                if( array_key_exists($parent_id, $categorys) ) {
+                    $scategory = $parent_id ;
+                    $fcategory = $categorys [$parent_id]['parent'] ;
+                    if( array_key_exists ( $fcategory, $categorys ) ) {
+                        $tcategory = $parent_id;
+                        $scategory = $fcategory;
+                        $fcategory = $categorys [$fcategory] ['parent'] ;
+                    }
+                }
+            }
 	        $this->_get_homepage( $product['is_home'] );
     	} else {
     		$this->_get_homepage( $product['is_home'] );
     	}
+        View::share('fcategory', $fcategory ) ; 
+        View::share('scategory', $scategory ) ;
+        View::share('tcategory', $tcategory ) ;
         $this->_get_category();
+        $this->_get_parent_category();
         View::share('product',$product);
     	return view('admin@manage/product');
 	}
@@ -72,7 +95,7 @@ class Manage extends Common
     }
 
     private function _get_parent_category () {
-        $categorys = Category::where('parent',0 )->select();
+        $categorys = Category::where('parent', null )->select();
         $cates = [ 0 => '无'] ;
         foreach( $categorys as $c ) {
             $cates[$c ['id']] = $c ['title'];
@@ -131,7 +154,41 @@ class Manage extends Common
 		$start = $request->get('offset') ; 
 		$category = new Category ;
 		$categorys = $category->limit($start,$limit)->order($orderby)->select() ;
-		$count = $category->count();;
+		$count = $category->count();
+        $categorys = array_combine(array_column($categorys, 'id'), $categorys);
+        $origal_categorys = $categorys;
+        // 按照类排序
+        usort( $categorys, function ( $c1, $c2) use($categorys) {
+            $num1  = $num2 = 0 ;
+            if( $c1 ['parent'] ) {
+                if( ! empty( $categorys [$c1 ['parent']] ['parent']) ) {
+                    $num1 = $categorys [$c1 ['parent']] ['parent'] * 10000 + $categorys [$c1 ['parent']]['sequence'] * 100 + $c1 ['sequence'] ;
+                } else {
+                    $num1 = $c1 ['parent'] * 10000 + $c1 ['sequence'] * 100 ;
+                }
+            }
+            if( $c2 ['parent'] ) {
+                if( !empty($categorys [$c2 ['parent']]['parent']) ) {
+                    $num2 = $categorys [$c2 ['parent']]['parent'] * 10000 + $categorys [$c2 ['parent']]['sequence'] * 100 + $c2 ['sequence'] ;
+                } else {
+                    $num2 = $c2 ['parent'] * 10000 + $c2 ['sequence'] * 100 ;
+                }
+            }
+            return $num1 - $num2 ;
+        });
+        foreach ($categorys as &$value) {
+            $seq = 1;
+            if( $value ['parent'] ) {
+                if( ! empty( $origal_categorys [$value ['parent']] ['parent']) ) {
+                    $seq = $origal_categorys [$value ['parent']] ['parent'] * 10000 + $origal_categorys [$value ['parent']]['sequence'] * 100 + $value ['sequence'] ;
+                } else {
+                    $seq = $value ['parent'] * 10000 + $value ['sequence'] * 100 ;
+                }
+            } else {
+                $seq = $value ['sequence'] * 10000;
+            }
+            $value ['seq'] = $seq ;
+        }
 		$data = [
 				'total' => $count , 
 				'rows' =>$categorys
@@ -142,11 +199,26 @@ class Manage extends Common
 
     public function edit_category($id = 0) {
     	$category = null;
+        $fcategory = $scategory = 0 ;
 		if( $id ) {
 			$Category = new Category;
 	        $category = $Category->get($id) ;
+            // 判断是否分类的等级
+            $parent_id = $category ['parent'] ;
+            if( $parent_id ) {
+                $parent_ctegory = $Category->get($parent_id) ;
+                if( $parent_ctegory ['parent'] ) {
+                    $fcategory = $parent_ctegory ['parent'] ;
+                    $scategory = $parent_id ;
+                } else {
+                    $fcategory = $parent_id ;
+                }
+            }
     	}
+        View::share('fcategory', $fcategory ) ; 
+        View::share('scategory', $scategory ) ;
         $this->_get_parent_category();
+        $this->_get_category();
         View::share('category',$category);
     	return view('admin@manage/category');
     }
@@ -158,6 +230,16 @@ class Manage extends Common
 		if(array_key_exists('id', $post)) {
 			$category->save($post , ['id' => $post ['id']]);
 		} else {
+            if( $post ['firstclass'] || !empty($post ['secondclass']) ) {
+                $post ['parent'] = !empty($post ['secondclass']) ? $post ['secondclass'] : $post ['firstclass'];
+            } else {
+                $post ['parent'] = null;
+            }
+            unset( $post ['secondclass'] );
+            unset( $post ['firstclass'] );
+            // 记录当前分类的序列
+            $csequence = $category->where( 'parent' , $post ['parent'])->count();
+            $post ['sequence'] = $csequence + 1;
 			$category->save($post);
 		}
 		echo $this->output_json ( true , "OK" , null) ;

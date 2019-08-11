@@ -161,7 +161,7 @@ $("#manage_list").bootstrapTable({ // 对应table标签的id
       sortOrder: 'desc', // 排序规则
       columns: [
           {
-              field: 'id', // 返回json数据中的name
+              field: 'seq', // 返回json数据中的name
               title: 'ID', // 表格表头显示文字
               align: 'center', // 左右居中
               valign: 'middle' // 上下居中
@@ -215,11 +215,11 @@ $("#manage_list").bootstrapTable({ // 对应table标签的id
               sortOrder: params.order, // 排序规则
           }
       },
-      sortName: 'id', // 要排序的字段
+      sortName: 'sequence', // 要排序的字段
       sortOrder: 'desc', // 排序规则
       columns: [
           {
-              field: 'id', // 返回json数据中的name
+              field: 'sequence', // 返回json数据中的name
               title: 'ID', // 表格表头显示文字
               align: 'center', // 左右居中
               valign: 'middle' // 上下居中
