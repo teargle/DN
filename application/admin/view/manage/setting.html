@@ -6,7 +6,7 @@
 			<label for="setting_qrcode" class="col-sm-2 control-label text-right">二维码：</label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" name="setting_qrcode" 
-				placeholder="二维码图片" />
+				placeholder="二维码图片" value="" />
 			</div>
 		</div>
 		<div class="row form-group">
@@ -38,7 +38,7 @@ function saveSetting() {
       function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-           window.location.href = "/admin/manage/index?main=setting";
+           //window.location.href = "/admin/manage/index?main=setting";
         } else {
            alert( data.message ) ;
         }

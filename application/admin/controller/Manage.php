@@ -396,7 +396,7 @@ class Manage extends Common
                 $dict = new Dict ;
                 $dict->name = $key;
                 $dict->value = $value;
-                $dict->model = 'home';
+                $dict->model = 'setting';
                 $result = $dict->save();
             }
         }

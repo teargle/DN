@@ -313,7 +313,9 @@ function revertSetting() {
   $.post("/admin/manage/setting", {} , function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-          
+          $("input[name='setting_qrcode']").val(data.obj.setting_qrcode);
+          $("input[name='setting_address']").val(data.obj.setting_address);
+          $("input[name='setting_phone']").val(data.obj.setting_phone);
         } else {
           console.log( "加载失败" );
         }
