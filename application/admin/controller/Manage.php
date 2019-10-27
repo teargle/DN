@@ -95,7 +95,7 @@ class Manage extends Common
     }
 
     private function _get_parent_category () {
-        $categorys = Category::where('parent', null )->select();
+        $categorys = Category::where('parent', 0 )->select();
         $cates = [ 0 => '无'] ;
         foreach( $categorys as $c ) {
             $cates[$c ['id']] = $c ['title'];
@@ -231,16 +231,18 @@ class Manage extends Common
     	$request = Request::instance();
     	$post = $request->post();
     	$category = new Category;
+
+        if( $post ['firstclass'] || $post ['secondclass'] ) {
+            $post ['parent'] = !empty($post ['secondclass']) ? $post ['secondclass'] : $post ['firstclass'];
+        } else {
+            $post ['parent'] = 0;
+        }
+        unset( $post ['secondclass'] );
+        unset( $post ['firstclass'] );
+
 		if(array_key_exists('id', $post)) {
 			$category->save($post , ['id' => $post ['id']]);
 		} else {
-            if( $post ['firstclass'] || !empty($post ['secondclass']) ) {
-                $post ['parent'] = !empty($post ['secondclass']) ? $post ['secondclass'] : $post ['firstclass'];
-            } else {
-                $post ['parent'] = null;
-            }
-            unset( $post ['secondclass'] );
-            unset( $post ['firstclass'] );
             // 记录当前分类的序列
             $csequence = $category->where( 'parent' , $post ['parent'])->count();
             $post ['sequence'] = $csequence + 1;

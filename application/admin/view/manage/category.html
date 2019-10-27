@@ -105,6 +105,10 @@
 </body>
 <script type="text/javascript">
 var categorys = {:json_encode($categorys)};
+$(document).ready( function(){
+	changefirst();
+});
+
 function saveCategory() {
   var params = $("#category-from").serializeArray();
   $.post("/admin/manage/saveCategory",  params ,

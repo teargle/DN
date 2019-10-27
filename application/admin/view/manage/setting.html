@@ -38,7 +38,7 @@ function saveSetting() {
       function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-           //window.location.href = "/admin/manage/index?main=setting";
+           window.location.href = "/admin/manage/index?main=setting";
         } else {
            alert( data.message ) ;
         }
