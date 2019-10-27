@@ -216,9 +216,9 @@ function saveProduct() {
       function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-           window.location.href = "/admin/manage/index?main=product";
+        	alert ( '保存成功' );
         } else {
-           alert( data.message ) ;
+        	alert( data.message ) ;
         }
   });
 }
