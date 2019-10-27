@@ -118,7 +118,7 @@ class Manage extends Common
     	}
     	$data ['prop'] = json_encode($post['prop']) ;
     	$product = new Product;
-        $data ['category_id'] = isset($data ['thirdClass']) ? $data ['thirdClass'] : isset($data ['secondClass']) ? $data ['secondClass'] : $data ['firstClass'];
+        $data ['category_id'] = isset($data ['thirdClass']) ? $data ['thirdClass'] : ( isset($data ['secondClass']) ? $data ['secondClass'] : $data ['firstClass'] );
         unset( $data ['thirdClass'] ) ;
         unset( $data ['secondClass'] ) ;
         unset( $data ['firstClass'] ) ;
