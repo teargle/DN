@@ -431,7 +431,7 @@ class Manage extends Common
             $feature = new Feature;
             $ftur = $feature->get($id) ;
         }
-        View::share('featrue',$ftur);
+        View::share('feature',$ftur);
         return view('admin@manage/feature');
     }
 

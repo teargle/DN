@@ -29,7 +29,7 @@
 	<div class="page-header text-center ">
 	{if condition="!empty($features) && !empty($features['id'])"}
 	<h1>{$features['title']}</h1>
-	<input type="hidden" name="id" value="{$features['id']}">
+	<input type="hidden" name="id" value="{$feature['id']}">
 	{else /}
 	<h1>创建优势信息</h1>
 	{/if}
@@ -38,7 +38,7 @@
 		<label for="title" class="col-sm-2 control-label text-right">标题：</label>
 		<div class="col-sm-8">
 			<input type="text" class="form-control" name="title" placeholder="请输入名称"
-			value='{if condition="!empty($features)"}{$features["title"]}{/if}'
+			value='{if condition="!empty($feature)"}{$feature["title"]}{/if}'
 			>
 		</div>
 	</div>
@@ -46,7 +46,7 @@
 		<label for="description" class="col-sm-2 control-label text-right">短描述：</label>
 		<div class="col-sm-8">
 			<input type="text" class="form-control" name="description" placeholder="请输入短标题"
-			value='{if condition="!empty($features)"}{$features["description"]}{/if}'
+			value='{if condition="!empty($feature)"}{$feature["description"]}{/if}'
 			>
 		</div>
 	</div>
@@ -54,7 +54,7 @@
 		<label for="img_url" class="col-sm-2 control-label text-right">图片地址：</label>
 		<div class='col-sm-8'>
 			<input type="text" class="form-control" name="img_url" placeholder="图片地址"
-			value='{if condition="!empty($features)"}{$features["img_url"]}{/if}'
+			value='{if condition="!empty($feature)"}{$feature["img_url"]}{/if}'
 			>
 		</div>
 	</div>
@@ -63,8 +63,8 @@
 		<div class="col-sm-8"></div>
 		<div class="col-sm-2">
 			<button type="button" class="btn btn-primary" onclick="savefeatures()">保存</button>
-			{if condition="!empty($features)"}
-			<button type="button" class="btn btn-danger" onclick="delfeatures({$features['id']})">删除</button>
+			{if condition="!empty($feature)"}
+			<button type="button" class="btn btn-danger" onclick="delfeatures({$feature['id']})">删除</button>
 			{/if}
 		</div>
 	</div>
