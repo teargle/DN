@@ -184,15 +184,17 @@ class Manage extends Common
             $seq = 1;
             if( $value ['parent'] ) {
                 if( ! empty( $origal_categorys [$value ['parent']] ['parent']) ) {
-                    $seq = $origal_categorys [$value ['parent']] ['parent'] * 10000 + $origal_categorys [$value ['parent']]['sequence'] * 100 + $value ['sequence'] ;
+                    $seq = $origal_categorys [$origal_categorys [$value ['parent']]['parent'] ]['sequence'] * 10000 + $origal_categorys [$value ['parent']]['sequence'] * 100 + $value ['sequence'] ;
                 } else {
-                    $seq = $value ['parent'] * 10000 + $value ['sequence'] * 100 ;
+                    $seq = $origal_categorys [$value ['parent']]['sequence'] * 10000 + $value ['sequence'] * 100 ;
                 }
             } else {
                 $seq = $value ['sequence'] * 10000;
             }
             $value ['seq'] = $seq ;
         }
+        $sort_seq = array_column($categorys,'seq');
+        array_multisort($sort_seq, SORT_ASC, $categorys);
 		$data = [
 				'total' => $count , 
 				'rows' =>$categorys

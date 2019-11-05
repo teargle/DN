@@ -61,8 +61,11 @@
 	</div>
 	<hr >
 	<div class="row form-group">
-		<div class="col-sm-8"></div>
-		<div class="col-sm-2">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-7">
+			<a type="button" class="btn btn-primary" href="/admin/manage/index?main=feature">返回</a>
+		</div>
+		<div class="col-sm-4">
 			<button type="button" class="btn btn-primary" onclick="savefeatures()">保存</button>
 			{if condition="!empty($feature)"}
 			<button type="button" class="btn btn-danger" onclick="delfeatures({$feature['id']})">删除</button>
