@@ -6,9 +6,9 @@ use think\Model;
 /**
  * 
  */
-class Contact extends Model
+class Viewlog extends Model
 {
-	protected $table = "dn_contact";
+	protected $table = "dn_viewlog";
 	
 	//自定义初始化
     protected function initialize()

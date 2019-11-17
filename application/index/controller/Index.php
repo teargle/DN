@@ -13,6 +13,7 @@ use app\index\model\Feature;
 use app\index\model\Category;
 use app\index\model\News;
 use app\index\model\Dict;
+use app\index\model\Viewlog;
 
 class Index extends Controller
 {
@@ -131,9 +132,12 @@ class Index extends Controller
 
     public function product ($id  = 0) {
         $Product = new Product;
-        $product = $Product->get_product_with_category($id) ;
-        $product ['property'] = json_decode($product['prop'] , true) ;
-        $product ['related_products'] = $this->_related( $product ['category_id'] , 4) ;
+        $p = $Product->get( $id );
+        $product = $p->find()->toArray();
+        $product ['property'] = $product ['prop'] ;
+        $product ['related_products'] = json_decode(json_encode($this->_related($Product, $product ['category_id'] , 4)),true) ;
+        $product ['category'] = $p->category->find()->toArray();
+        $this->_save_log( 'product' , $id );
         $this->assign('product' , $product ) ;
     	$this->assign('topTitle' , 'SHOP');
         $this->_get_category();
@@ -142,9 +146,9 @@ class Index extends Controller
     }
 
     public function intro($id  = 0){
-        $intro = Intro::get([$id]);
+        $intro = Intro::get($id)->find()->toArray();
         $this->assign('intro' , $intro);
-    	$this->assign('topTitle' , $intro['title']);
+    	$this->assign('topTitle' , $intro ['title'] );
         $this->_get_category();
         $this->_get_setting_info();
     	return $this->fetch('intro');
@@ -182,10 +186,10 @@ class Index extends Controller
         echo json_encode($a) ;
     }
 
-    private function _related($category_id , $limit) {
-        $where = ['dn_category.id' => $category_id] ;
-        $product = new Product ;
-        return $product->query_product_with_category($where, null,1,$limit) ;
+    private function _related($product, $category_id , $limit) {
+        return $product->where( 
+            'category_id' , $category_id
+        )->limit($limit)->select() ;
     }
 
     public function comment() {
@@ -256,6 +260,19 @@ class Index extends Controller
         $this->_get_category();
         $this->_get_setting_info();
         return $this->fetch('contact');
+    }
+
+    public function _save_log ( $model, $relate_id ) {
+        $view = new Viewlog ;
+        $data = [
+            'model' => $model,
+            'relate_id' => $relate_id
+        ];
+        $view->data ( $data ) ;
+        $view->save ( ) ;
+
+        $m = model ( 'product' ) ;
+        $m->where('id', $relate_id)->setInc('pv', 1);
     }
 
 }

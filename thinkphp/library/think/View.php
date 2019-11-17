@@ -47,7 +47,6 @@ class View
             '__STATIC__' => $root . '/static',
             '__CSS__'    => $root . '/static/css',
             '__JS__'     => $root . '/static/js',
-            '__IMG__'    => $root . '/static/img'
         ];
         $this->replace = array_merge($baseReplace, (array) $replace);
     }
@@ -159,7 +158,7 @@ class View
         try {
             $method = $renderContent ? 'display' : 'fetch';
             // 允许用户自定义模板的字符串替换
-            $replace = array_merge($this->replace, $replace, $this->engine->config('tpl_replace_string'));
+            $replace = array_merge($this->replace, $replace, (array) $this->engine->config('tpl_replace_string'));
             $this->engine->config('tpl_replace_string', $replace);
             $this->engine->$method($template, $vars, $config);
         } catch (\Exception $e) {

@@ -10,30 +10,22 @@ class Product extends Model
 {
 	protected $table = "dn_product";
 	
-	function __construct()
-	{
-		# code...
-	}
+	//自定义初始化
+    protected function initialize()
+    {
+        //需要调用`Model`的`initialize`方法
+        parent::initialize();
+        //TODO:自定义的初始化
+    }
 
-	function get_product_with_category ($id) {
-		return $this->join("dn_category" , "dn_category.id = dn_product.category_id")
-					->field('dn_product.*,dn_category.title category_title')
-					->where(["dn_product.id" => $id])
-					->find();
-	}
+    //自定义初始化
+    protected static function init()
+    {
+        //TODO:自定义的初始化
+    }
 
-	function query_product_with_category( $where , $orderby = null , $start = null , $limit = null ) {
-		return	$this->where($where)
-					->join("dn_category" , "dn_category.id = dn_product.category_id")
-					->field('dn_product.*,dn_category.title category_title')
-                    ->limit($start , $limit)
-                    ->select();
-	}
-
-	function count_product_with_category( $where ) {
-		return $this->join("dn_category" , "dn_category.id = dn_product.category_id")
-					->where($where)
-                    ->count();
+	public function category() {
+		return $this->hasOne('category','id', 'category_id')->field('id,title');
 	}
 
 }
