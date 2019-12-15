@@ -25,7 +25,7 @@ class Product extends Model
     }
 
 	public function category() {
-		return $this->hasOne('category','id', 'category_id')->field('id,title');
+		return $this->hasOne('category','id', 'category_id')->field('id,title,detail,description');
 	}
 
 }

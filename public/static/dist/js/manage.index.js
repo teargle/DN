@@ -8,6 +8,9 @@ function resetTable(href) {
   $("#btn-new a").attr('href', href);
   $("#manage_list").bootstrapTable('destroy');
   $("#manage_list").html('');
+
+  $(".home_content").addClass('hidden');
+  $(".setting_content").addClass('hidden');
 }
 var maxMobileBannerId = 0;
 var maxWebBannerId = 0;
@@ -16,8 +19,9 @@ function revertIndex() {
   $("#manage_list").bootstrapTable('destroy');
   $("#manage_list").html('');
 
-  var $home = $("#home_manage").clone();
-  $("#manage_list").append($home);
+  $(".setting_content").addClass('hidden');
+
+  $(".home_content").removeClass('hidden');
   
   $.post("/admin/manage/home", {} ,
       function(data){
@@ -120,8 +124,9 @@ $("#manage_list").bootstrapTable({ // 对应table标签的id
               }
           }
       ],
-      onLoadSuccess: function(){  //加载成功时执行
+      onLoadSuccess: function(data){  //加载成功时执行
             console.info("加载成功");
+            console.log(data);
       },
       onLoadError: function(){  //加载失败时执行
             console.info("加载数据失败");
@@ -211,15 +216,15 @@ $("#manage_list").bootstrapTable({ // 对应table标签的id
        return {
               pageSize: params.limit, // 每页要显示的数据条数
               offset: params.offset, // 每页显示数据的开始行号
-              sort: params.sort, // 要排序的字段
+              sort: 'id', // 要排序的字段
               sortOrder: params.order, // 排序规则
           }
       },
-      sortName: 'sequence', // 要排序的字段
+      sortName: 'id', // 要排序的字段
       sortOrder: 'desc', // 排序规则
       columns: [
           {
-              field: 'sequence', // 返回json数据中的name
+              field: 'id', // 返回json数据中的name
               title: 'ID', // 表格表头显示文字
               align: 'center', // 左右居中
               valign: 'middle' // 上下居中
@@ -307,8 +312,8 @@ function revertSetting() {
   $("#manage_list").bootstrapTable('destroy');
   $("#manage_list").html('');
 
-  var $home = $("#setting_manage").clone();
-  $("#manage_list").append($home);
+  $(".home_content").addClass('hidden');
+  $(".setting_content").removeClass('hidden');
   
   $.post("/admin/manage/setting", {} , function(data){
         data = $.parseJSON(data);

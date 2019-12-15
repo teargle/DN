@@ -5,6 +5,7 @@ use \think\Controller;
 use \think\View;
 use \think\Log;
 use think\Request;
+use think\Db;
 
 use app\index\model\Product;
 use app\index\model\Comment;
@@ -96,24 +97,40 @@ class Index extends Controller
     public function shop() {
     	$request = Request::instance();
         $get = $request->get();
-        $keyword = array_key_exists('keyword', $get) ? $get ['keyword'] : $request->post('keyword');
+        $keyword = array_key_exists('keyword', $get) ? $get ['keyword'] : $request->get('keyword');
         $current_page = isset($get ['current_page']) ? $get ['current_page'] : 0 ;
         $start = $current_page * SHOP_LIMIT + 1 ;
         $product = new Product ;
         $products = [] ;
         $count = 0;
-        if( array_key_exists('keyword', $get) ) {
-            $where ['dn_product.title|dn_product.short_title|dn_product.prop|dn_product.short_desc|dn_category.title'] = ['like','%'.$keyword."%"];
-            $products = $product->query_product_with_category($where , null,$start , SHOP_LIMIT);
-            $count = $product->count_product_with_category($where);
-            
+        if( $keyword ) {
+            $products = Db::table('dn_product')->alias('p')
+                ->join('dn_category c','p.category_id = c.id')
+                ->whereOr('p.title','like',"%{$keyword}%")
+                ->whereOr('p.prop','like',"%{$keyword}%")
+                ->whereOr('p.short_title','like',"%{$keyword}%")
+                ->whereOr('p.short_desc','like',"%{$keyword}%")
+                ->whereOr('c.title','like',"%{$keyword}%")
+                ->whereOr('c.detail','like',"%{$keyword}%")
+                ->limit($start, SHOP_LIMIT)
+                ->column("p.id,p.title,p.short_title,p.img_url");
+            $count = Db::table('dn_product')->alias('p')
+                ->join('dn_category c','p.category_id = c.id')
+                ->whereOr('p.title','like',"%{$keyword}%")
+                ->whereOr('p.prop','like',"%{$keyword}%")
+                ->whereOr('p.short_title','like',"%{$keyword}%")
+                ->whereOr('p.short_desc','like',"%{$keyword}%")
+                ->whereOr('c.title','like',"%{$keyword}%")
+                ->whereOr('c.detail','like',"%{$keyword}%")
+                ->count();
         } else {
             $products = $product->limit($start , SHOP_LIMIT)->select();
             $count = $product->count();
         }
-        $total_page = ceil($count / SHOP_LIMIT)  ;
-        $current_page = $current_page > $total_page ? $total_page : $current_page ;
-        $next_page = ( $current_page + 1 ) > $total_page ? $total_page : $current_page + 1 ;
+
+        $total_page = ceil($count / SHOP_LIMIT) ;
+        $current_page = $current_page > ($total_page - 1) ? $total_page - 1  : $current_page ;
+        $next_page = ( $current_page + 1 ) > $total_page - 1 ? $total_page - 1  : $current_page + 1 ;
         $pre_page = ( $current_page - 1 ) < 0 ? 0 : $current_page - 1 ;
         $this->assign('start' , $start) ;
         $this->assign('limit' , SHOP_LIMIT) ;
@@ -122,7 +139,7 @@ class Index extends Controller
         $this->assign("next_page" , $next_page) ;
         $this->assign("pre_page" , $pre_page) ;
         $this->assign('topTitle' , $this->lang ['page_shop']);
-        $this->assign('products' , $products ) ;
+        $this->assign('products' , array_values($products) ) ;
         $this->assign('keyword' , $keyword);
         $this->_get_category();
         $this->_get_sort();
@@ -266,7 +283,8 @@ class Index extends Controller
         $view = new Viewlog ;
         $data = [
             'model' => $model,
-            'relate_id' => $relate_id
+            'relate_id' => $relate_id,
+            'create_time' => date("Y-m-d H:i:s")
         ];
         $view->data ( $data ) ;
         $view->save ( ) ;

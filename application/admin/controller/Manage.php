@@ -40,11 +40,22 @@ class Manage extends Common
 		$limit = $request->get('pageSize');
 		$start = $request->get('offset') ; 
 		$product = new Product ;
-		$products = $product->query_product_with_category( $where, $orderby, $start, $limit );
-		$count = $product->count_product_with_category( $where );
+		$products = $product->get( $where )->order($orderby)->limit( $start, $limit )->select();
+		$count = $product->get($where)->count();
+        $products = collection($products)->toArray() ;
+        $categorys = new Category;
+        $cates = $categorys->select();
+        $cates = collection($cates)->toArray() ;
+        $cates = array_combine(array_column($cates, 'id'), $cates);
+        
+        foreach ($products as $key => &$value) {
+            $value ['category_title'] = $cates [$value ['category_id']] ['title'];
+            $value ['short_desc'] = trim(strip_tags($value ['short_desc']));
+        }
+        
 		$data = [
 				'total' => $count , 
-				'rows' =>$products
+				'rows' => $products,
 		] ;
         echo json_encode($data) ;
         exit;
@@ -55,7 +66,7 @@ class Manage extends Common
         $fcategory = $scategory = $tcategory = 0 ;
 		if( $id ) {
 			$Product = new Product;
-	        $product = $Product->get_product_with_category($id) ;
+	        $product = $Product->get($id) ;
 	        $product ['property'] = json_decode($product['prop'] , true) ;
 
             // 归类
@@ -270,12 +281,12 @@ class Manage extends Common
 
     public function intro() {
     	$request = Request::instance();
-		$orderby = $request->get('sort') ;
-		$limit = $request->get('pageSize');
-		$start = $request->get('offset') ; 
+		$orderby = $request->get('sort') ? $request->get('sort') : 'id' ;
+		$limit = $request->get('pageSize') ?  $request->get('pageSize') : 20 ;
+		$start = $request->get('offset') ? $request->get('offset') : 0 ; 
 		$intro = new Intro ;
 		$intros = $intro->limit($start,$limit)->order($orderby)->select() ;
-		$count = $intro->count();;
+		$count = $intro->count();
 		$data = [
 				'total' => $count , 
 				'rows' =>$intros

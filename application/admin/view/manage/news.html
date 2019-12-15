@@ -76,7 +76,10 @@
     </div>
 	<hr >
 	<div class="row form-group">
-		<div class="col-sm-8"></div>
+		<div class="col-sm-1"></div>
+		<div class="col-sm-7">
+			<a type="button" class="btn btn-primary" href="/admin/manage/index?main=News">返回</a>
+		</div>
 		<div class="col-sm-2">
 			<button type="button" class="btn btn-primary" onclick="saveNews()">保存</button>
 			{if condition="!empty($news)"}
@@ -96,7 +99,7 @@ function saveNews() {
       function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-          window.location.href = "/admin/manage/index?main=news";
+          alert( "保存成功" ) ;
         } else {
            alert( data.message ) ;
         }

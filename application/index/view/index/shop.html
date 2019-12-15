@@ -18,21 +18,22 @@
 					<input type="hidden" name="paged" value="1">
 				</form>
 				<ul class="products">
-					{foreach name="products" item="product" key="idx" }
-					<li class="product {$idx % 4 == 0 ? 'first' : ''} {$idx % 4 == 3 ? 'last' : ''}">
+					{foreach name="products" item="product" key="k" }
+					<li class="product {$k % 4 == 0 ? 'first' : ''} {$k % 4 == 3 ? 'last' : ''}">
 						<a href="/index/index/product/id/{$product['id']}" class="product-top-link">
 							<img width="300" height="300" src="{$product['img_url']}" 
 							sizes="(max-width:300px) 100vm, 300px">
-							<h2>{$product['short_title']}</h2>
+							<h2>{$product ['short_title']}</h2>
 						</a>
 						<a href="" class="product-bottom-link">{$lang ['btn_product_more']}</a>
 					</li>
 					{/foreach}
+					<br class="clear" />
 				</ul>
 				<div class="nav">
 					<ul>
 						<li>
-							<a href="javascript:goNextPage(1)">
+							<a href="javascript:goNextPage(0)">
 							<span class="page-number">{$lang ['btn_list_home']}</span>
 							</a>
 						</li>
@@ -42,10 +43,10 @@
 							</a>
 						</li>
 						{for start="$current_page - 2" end="$current_page + 3" }
-						{if condition="$i egt 1 and $i elt $total_page"}
+						{if condition="$i egt 0 and $i elt $total_page - 1"}
 						<li>
 							<a href="javascript:goNextPage({$i})">
-							<span class="page-number {$current_page == $i ? 'current' : ''}">{$i}</span>
+							<span class="page-number {$current_page == $i ? 'current' : ''}">{$i + 1}</span>
 							</a>
 						</li>
 						{/if}
@@ -56,7 +57,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="javascript:goNextPage({$total_page})">
+							<a href="javascript:goNextPage({$total_page -1})">
 							<span class="page-number">{$lang ['btn_list_last']}</span>
 							</a>
 						</li>
@@ -72,12 +73,6 @@
 <script type="text/javascript">
 var keyword = "{$keyword}";
 function goNextPage( current_page ) {
-	console.log( "123");
-	var params = {};
-	if( keyword ) {
-		params ['keyword'] = keyword ;
-	}
-	params ['current'] = current_page;
-	$.StandardPost( "/index/index/shop" , params) ;
+	window.location.href = "/index/index/shop?keyword=" + keyword + "&current_page=" + current_page;
 }
 </script>

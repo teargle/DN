@@ -260,6 +260,10 @@ img {
 	padding: 0 15px;
 	max-width: 100%;
 	margin:0 47px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-right: 15px;
+	padding-left: 15px;
 }
 
 .power .power-container .power-header {
