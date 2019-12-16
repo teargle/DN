@@ -15,6 +15,7 @@ class Expression
 {
     /**
      * 查询表达式
+     *
      * @var string
      */
     protected $value;
