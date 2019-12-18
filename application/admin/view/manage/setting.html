@@ -40,7 +40,7 @@ function saveSetting() {
         if( data.result ) {
            window.location.href = "/admin/manage/index?main=setting";
         } else {
-           alert( data.message ) ;
+           bootbox.alert(data.message,function() {});
         }
   });
 }

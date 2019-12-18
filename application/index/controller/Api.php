@@ -22,7 +22,7 @@ class Api extends Controller
         $data = [
             'name' => $post ['name'],
             'contact' => $post ['contact'],
-            'infomation' => $post ['infomation']
+            'information' => $post ['information']
         ];
 
         $cantact = new Contact ;

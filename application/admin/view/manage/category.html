@@ -2,13 +2,7 @@
 <html>
 <head>
 	<title>Edit category</title>
-	<link rel="stylesheet" href="__CSS__/bootstrap.min.css">
-	<link rel="stylesheet" href="__CSS__/trumbowyg.min.css">
-	<link rel="stylesheet" href="__CSS__/manage.index.css">
-	<script type="text/javascript" src="__JS__/jquery.min.js"></script>
-	<script type="text/javascript" src="__JS__/bootstrap.min.js"></script>
-	<script type="text/javascript" src="__JS__/trumbowyg.min.js"></script>
-	<script type="text/javascript" src="__JS__/manage.index.js"></script>
+	{include file="common/header" /}
 	 <style>
         fieldset {
             padding: .35em .625em .75em;
@@ -118,9 +112,9 @@ function saveCategory() {
       function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-        	alert( "保存成功" ) ;
+        	bootbox.alert("保存成功",function() {});
         } else {
-        	alert( data.message ) ;
+        	bootbox.alert(data.message,function() {});
         }
   });
 }
@@ -134,7 +128,7 @@ function delCategory( id ) {
         if( data.result ) {
            window.location.href = "/admin/manage/index?main=category";
         } else {
-           alert( data.message ) ;
+           bootbox.alert(data.message,function() {});
         }
   });
 }

@@ -24,9 +24,9 @@
 					<input type="text" class="form-control" id="contact_info" 
 						name="contact" placeholder="{$lang ['contact_contact']}">
 					<br />
-					<label for="infomation" class="control-label">{$lang ['contact_info']} :</label>
+					<label for="information" class="control-label">{$lang ['contact_info']} :</label>
 					<textarea class="form-control" placeholder="{$lang ['contact_info']}" 
-						id="infomation" name="infomation" rows="5"></textarea>
+						id="information" name="information" rows="5"></textarea>
 					<br />
 		        	<button class="btn btn-lg btn-primary btn-block" type="submit"
 		        	onclick="return sendContact()">{$lang ['contact_send']}</button>
@@ -51,9 +51,7 @@ function sendContact() {
 	$.post("/index/api/saveContact",$param ,function(data){
 		data = $.parseJSON(data) ;
 	  	if ( data.result ) {
-	  		bootbox.alert("{$lang ['contact_you']}",function() {
-	  			
-	  		});
+	  		bootbox.alert("{$lang ['contact_you']}",function() {});
 	  		$('#info') [0].reset();  
 	  	}
 	});
