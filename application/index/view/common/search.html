@@ -17,12 +17,12 @@
 		<ul class="product-categories">
 			{volist name="categorys" id="category"}
 			<li class="cat-item">
-				<a href="/index/index/shop?keyword={$category['title']}">{$category['title']}</a>
+				<a href="/index/index/shop?category_id={$category['id']}">{$category['title']}</a>
 				{notempty name="$category ['child']"}
 				<ul>
 				{volist name="$category ['child']" id="cate"}
 				<li class="sub-category">
-				<a href="/index/index/shop?keyword={$cate['title']}">
+				<a href="/index/index/shop?category_id={$cate['id']}">
 					{$cate['title']}
 				</a>
 				</li>

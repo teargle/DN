@@ -99,11 +99,24 @@ class Index extends Controller
         $get = $request->get();
         $keyword = array_key_exists('keyword', $get) ? $get ['keyword'] : $request->get('keyword');
         $current_page = isset($get ['current_page']) ? $get ['current_page'] : 0 ;
-        $start = $current_page * SHOP_LIMIT + 1 ;
+        $start = $current_page * SHOP_LIMIT ;
         $product = new Product ;
         $products = [] ;
         $count = 0;
-        if( $keyword ) {
+        if ( isset($get ['category_id']) ) {
+            $categoryIds = $this->_get_sub_category($get ['category_id']) ;
+            $products = Db::table('dn_product')->alias('p')
+                //->fetchSql(true)
+                ->join('dn_category c','p.category_id = c.id')
+                ->whereOr('p.category_id','in', implode(",", $categoryIds))
+                ->limit($start, SHOP_LIMIT)
+                ->column("p.id,p.title,p.short_title,p.img_url");
+            $count = Db::table('dn_product')->alias('p')
+                ->join('dn_category c','p.category_id = c.id')
+                ->whereOr('p.category_id','in', implode(",", $categoryIds))
+                ->count();
+            $this->assign("category_id" , $get ['category_id']) ;
+        } else if( $keyword ) {
             $products = Db::table('dn_product')->alias('p')
                 ->join('dn_category c','p.category_id = c.id')
                 ->whereOr('p.title','like',"%{$keyword}%")
@@ -291,6 +304,24 @@ class Index extends Controller
 
         $m = model ( 'product' ) ;
         $m->where('id', $relate_id)->setInc('pv', 1);
+    }
+
+    private function _get_sub_category ( $id ) {
+        $categorys = Category::all() ;
+        $result = array( $id );
+        foreach ($categorys as $key => $category) {
+            if(in_array($category ['parent'], $result) ){
+                array_push($result, $category ['id']) ;
+            }
+        }
+
+        foreach ($categorys as $key => $category) {
+            if(in_array($category ['parent'], $result) ){
+                array_push($result, $category ['id']) ;
+            }
+        }
+        return $result;
+
     }
 
 }

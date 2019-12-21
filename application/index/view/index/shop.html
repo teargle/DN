@@ -72,7 +72,9 @@
 
 <script type="text/javascript">
 var keyword = "{$keyword}";
+var category_id = "{$category_id}";
 function goNextPage( current_page ) {
-	window.location.href = "/index/index/shop?keyword=" + keyword + "&current_page=" + current_page;
+	var param = keyword != "" ? "keyword=" + keyword : "category_id=" + category_id ;
+	window.location.href = "/index/index/shop?" + param + "&current_page=" + current_page;
 }
 </script>
