@@ -384,8 +384,7 @@ class Manage extends Common
 
     public function setting() {
         $dict = new Dict ;
-        $something = $dict->where('model' , 'setting')
-             ->where('name','like',"setting_%")->select();
+        $something = $dict->where('model' , "in" , 'setting,email')->select();
         $something = array_column($something, 'value' , 'name');
         echo $this->output_json ( true , "OK" , $something) ;
     }

@@ -321,6 +321,11 @@ function revertSetting() {
           $("input[name='setting_qrcode']").val(data.obj.setting_qrcode);
           $("input[name='setting_address']").val(data.obj.setting_address);
           $("input[name='setting_phone']").val(data.obj.setting_phone);
+
+          $("input[name='email_address']").val(data.obj.email_address);
+          $("input[name='email_secure']").val(data.obj.email_secure);
+          $("input[name='email_smtp']").val(data.obj.email_smtp);
+          $("input[name='email_port']").val(data.obj.email_port);
         } else {
           console.log( "加载失败" );
         }

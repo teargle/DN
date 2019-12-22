@@ -2,6 +2,7 @@
 	<form class="setting-manage-form" id="setting_form">
 		<br /><div style="text-align: center;"><h1>基本配置</h1></div><br />
 		<hr />
+		<div style="text-align: left;"><h3>公司信息</h3></div><br />
 		<div class="row form-group">
 			<label for="setting_qrcode" class="col-sm-2 control-label text-right">二维码：</label>
 			<div class="col-sm-10">
@@ -22,12 +23,42 @@
 				<input type="text" class="form-control" name="setting_phone" placeholder="请输入信息" />
 			</div>
 		</div>
+		<hr />
+		<div style="text-align: left;"><h3>邮件配置</h3></div><br />
 		<div class="row form-group">
-			<div class="col-sm-8"></div>
+			<label for="email_address" class="col-sm-2 control-label text-right">发送地址：</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="email_address" placeholder="邮件地址" />
+			</div>
+		</div>
+		<div class="row form-group">
+			<label for="email_secure" class="col-sm-2 control-label text-right">邮件验证：</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="email_secure" placeholder="邮件验证码" />
+			</div>
+		</div>
+		<div class="row form-group">
+			<label for="email_smtp" class="col-sm-2 control-label text-right">SMTP地址：</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="email_smtp" placeholder="SMTP地址" />
+			</div>
+		</div>
+		<div class="row form-group">
+			<label for="email_port" class="col-sm-2 control-label text-right">发送地址：</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="email_port" placeholder="SMTP端口" />
+			</div>
+		</div>
+		<div class="row form-group">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-6">
+				<a type="button" class="btn btn-primary" href="/admin/manage/index?main=settings">返回</a>
+			</div>
 			<div class="col-sm-2">
 				<button type="button" class="btn btn-primary" onclick="saveSetting()">保存</button>
 			</div>
 		</div>
+
     </form>
 </div>
 
@@ -38,9 +69,9 @@ function saveSetting() {
       function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-           window.location.href = "/admin/manage/index?main=setting";
+        	bootbox.alert("保存成功",function() {});
         } else {
-           bootbox.alert(data.message,function() {});
+          	bootbox.alert(data.message,function() {});
         }
   });
 }
