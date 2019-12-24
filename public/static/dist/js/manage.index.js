@@ -318,7 +318,8 @@ function revertSetting() {
   $.post("/admin/manage/setting", {} , function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-          $("input[name='setting_qrcode']").val(data.obj.setting_qrcode);
+          $("img[name='setting_qrcode']").attr("src",data.obj.setting_qrcode);
+          $("input[name='setting_qrcode']").attr("src",data.obj.setting_qrcode);
           $("input[name='setting_address']").val(data.obj.setting_address);
           $("input[name='setting_phone']").val(data.obj.setting_phone);
 
@@ -384,4 +385,22 @@ function revertFeature() {
         }
 
   }) ;
+}
+
+function uploadImg( formData, cb) {
+  $.ajax({
+      url:"/admin/manage/upload",
+      type:"POST",
+      cache:false,
+      data:formData,
+      processData:false,
+      contentType:false,
+      dataType : 'json',
+      success:function(data){
+          cb( data );
+      },
+      fail:function(data){
+          bootbox.alert("上传失败",function() {});
+      }
+  });
 }

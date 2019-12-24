@@ -53,11 +53,12 @@
 		</div>
 	</div>
 	<div class="row form-group">
-		<label for="img_url" class="col-sm-2 control-label text-right">图片地址：</label>
+		<label for="img_url" class="col-sm-2 control-label text-right">图片地址(300 * 200)：</label>
 		<div class='col-sm-8'>
-			<input type="text" class="form-control" name="img_url" placeholder="图片地址 300 * 200"
-			value='{if condition="!empty($news)"}{$news["img_url"]}{/if}'
-			>
+			<input class="btn btn-primary" type="file" id="news_uploadimg" multiple 
+				accept="*.gif, *.jpeg, *.png, *.jpg, *.bmp " /><br /><br />
+			<img wdith="300" height="200" name="img_url" src="{if condition="!empty($news)"}{$news["img_url"]}{/if}">
+			<input type="hidden" name="img_url" value="{if condition="!empty($news)"}{$news["img_url"]}{/if}">
 		</div>
 	</div>
 	<div class="row form-group">
@@ -113,5 +114,16 @@ function delNews( id ) {
         }
   });
 }
+$(function(){
+	$("#news_uploadimg").change(function(){
+	    var formData = new FormData();
+	    var f = $('#news_uploadimg')[0].files[0];
+	    formData.append('file', f); // 固定格式
+	    uploadImg ( formData, function( data ) {
+	    	$("img[name='img_url']").attr("src",data.obj.url);
+	    	$("input[name='img_url']").val(data.obj.url);
+	    } );
+	});
+});
 </script>
 </html>

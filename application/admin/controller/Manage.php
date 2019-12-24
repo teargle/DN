@@ -12,6 +12,8 @@ use app\index\model\Dict;
 use app\index\model\News;
 use app\index\model\Feature;
 
+define("UPLOAD_IMAGE_PATH", "D:/img/uploads/") ;
+
 class Manage extends Common
 {
 
@@ -480,5 +482,22 @@ class Manage extends Common
         $news = new News;
         $news->where('id='.$id)->delete();
         echo $this->output_json ( true , "OK" , null) ;
+    }
+
+    public function upload () {
+        $request = Request::instance();
+        $names = explode('.', $_FILES["file"]["name"]);
+        $extension = end ( $names );
+        $allowedExts = array("gif", "jpeg", "jpg", "png");
+        if(! in_array($extension, $allowedExts) ) {
+            echo $this->output_json ( false , "不支持的文件" , null) ;
+        }
+        if( $_FILES["file"]["error"] > 0 ) {
+            echo $this->output_json ( false , $_FILES["file"]["error"] , null) ;
+        }
+        $name = uniqid() . "." . $extension ;
+        move_uploaded_file($_FILES["file"]["tmp_name"], UPLOAD_IMAGE_PATH . $name );
+        $url = $request->domain() . '/img/' . $name ;
+        echo $this->output_json ( true , $url , ['url' => $url]);
     }
 }

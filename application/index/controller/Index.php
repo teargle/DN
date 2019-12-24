@@ -176,9 +176,10 @@ class Index extends Controller
     }
 
     public function intro($id  = 0){
-        $intro = Intro::get($id)->find()->toArray();
-        $this->assign('intro' , $intro);
-    	$this->assign('topTitle' , $intro ['title'] );
+        $intro = new Intro;
+        $it = $intro->get($id)->toArray();
+        $this->assign('intro' , $it);
+    	$this->assign('topTitle' , $it ['title'] );
         $this->_get_category();
         $this->_get_setting_info();
     	return $this->fetch('intro');
