@@ -63,7 +63,6 @@ function addMobileImg() {
   webImg.insertBefore("#up_banner_input_area");
 }
 function saveImg() {
-	console.log( $(".home-manage-form").serialize() ) ;
   $.post("/admin/manage/saveIndex",  $(".home-manage-form").serialize(),
       function(data){
         data = $.parseJSON(data);

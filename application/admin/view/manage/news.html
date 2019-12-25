@@ -108,7 +108,9 @@ function delNews( id ) {
       function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-           bootbox.alert("删除成功",function() {});
+           bootbox.alert("删除成功",function() {
+           		window.location.href = "/admin/manage/index?main=news";
+           });
         } else {
            bootbox.alert(data.message,function() {});
         }

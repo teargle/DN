@@ -461,6 +461,17 @@ class Manage extends Common
         echo $this->output_json ( true , "OK" , null) ;
     }
 
+    public function delfeatures ( $id ) {
+        $request = Request::instance();
+        $id = $request->param('id');
+        if( ! $id ) {
+            echo $this->output_json(false, "ERROR param" ) ;
+        }
+        $feature = new Feature;
+        $feature->where('id='.$id)->delete();
+        echo $this->output_json ( true , "OK" , null) ;
+    }
+
     public function saveNews() {
         $request = Request::instance();
         $data = $request->post();

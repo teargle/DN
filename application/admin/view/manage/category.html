@@ -120,7 +120,9 @@ function delCategory( id ) {
       function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-           window.location.href = "/admin/manage/index?main=category";
+        	bootbox.alert("删除成功",function() {
+        		window.location.href = "/admin/manage/index?main=category";
+        	});
         } else {
            bootbox.alert(data.message,function() {});
         }

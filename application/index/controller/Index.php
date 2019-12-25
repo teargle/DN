@@ -163,7 +163,7 @@ class Index extends Controller
     public function product ($id  = 0) {
         $Product = new Product;
         $p = $Product->get( $id );
-        $product = $p->find()->toArray();
+        $product = $Product->get($id)->toArray();
         $product ['property'] = $product ['prop'] ;
         $product ['related_products'] = json_decode(json_encode($this->_related($Product, $product ['category_id'] , 4)),true) ;
         $product ['category'] = $p->category->find()->toArray();
