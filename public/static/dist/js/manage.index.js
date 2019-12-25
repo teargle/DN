@@ -38,18 +38,24 @@ function revertIndex() {
             var arr = item ['name'].split('__');
             if( arr [0] == 'banner_web_img' ) {
               var webImg = $("#web_input_template").clone();
-              webImg.find(".control-label").html("网页图片：");
+              webImg.removeClass("hidden");
+              webImg.find(".control-label").html("网页图片(1280*500)：");
               webImg.removeAttr('id');
-              webImg.find('input').attr('name' , item ['name']).val(item ['value']);
+              webImg.find(".inputs .hidden-name").attr('name' , item ['name'] );
               webImg.insertBefore("#separate");
+              webImg.find(".inputs img").attr("src",item ['value']);
+              webImg.find(".inputs .hidden-name").val(item ['value']);
               maxWebBannerId = maxWebBannerId > parseInt(arr[1]) ? maxWebBannerId : parseInt(arr [1]);
             }
             if( arr [0] == 'banner_mobile_img' ) {
               var webImg = $("#web_input_template").clone();
-              webImg.find(".control-label").html("网页图片：");
+              webImg.removeClass("hidden");
+              webImg.find(".control-label").html("手机图片(375*750)：");
               webImg.removeAttr('id');
-              webImg.find('input').attr('name' , item ['name']).val(item ['value']);
+              webImg.find(".inputs .hidden-name").attr('name' , item ['name'] );
               webImg.insertBefore("#up_banner_input_area");
+              webImg.find(".inputs img").attr("src",item ['value']);
+              webImg.find(".inputs .hidden-name").val(item ['value']);
               maxMobileBannerId = maxMobileBannerId > parseInt(arr[1]) ? maxMobileBannerId : parseInt(arr [1]);
             }
             if(item['name'] == 'st_practice' ) {

@@ -32,11 +32,13 @@
     </form>
 </div>
 
-<div class="row form-group" id="web_input_template">
+<div class="row form-group hidden" id="web_input_template">
 	<label for="imgs" class="col-sm-2 control-label text-right">图片：</label>
-	<div class="col-sm-8">
-		<input type="text" class="form-control" name="imgs"
-			placeholder="网页图片宽度:1280, 高度:500; 手机图片宽度:375,高度:750;" value=''>
+	<div class="col-sm-8 inputs">
+		<input class="btn btn-primary uploadimg" type="file" multiple 
+			accept="*.gif, *.jpeg, *.png, *.jpg, *.bmp " /><br /><br />
+		<img wdith="300" height="100" src="{if condition="!empty($feature)"}{$feature["img_url"]}{/if}">
+		<input type="hidden" class="hidden-name" value="{if condition="!empty($feature)"}{$feature["img_url"]}{/if}">
 	</div>
 	<div class="col-sm-2 pull-right">
 		<button type="button" class="btn btn-primary" onclick="delImg(this)">删除</button>
@@ -48,31 +50,48 @@ function addWebImg() {
   maxWebBannerId = maxWebBannerId + 1;
   var num = maxWebBannerId;
   var webImg = $("#web_input_template").clone();
-  webImg.find(".control-label").html("网页图片：");
+  webImg.removeClass("hidden");
+  webImg.find(".control-label").html("网页图片(1280*500)：");
   webImg.removeAttr('id');
-  webImg.find("input").attr('name' , 'banner_web_img__' + num );
+  webImg.find(".inputs .hidden-name").attr('name' , 'banner_web_img__' + num );
   webImg.insertBefore("#separate");
+  setChange(webImg);
 }
 function addMobileImg() {
   maxMobileBannerId = maxMobileBannerId + 1;
   var num = maxMobileBannerId ;
   var webImg = $("#web_input_template").clone();
-  webImg.find(".control-label").html("手机图片：");
+  webImg.removeClass("hidden");
+  webImg.find(".control-label").html("手机图片(375*750)：");
   webImg.removeAttr('id');
-  webImg.find("input").attr('name' , 'banner_mobile_img__' + num );
+  webImg.find(".inputs .hidden-name").attr('name' , 'banner_mobile_img__' + num );
   webImg.insertBefore("#up_banner_input_area");
+  setChange(webImg);
 }
 function saveImg() {
   $.post("/admin/manage/saveIndex",  $(".home-manage-form").serialize(),
       function(data){
         data = $.parseJSON(data);
         if( data.result ) {
-           //window.location.href = "/admin/manage/index?main=index";
+           bootbox.alert("保存成功",function() {});
         } else {
-           alert( data.message ) ;
+           bootbox.alert(data.message,function() {});
         }
   });
 }
+
+function setChange( $select ) {
+	$select.find(".uploadimg").change(function(){
+	    var formData = new FormData();
+	    var f = $select.find(".uploadimg")[0].files[0];
+	    formData.append('file', f); // 固定格式
+	    uploadImg ( formData, function( data ) {
+	    	$select.find(".inputs img").attr("src",data.obj.url);
+	    	$select.find(".inputs .hidden-name").val(data.obj.url);
+	    } );
+	});
+}
+
 function delImg(obj) {
   $(obj).closest(".form-group").remove();
 }
