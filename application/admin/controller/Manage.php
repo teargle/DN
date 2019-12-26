@@ -12,7 +12,8 @@ use app\index\model\Dict;
 use app\index\model\News;
 use app\index\model\Feature;
 
-define("UPLOAD_IMAGE_PATH", "D:/img/uploads/") ;
+define("UPLOAD_IMAGE_PATH", "/home/DN/imgs/") ;
+// define("UPLOAD_IMAGE_PATH", "D:/img/uploads/") ;
 
 class Manage extends Common
 {
@@ -507,8 +508,12 @@ class Manage extends Common
             echo $this->output_json ( false , $_FILES["file"]["error"] , null) ;
         }
         $name = uniqid() . "." . $extension ;
-        move_uploaded_file($_FILES["file"]["tmp_name"], UPLOAD_IMAGE_PATH . $name );
-        $url = $request->domain() . '/img/' . $name ;
+        $path = UPLOAD_IMAGE_PATH . date('Y-m-d') . '/' ;
+        if( ! is_dir ( $path ) ) {
+            mkdir ($path , '0777' ) ;
+        }
+        move_uploaded_file($_FILES["file"]["tmp_name"], $path . $name );
+        $url = $request->domain() . '/img/' . date('Y-m-d') . "/" . $name ;
         echo $this->output_json ( true , $url , ['url' => $url]);
     }
 }
