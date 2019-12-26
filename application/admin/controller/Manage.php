@@ -510,7 +510,7 @@ class Manage extends Common
         $name = uniqid() . "." . $extension ;
         $path = UPLOAD_IMAGE_PATH . date('Y-m-d') . '/' ;
         if( ! is_dir ( $path ) ) {
-            mkdir ($path , '0777' ) ;
+            mkdir ($path , 0777 ) ;
         }
         move_uploaded_file($_FILES["file"]["tmp_name"], $path . $name );
         $url = $request->domain() . '/img/' . date('Y-m-d') . "/" . $name ;
