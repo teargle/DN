@@ -36,7 +36,7 @@
 	<label for="imgs" class="col-sm-2 control-label text-right">图片：</label>
 	<div class="col-sm-8 inputs">
 		<input class="btn btn-primary uploadimg" type="file" multiple 
-			accept="*.gif, *.jpeg, *.png, *.jpg, *.bmp " /><br /><br />
+			accept="*.gif, *.jpeg, *.png, *.jpg, *.bmp" /><br /><br />
 		<img wdith="300" height="100" src="{if condition="!empty($feature)"}{$feature["img_url"]}{/if}">
 		<input type="hidden" class="hidden-name" value="{if condition="!empty($feature)"}{$feature["img_url"]}{/if}">
 	</div>
@@ -95,4 +95,11 @@ function setChange( $select ) {
 function delImg(obj) {
   $(obj).closest(".form-group").remove();
 }
+
+// $(document).ready( function(){
+// 	var $webImg = $(this).closest(".row");
+// 	$(".uploadimg").onChange(function(){
+// 		setChange( $webImg );
+// 	});
+// });
 </script>

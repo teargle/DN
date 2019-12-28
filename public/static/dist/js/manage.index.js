@@ -46,6 +46,7 @@ function revertIndex() {
               webImg.find(".inputs img").attr("src",item ['value']);
               webImg.find(".inputs .hidden-name").val(item ['value']);
               maxWebBannerId = maxWebBannerId > parseInt(arr[1]) ? maxWebBannerId : parseInt(arr [1]);
+              setChange(webImg);
             }
             if( arr [0] == 'banner_mobile_img' ) {
               var webImg = $("#web_input_template").clone();
@@ -57,6 +58,7 @@ function revertIndex() {
               webImg.find(".inputs img").attr("src",item ['value']);
               webImg.find(".inputs .hidden-name").val(item ['value']);
               maxMobileBannerId = maxMobileBannerId > parseInt(arr[1]) ? maxMobileBannerId : parseInt(arr [1]);
+              setChange(webImg);
             }
             if(item['name'] == 'st_practice' ) {
               $("input[name='st_practice']").val(item ['value']);
