@@ -44,23 +44,29 @@ class Api extends Controller
     private function _send_email( $content ) {
         $dict = Dict::where('model' , 'email')->select();
         $dict = array_column($dict, 'value' , 'name');
+        $fields = array("email_smtp","email_address","email_secure","email_port") ;
+        $keys = array_keys ( $dict ) ;
+        $diff = array_diff( $fields, $keys);
+        if( $diff ) {
+            return true;
+        }
         $mail = new PHPMailer(true);
         try {
             //Server settings
             $mail->CharSet = "UTF-8";
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
             $mail->isSMTP( true );                                            // Send using SMTP
-            $mail->Host       = $dict ['smtp'] ;//                    // Set the SMTP server to send through
+            $mail->Host       = $dict ['email_smtp'] ;//                    // Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-            $mail->Username   = $dict ['address'] ;                    // SMTP username
-            $mail->Password   = $dict ['secure'] ;                               // SMTP password
+            $mail->Username   = $dict ['email_address'] ;                    // SMTP username
+            $mail->Password   = $dict ['email_secure'] ;                               // SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;      
             // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
-            $mail->Port       = $dict ['port'] ;                      // TCP port to connect to
+            $mail->Port       = $dict ['email_port'] ;                      // TCP port to connect to
             $mail->SMTPDebug = 0;
             //Recipients
-            $mail->setFrom($dict ['address'], 'DN');
-            $mail->addAddress($dict ['address'], 'DN');     // Add a recipient
+            $mail->setFrom($dict ['email_address'], 'DN');
+            $mail->addAddress($dict ['email_address'], 'DN');     // Add a recipient
 
             // Content
             $mail->Subject = 'WEBSITE INFORMATION';

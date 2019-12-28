@@ -399,9 +399,10 @@ class Manage extends Common
         $result = true;
         foreach ($post as $key => $value) {
             if( empty( $value ) ) continue ;
+            $model = explode("_", $key)[0];
             $record = $dict->get( [
                 'name' => $key,
-                'model' => 'setting'
+                'model' => $model
             ]) ;
             if( $record ) {
                 if( $record ['value'] != $value ) {

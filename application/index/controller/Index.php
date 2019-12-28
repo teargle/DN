@@ -115,7 +115,7 @@ class Index extends Controller
                 ->join('dn_category c','p.category_id = c.id')
                 ->whereOr('p.category_id','in', implode(",", $categoryIds))
                 ->count();
-            $this->assign("category_id" , $get ['category_id']) ;
+            
         } else if( $keyword ) {
             $products = Db::table('dn_product')->alias('p')
                 ->join('dn_category c','p.category_id = c.id')
@@ -154,6 +154,7 @@ class Index extends Controller
         $this->assign('topTitle' , $this->lang ['page_shop']);
         $this->assign('products' , array_values($products) ) ;
         $this->assign('keyword' , $keyword);
+        $this->assign("category_id" , isset($get ['category_id']) ? $get ['category_id'] : '' ) ;
         $this->_get_category();
         $this->_get_sort();
         $this->_get_setting_info();
@@ -164,7 +165,7 @@ class Index extends Controller
         $Product = new Product;
         $p = $Product->get( $id );
         $product = $Product->get($id)->toArray();
-        $product ['property'] = $product ['prop'] ;
+        $product ['property'] = json_decode($product ['prop'],true) ;
         $product ['related_products'] = json_decode(json_encode($this->_related($Product, $product ['category_id'] , 4)),true) ;
         $product ['category'] = $p->category->find()->toArray();
         $this->_save_log( 'product' , $id );
