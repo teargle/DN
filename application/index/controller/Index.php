@@ -187,7 +187,7 @@ class Index extends Controller
     }
 
     public function newslist() {
-        $news = News::all();
+        $news = Db::table('dn_news')->order('id', 'desc')->select();
         $this->assign('news' , $news);
         $this->assign('topTitle' , '新闻');
         $this->_get_category();
