@@ -55,7 +55,7 @@ class Index extends Controller
         $intro = Intro::all();
         $data ['intro'] = $intro;
 
-        $news = News::all();
+        $news = Db::table('dn_news')->order('id', 'desc')->select();
         $data ['news'] = array_slice($news , 0 , 3);
 
         $this->_get_home_banner();
