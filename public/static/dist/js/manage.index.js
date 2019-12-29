@@ -11,6 +11,8 @@ function resetTable(href) {
 
   $(".home_content").addClass('hidden');
   $(".setting_content").addClass('hidden');
+  $("#content").addClass("col-md-10");
+  $("#home-setting").addClass('hidden');
 }
 var maxMobileBannerId = 0;
 var maxWebBannerId = 0;
@@ -19,8 +21,10 @@ function revertIndex() {
   $("#manage_list").bootstrapTable('destroy');
   $("#manage_list").html('');
 
-  $(".setting_content").addClass('hidden');
+  $("#home_setting").removeClass('hidden').addClass('col-md-10');
+  $("#content").removeClass("col-md-10");
 
+  $(".setting_content").addClass('hidden');
   $(".home_content").removeClass('hidden');
   
   $.post("/admin/manage/home", {} ,
@@ -303,6 +307,9 @@ function revertSetting() {
   $("#btn-new").addClass('hidden');
   $("#manage_list").bootstrapTable('destroy');
   $("#manage_list").html('');
+
+  $("#home_setting").removeClass('hidden').addClass('col-md-10');
+  $("#content").removeClass("col-md-10");
 
   $(".home_content").addClass('hidden');
   $(".setting_content").removeClass('hidden');
