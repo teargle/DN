@@ -517,4 +517,14 @@ class Manage extends Common
         $url = $request->domain() . '/img/' . date('Y-m-d') . "/" . $name ;
         echo $this->output_json ( true , $url , ['url' => $url]);
     }
+
+    public function delBannerImg( ) {
+        $request = Request::instance();
+        $name = $request->param('name');
+        if( ! $name ) {
+            echo $this->output_json(false, "ERROR param" ) ;
+        }
+        Dict::destroy(['name' => $name]);
+        echo $this->output_json ( true , "OK" , null) ;
+    }
 }

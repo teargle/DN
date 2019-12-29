@@ -12,18 +12,18 @@
 		<hr />
 		<div>
 		<div class="text-center"><label><h3>添加网页首页图片</h3></label></div>
-		<hr id="separate" />
+		<hr id="web_banner_area" />
 		</div>
 		<div>
 		<div class="text-center"><label><h3>添加手机首页图片</h3></label></div>
-		<hr id="up_banner_input_area" />
+		<hr id="mobile_banner_area" />
 		</div>
 		<div class="row form-group">
 			<div class="col-sm-2">
-				<button type="button" class="btn btn-primary" onclick="addWebImg()">添加网页首页图片</button>
+				<button type="button" class="btn btn-primary" onclick="addBannerImg('web')">添加网页首页图片</button>
 			</div>
 			<div class="col-sm-2">
-				<button type="button" class="btn btn-primary" onclick="addMobileImg()">添加手机首页图片</button>
+				<button type="button" class="btn btn-primary" onclick="addBannerImg('mobile')">添加手机首页图片</button>
 			</div>
 			<div class="col-sm-2 pull-right">
 				<button type="button" class="btn btn-primary" onclick="saveImg()">保存</button>
@@ -37,36 +37,38 @@
 	<div class="col-sm-8 inputs">
 		<input class="btn btn-primary uploadimg" type="file" multiple 
 			accept="*.gif, *.jpeg, *.png, *.jpg, *.bmp" /><br /><br />
-		<img wdith="300" height="100" src="{if condition="!empty($feature)"}{$feature["img_url"]}{/if}">
-		<input type="hidden" class="hidden-name" value="{if condition="!empty($feature)"}{$feature["img_url"]}{/if}">
+		<img wdith="300" height="100" src="">
+		<input type="hidden" class="hidden-name" value="">
 	</div>
 	<div class="col-sm-2 pull-right">
-		<button type="button" class="btn btn-primary" onclick="delImg(this)">删除</button>
+		<button type="button" class="btn btn-primary" onclick="delBannerImg(this)">删除</button>
 	</div>
 </div>
 
 <script type="text/javascript">
-function addWebImg() {
-  maxWebBannerId = maxWebBannerId + 1;
-  var num = maxWebBannerId;
-  var webImg = $("#web_input_template").clone();
-  webImg.removeClass("hidden");
-  webImg.find(".control-label").html("网页图片(1280*500)：");
-  webImg.removeAttr('id');
-  webImg.find(".inputs .hidden-name").attr('name' , 'banner_web_img__' + num );
-  webImg.insertBefore("#separate");
-  setChange(webImg);
-}
-function addMobileImg() {
-  maxMobileBannerId = maxMobileBannerId + 1;
-  var num = maxMobileBannerId ;
-  var webImg = $("#web_input_template").clone();
-  webImg.removeClass("hidden");
-  webImg.find(".control-label").html("手机图片(375*750)：");
-  webImg.removeAttr('id');
-  webImg.find(".inputs .hidden-name").attr('name' , 'banner_mobile_img__' + num );
-  webImg.insertBefore("#up_banner_input_area");
-  setChange(webImg);
+function addBannerImg(type, num ,src ) {
+	if( type == 'mobile' ) {
+		maxMobileBannerId = num || maxMobileBannerId + 1;
+		var name_num = 'banner_mobile_img__' + maxMobileBannerId ;
+		var picture_title = "手机图片(375*750)：";
+		var insertHere = "mobile_banner_area";
+	} else {
+		maxWebBannerId = num || maxWebBannerId + 1;
+		var name_num = 'banner_web_img__' + maxWebBannerId ;
+		var picture_title = "网页图片(1280*500)：";
+		var insertHere = "web_banner_area";
+	}
+	if( $(".row .inputs .hidden-name[name='" + name_num + "']").length > 0 ) {
+		return true;
+	}
+	var webImg = $("#web_input_template").clone();
+	webImg.removeClass("hidden");
+	webImg.find(".control-label").html(picture_title);
+	webImg.removeAttr('id');
+	webImg.find(".inputs .hidden-name").attr('name' , name_num );
+	webImg.find(".inputs img").attr("src", src || '');
+	webImg.insertBefore("#" + insertHere);
+	setChange(webImg);
 }
 function saveImg() {
   $.post("/admin/manage/saveIndex",  $(".home-manage-form").serialize(),
@@ -92,14 +94,20 @@ function setChange( $select ) {
 	});
 }
 
-function delImg(obj) {
-  $(obj).closest(".form-group").remove();
+function delBannerImg(obj) {
+	var banner_name = $(obj).closest(".row").find(".hidden-name").attr('name');
+	$.post("/admin/manage/delBannerImg", {
+         name : banner_name
+      } ,
+      function(data){
+        data = $.parseJSON(data);
+        if( data.result ) {
+           bootbox.alert("删除成功",function() {
+           		$(obj).closest(".form-group").remove();
+           });
+        } else {
+           bootbox.alert(data.message,function() {});
+        }
+  });
 }
-
-// $(document).ready( function(){
-// 	var $webImg = $(this).closest(".row");
-// 	$(".uploadimg").onChange(function(){
-// 		setChange( $webImg );
-// 	});
-// });
 </script>
