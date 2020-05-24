@@ -12,8 +12,8 @@ use app\index\model\Dict;
 use app\index\model\News;
 use app\index\model\Feature;
 
-define("UPLOAD_IMAGE_PATH", "/home/DN/imgs/") ;
-// define("UPLOAD_IMAGE_PATH", "D:/img/uploads/") ;
+// define("UPLOAD_IMAGE_PATH", "/home/DN/imgs/") ;
+ define("UPLOAD_IMAGE_PATH", "D:/img/uploads/") ;
 
 class Manage extends Common
 {
@@ -336,7 +336,7 @@ class Manage extends Common
             if( empty( $value ) ) continue ;
             $record = $dict->get( [
                 'name' => $key,
-                'model' => 'home'
+                'model' => $key == 'setting_web_logo' ? 'setting' : 'home'
             ]) ;
             if( $record ) {
                 if( $record ['value'] != $value ) {
@@ -348,7 +348,7 @@ class Manage extends Common
                 $dict = new Dict ;
                 $dict->name = $key;
                 $dict->value = $value;
-                $dict->model = 'home';
+                $dict->model = $key == 'setting_web_logo' ? 'setting' : 'home';
                 $result = $dict->save();
             }
         }

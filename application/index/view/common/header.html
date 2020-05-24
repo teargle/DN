@@ -12,10 +12,11 @@
 <body>
 	<div class="header">
 		<div class="container">
+			{if condition="isset($setting ['setting_web_logo'])"}
 			<div class="header-left">
-				<!-- <img src="__IMG__/logo.png"> -->
-				<h1>岱恩</h1>
+				<img src="{$setting ['setting_web_logo']}">
 			</div>
+			{/if}
 			<div class="header-right">
 				<ul>
 					<li>

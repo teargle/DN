@@ -2,11 +2,13 @@
 	<form class="home-manage-form">
 		<br /><div style="text-align: center;"><h1>首页配置</h1></div><br />
 		<hr />
-		<div class="row form-group" id="banner_sub_title">
-			<label for="banner_sub_title" class="col-sm-2 control-label text-right">图片副标题：</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" name="banner_sub_title" 
-				placeholder="请输入标题" />
+		<div class="row form-group" id="web_logo">
+			<label for="web_logo" class="col-sm-2 control-label text-right">网站LOGO(160 * 36)：</label>
+			<div class="col-sm-10 inputs">
+				<input class="btn btn-primary uploadimg" type="file" multiple 
+					accept="*.gif, *.jpeg, *.png, *.jpg, *.bmp" /><br /><br />
+				<img wdith="300" height="100" src="">
+				<input type="hidden" name="setting_web_logo" class="hidden-name" value="">
 			</div>
 		</div>
 		<hr />
@@ -110,4 +112,15 @@ function delBannerImg(obj) {
         }
   });
 }
+$(function() {
+	$("#web_logo").find(".uploadimg").change(function(){
+	    var formData = new FormData();
+	    var f = $("#web_logo").find(".uploadimg")[0].files[0];
+	    formData.append('file', f); // 固定格式
+	    uploadImg ( formData, function( data ) {
+	    	$("#web_logo").find(".inputs img").attr("src",data.obj.url);
+	    	$("#web_logo").find(".inputs .hidden-name").val(data.obj.url);
+	    } );
+	});
+}) ;
 </script>
