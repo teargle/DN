@@ -16,7 +16,6 @@ function init_justImg () {
  **/
 function productimg( $img ) {
 	var index = $img.data("index");
-	console.log( "index : " + index ) ;
 	current_col = (index - 1) % colNum ; // 当前第几列
 	current_row = parseInt( (index - 1) / colNum ) ; //当前第几行, 从0行开始
 	var imgheight = imgWidth = Math.round ( $(".photos-col").width() / colNum ) - 5;
