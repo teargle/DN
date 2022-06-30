@@ -117,7 +117,7 @@ class Index extends Controller
         $request = Request::instance();
         $get = $request->get();
         $keyword = array_key_exists('keyword', $get) ? $get ['keyword'] : $request->post('keyword');
-        $current_page = isset($get ['current_page']) ? $get ['current_page'] : 0 ;
+        $current_page = isset($get ['current_page']) && $get ['current_page'] > -1 ? $get ['current_page'] : 0 ;
         $start = $current_page * SHOP_LIMIT + 1 ;
         $product = new Product ;
         $products = [] ;
