@@ -113,10 +113,10 @@
 	<div class="photos-imgs">
 		<div class="photos-col" >
 			{volist name="data['products']" id="product"}
-			<a href="/index/index/product/id/{$product['id']}" class="22">
+			<a href="/index/index/product/id/{$product['id']}" class="photos-a" data-index="{$i}">
 				<span class="photos-inner">
 					<span class="photos-content">
-						<img src="{$product['img_url']}" data-index="{$i}">
+						<img src="{$product['img_url']}">
 					</span>
 				</span>
 			</a>
@@ -211,13 +211,7 @@
 $(document).ready( function(){
 	
 	// 需要检查图片是否都加载完了
-	$(".photos-col img").each(function(){
-		$(this).on('load', function(){
-			if( $(this).data("index") == 1 ) {
-				init_justImg() ;
-			}
-		});
-	}) ;
+	init_justImg() ;
 	// init_justNews();
 	
 }) ;

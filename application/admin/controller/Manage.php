@@ -91,7 +91,7 @@ class Manage extends Common
             }
 	        $this->_get_homepage( $product['is_home'] );
     	} else {
-    		$this->_get_homepage( $product['is_home'] );
+    		$this->_get_homepage( 0 );
     	}
         View::share('fcategory', $fcategory ) ; 
         View::share('scategory', $scategory ) ;

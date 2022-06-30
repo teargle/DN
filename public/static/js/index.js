@@ -1,50 +1,38 @@
 
 // 调整产品图片
+var colNum = 5 ;
 function init_justImg () {
 	$(window).resize(function(){
-		justImg( );
+		$(".photos-col a").each(function(index){
+			productimg ( $(this) ) ;
+		}) ;
 	}) ;
-	justImg();
-}
-function justImg ( ) {
-	justImgWidth ();
 	$(".photos-col a").each(function(index){
-		jsutImgOne ( $(this) , index ) ;
+			productimg ( $(this) ) ;
 	}) ;
-	justImgAll();
 }
-function justImgWidth( ) {
-	$img = $(".photos-col a:eq(0)");
-	var imgWidth = $img.width();
-	var colNum = Math.round ( $img.parent().width() / $img.width() );
-	var changeRate = 0 ;
-	if( imgWidth < 180 ) {
-		changeRate = colNum - 1 ;
-	} else if ( imgWidth > 250 ) {
-		changeRate = colNum + 1 ;
+/**
+ *  一排放5个，调整图片大小，以适应这个数量
+ **/
+function productimg( $img ) {
+	var index = $img.data("index");
+	console.log( "index : " + index ) ;
+	current_col = (index - 1) % colNum ; // 当前第几列
+	current_row = parseInt( (index - 1) / colNum ) ; //当前第几行, 从0行开始
+	var imgheight = imgWidth = Math.round ( $(".photos-col").width() / colNum ) - 5;
+	// 设置图片位置
+	var left = ( imgWidth  + 1 ) * current_col;
+	$img.css('left' , left ) ;
+	var top = ( imgheight + 0.002 ) * current_row;
+	$img.css('top' , top) ;
+	//设置图片大小 正方形
+	$img.width( imgWidth ) ;
+	$img.height( imgheight ) ;
+	// 整体高度要调整一下一遍能显示所有图片
+	var photos_height = (current_row + 1) * imgheight ;
+	if( $(".photos-col").height() < photos_height ) {
+		$(".photos-col").height( photos_height ) ;
 	}
-	if( changeRate == 0 ) return ;
-	var rate = ( 100 / changeRate ) + '%' ;
-	$(".photos-col a").width( rate );
-}
-function jsutImgOne ( $img , n ) {
-	var colNum = Math.round ( $img.parent().width() / $img.width() );
-	current_col = n % colNum ;
-	current_row = parseInt( n / colNum ) ; 
-	var rate = ( current_col / colNum  + 0.002 * current_col ) * 100 + '%' ;
-	$img.css('left' , rate ) ;
-	$img.css('top' , current_row * $img.height() + 2 * current_row ) ;
-}
-
-function justImgAll ( ) {
-	var imgNum = $(".photos-col").data("num") ;
-	$img = $(".photos-col a:eq(0)");
-	var colNum = Math.round ( $img.parent().width() / $img.width() );
-	number_row = parseInt( imgNum / colNum ) + 1 ; 
-	
-	all_height = number_row * $img.height() + number_row * 2 ;
-	$(".photos-imgs").height( number_row * $img.height() ) ;
-	$(".photos-col").height( number_row * $img.height() ) ;
 }
 
 // 调整新闻
