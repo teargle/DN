@@ -111,12 +111,12 @@
 		<div class="photos-title"><h2>{$lang ['index_photo']}</h2></div>
 	</div>
 	<div class="photos-imgs">
-		<div class="photos-col">
+		<div class="photos-col" >
 			{volist name="data['products']" id="product"}
 			<a href="/index/index/product/id/{$product['id']}" class="22">
 				<span class="photos-inner">
 					<span class="photos-content">
-						<img src="{$product['img_url']}">
+						<img src="{$product['img_url']}" data-index="{$i}">
 					</span>
 				</span>
 			</a>
@@ -210,7 +210,14 @@
 <script type="text/javascript">
 $(document).ready( function(){
 	
-	init_justImg() ;
+	// 需要检查图片是否都加载完了
+	$(".photos-col img").each(function(){
+		$(this).on('load', function(){
+			if( $(this).data("index") == 1 ) {
+				init_justImg() ;
+			}
+		});
+	}) ;
 	// init_justNews();
 	
 }) ;

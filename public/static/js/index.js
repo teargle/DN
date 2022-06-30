@@ -37,7 +37,7 @@ function jsutImgOne ( $img , n ) {
 }
 
 function justImgAll ( ) {
-	var imgNum = $(".photos-col a").length ;
+	var imgNum = $(".photos-col").data("num") ;
 	$img = $(".photos-col a:eq(0)");
 	var colNum = Math.round ( $img.parent().width() / $img.width() );
 	number_row = parseInt( imgNum / colNum ) + 1 ; 
