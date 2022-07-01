@@ -13,68 +13,75 @@
 	<div class="header">
 		<div class="container">
 			{if condition="isset($setting ['setting_web_logo'])"}
-			<div class="header-left">
+			<div class="header-logo">
 				<img src="{$setting ['setting_web_logo']}">
 			</div>
 			{/if}
-			<div class="header-right">
-				<ul>
-					<li>
-						{if condition="isset($rivet)"}
-						<a href="#">{$lang ['index_home']}</a>
-						{else}
-						<a href="/index/index/index">{$lang ['index_home']}</a>
-						{/if}
-					</li>
-					<li>
-						{if condition="isset($rivet)"}
-						<a href="#features_area">{$lang ['index_feature']}</a>
-						{else}
-						<a href="/index/index/index?#features_area">{$lang ['index_feature']}</a>
-						{/if}
-					</li>
-					<li>
-						{if condition="isset($rivet)"}
-						<a href="#about_area">{$lang ['index_about']}</a>
-						{else}
-						<a href="/index/index/index?#about_area">{$lang ['index_about']}</a>
-						{/if}
-					</li>
-					<li>
-						{if condition="isset($rivet)"}
-						<a href="#service_area">{$lang ['index_service']}</a>
-						{else}
-						<a href="/index/index/index?#service_area">{$lang ['index_service']}</a>
-						{/if}
-					</li>
-					<li>
-						<a href="/index/index/shop">{$lang ['index_shop']}</a>
-					</li>
-					<li>
-						{if condition="isset($rivet)"}
-						<a href="#product_area">{$lang ['index_photo']}</a>
-						{else}
-						<a href="/index/index/index?#product_area">{$lang ['index_photo']}</a>
-						{/if}
-					</li>
-					<li>
-						{if condition="isset($rivet)"}
-						<a href="#news_area">{$lang ['index_news']}</a>
-						{else}
-						<a href="/index/index/index?#news_area">{$lang ['index_news']}</a>
-						{/if}
-					</li>
-					<li>
-						<a href="/index/index/contact#">{$lang ['index_contact_us']}</a>
-					</li>
-					{if condition="isset($setting ['setting_qrcode'])"}
-					<li>
-						<img src="{$setting ['setting_qrcode']}">
-					</li>
+			<div class="header-nav">
+				<div class="nav">
+					{if condition="isset($rivet)"}
+					<a href="#">{$lang ['index_home']}</a>
+					{else}
+					<a href="/index/index/index">{$lang ['index_home']}</a>
 					{/if}
-				</ul>
+				</div>
+				<div class="nav">
+					{if condition="isset($rivet)"}
+					<a href="#features_area">{$lang ['index_feature']}</a>
+					{else}
+					<a href="/index/index/index?#features_area">{$lang ['index_feature']}</a>
+					{/if}
+				</div>
+				<div class="nav">
+					{if condition="isset($rivet)"}
+					<a href="#about_area">{$lang ['index_about']}</a>
+					{else}
+					<a href="/index/index/index?#about_area">{$lang ['index_about']}</a>
+					{/if}
+				</div>
+				<div class="nav">
+					{if condition="isset($rivet)"}
+					<a href="#service_area">{$lang ['index_service']}</a>
+					{else}
+					<a href="/index/index/index?#service_area">{$lang ['index_service']}</a>
+					{/if}
+				</div>
+				<div class="nav">
+					<a href="/index/index/shop">{$lang ['index_shop']}</a>
+				</div>
+				<div class="nav">
+					{if condition="isset($rivet)"}
+					<a href="#product_area">{$lang ['index_photo']}</a>
+					{else}
+					<a href="/index/index/index?#product_area">{$lang ['index_photo']}</a>
+					{/if}
+				</div>
+				<div class="nav">
+					{if condition="isset($rivet)"}
+					<a href="#news_area">{$lang ['index_news']}</a>
+					{else}
+					<a href="/index/index/index?#news_area">{$lang ['index_news']}</a>
+					{/if}
+				</div>
+				<div class="nav">
+					<a href="/index/index/contact#">{$lang ['index_contact_us']}</a>
+				</div>
+				{if condition="isset($setting ['setting_qrcode'])"}
+				<div class="nav">
+					<img src="{$setting ['setting_qrcode']}">
+				</div>
+				{/if}
 			</div>
+			
 		</div>
 	</div>
 
 	<div class="perch"></div>
+
+	<script type="text/javascript">
+	var navnum = $(".header-nav .nav").length ;
+	var navwidth = $(".header-nav").width() / navnum ;
+	console.log( "navnum : " + navnum + ", navwidth : " + navwidth) ;
+	$(".header-nav .nav").css( "margin-left", navwidth / 2 ) ;
+
+	</script>

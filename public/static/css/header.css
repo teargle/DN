@@ -19,7 +19,7 @@ body {
 	box-shadow: 0 5px 10px 0 rgba(50,50,50,.06);
 }
 
-.header-left {
+.header-logo {
 	float: left;
 	text-align: center;
 	/*vertical-align: middle;*/
@@ -27,7 +27,7 @@ body {
 	height: 36px;
 }
 
-.header-left h1 {
+.header-logo h1 {
 	font-weight: normal;
 }
 
@@ -38,20 +38,18 @@ body {
 	vertical-align: middle;
 }
 
-.header-right {
-	float: right;
-	list-style: none;
-	background-color: #fff;
-	margin-right: 30px;
+.header-nav {
+	margin: auto;
+	width: 100%;
+	max-width: 1100px;
+	display: flex;
 }
 
-.header-right ul li {
-	list-style: none;
-	float: left;
-	margin: 0 17px;
+.header-nav .nav {
+	justify-content: space-between;
 }
 
-.header-right ul li a {
+.header-nav a {
 	font-family: "Raleway,Helvetica,Arial,sans-serif";
 	font-size: 13px;
     font-weight: 600;
@@ -59,11 +57,13 @@ body {
     color: #333;
 }
 
-.header-right ul li a:hover {
+.header-nav a:hover {
 	color:#03c4eb;
 }
 
-.header-right ul li img {
+.header-nav img {
+	display: inline-block;
+	vertical-align: middle;
 	width: auto;
 	height: 72px;
 }
